@@ -1,5 +1,4 @@
 import React from 'react';
-import { LetsStart } from './LetsStart/LetsStart';
 
 export const App = () => {
   return (
@@ -15,9 +14,8 @@ export const App = () => {
     >
       React team Project
       <>
-      <h1>Hello</h1>
-      <LetsStart />
-    </>
+        <h1>Hello</h1>
+      </>
     </div>
   );
 };
