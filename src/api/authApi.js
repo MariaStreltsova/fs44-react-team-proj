@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '/baseUrl';
+import { BASE_URL } from '../baseUrl/baseUrl';
 
 const authApi = axios.create({
     baseURL: BASE_URL,
