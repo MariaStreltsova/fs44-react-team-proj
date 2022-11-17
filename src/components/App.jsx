@@ -1,3 +1,6 @@
+import React from 'react';
+import { LetsStart } from './LetsStart/LetsStart';
+
 export const App = () => {
   return (
     <div
@@ -11,6 +14,10 @@ export const App = () => {
       }}
     >
       React team Project
+      <>
+      <h1>Hello</h1>
+      <LetsStart />
+    </>
     </div>
   );
 };
