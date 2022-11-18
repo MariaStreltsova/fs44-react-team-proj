@@ -2,11 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import { useAuth } from 'hooks/useAuht';
-// import PublicRoute from 'hooks/Route/PublicRoute';
-// import PrivateRoute from 'hooks/Route/PrivateRoute';
+import useAuth from 'hocs/useAuht';
+import AuthLayout from 'layout/AuthLayout/AuthLayout';
+import PublicRoute from 'hocs/Route/PublicRoute';
+import PrivateRoute from 'hocs/Route/PrivateRoute';
+import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 
-const Layout = lazy(() => import('./layout/Layout'));
 const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
 
 export const App = () => {
@@ -22,7 +23,17 @@ export const App = () => {
   ) : (
     <Suspense fallback={<h1>Loading profile.</h1>}>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute
+              restricted
+              redirectedTo="/login"
+              component={<NonAuthLayout component={<login />} />}
+            />
+          }
+        />
+        <Route path="/" element={<PrivateRoute component={<AuthLayout />} />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
