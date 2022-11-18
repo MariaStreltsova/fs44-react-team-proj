@@ -14,6 +14,10 @@ const theme = {
     incomeColor: '#24CCA7',
     borderColor: 'rgba(224, 224, 224, 1)',
   },
+    fonts: {
+    body: "Circe",
+    title: "Poppins",
+  },
     fontSizes: {
     s: '12px',
     m: '16px',
