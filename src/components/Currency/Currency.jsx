@@ -7,7 +7,9 @@ function Currency() {
   // const [currencyData, setCurrencyData] = setState({})
 
   async function fetchCurrency() {
-    const currencyData = await axios.get('https://api.themoviedb.org/3/');
+    const currencyData = await axios.get(
+      'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
+    );
     console.log(currencyData);
   }
 

@@ -17,7 +17,6 @@ export const App = () => {
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
-  console.log(555);
 
   return isRefreshing ? <h1>Refreshing user...</h1> : <Currency />;
   //   (
