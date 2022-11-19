@@ -2,11 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import useAuth from 'hocs/useAuht';
 import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
+import useAuth from 'hooks/useAuht';
 
 const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
 
@@ -33,7 +33,10 @@ export const App = () => {
             />
           }
         />
-        <Route path="/" element={<PrivateRoute component={<AuthLayout />} />} />
+        <Route
+          path="/home"
+          element={<PrivateRoute component={<AuthLayout />} />}
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
