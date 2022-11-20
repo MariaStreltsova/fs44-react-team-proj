@@ -1,39 +1,91 @@
 import React from 'react';
-import axios from 'axios';
-
-// import setState
+import {
+  DataTable,
+  HeadTable,
+  HeadCell,
+  CurrencyBlock,
+  BodyCell,
+} from './Currency.styled';
+import { useState, useEffect } from 'react';
+import CurrencyLoader from 'UI/loaders/CurrencyLoader';
+import fetchCurrency from 'api/currency';
 
 function Currency() {
-  // const [currencyData, setCurrencyData] = setState({})
+  const [currencyData, setCurrencyData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  async function fetchCurrency() {
-    const currencyData = await axios.get(
-      'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
-    );
-    console.log(currencyData);
+  // getting data
+  async function readLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('currencyData'));
+    if (data && data.length === 3) {
+      setTimeout(() => {
+        setCurrencyData(data);
+      }, 2000);
+    } else {
+      const interval = setInterval(() => {
+        fetchCurrency();
+        const data = JSON.parse(localStorage.getItem('currencyData'));
+        if (data) {
+          clearInterval(interval);
+          setCurrencyData(data);
+        }
+      }, 2000);
+    }
   }
 
-  fetchCurrency();
+  // mount component, checks local storage or fetches data from server
+  useEffect(() => {
+    readLocalStorage();
+    setInterval(() => {
+      fetchCurrency();
+      const data = JSON.parse(localStorage.getItem('currencyData'));
+      setCurrencyData(data);
+    }, 3600000);
+  }, []);
+
+  // observe change in data state for mountain component
+  useEffect(() => {
+    if (currencyData.length === 3) {
+      setIsLoading(false);
+    }
+  }, [currencyData]);
 
   return (
-    <>
-      <table>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Currency</th>
-          </tr>
-        </thead>
-
+    <CurrencyBlock>
+      <HeadTable>
         <tbody>
-          {/* {transactions.map(transaction => (
-          <TransactionRow key={transaction.id} transaction={transaction} />
-        ))} */}
+          <tr>
+            <HeadCell>Currency</HeadCell>
+            <HeadCell>Purchase</HeadCell>
+            <HeadCell>Sale</HeadCell>
+          </tr>
         </tbody>
-      </table>
-      <button onClick={fetchCurrency}>Request</button>
-    </>
+      </HeadTable>
+      {isLoading ? (
+        <CurrencyLoader />
+      ) : (
+        <DataTable>
+          <tbody>
+            <tr>
+              <BodyCell>USD</BodyCell>
+              <BodyCell>{currencyData[0].rateBuy.toFixed(2)}</BodyCell>
+              <BodyCell>{currencyData[0].rateSell.toFixed(2)}</BodyCell>
+            </tr>
+            <tr>
+              <BodyCell>EUR</BodyCell>
+              <BodyCell>{currencyData[1].rateBuy.toFixed(2)}</BodyCell>
+              <BodyCell>{currencyData[1].rateSell.toFixed(2)}</BodyCell>
+            </tr>
+            <tr>
+              <BodyCell>MXN</BodyCell>
+              <BodyCell colSpan="2">
+                {currencyData[2].rateCross.toFixed(2)}
+              </BodyCell>
+            </tr>
+          </tbody>
+        </DataTable>
+      )}
+    </CurrencyBlock>
   );
 }
 
