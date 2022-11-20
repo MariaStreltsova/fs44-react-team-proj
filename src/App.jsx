@@ -3,9 +3,11 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import PublicRoute from 'hocs/Route/PublicRoute';
+import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
 import { PeoleSvg } from 'images/icons/PeopleSvg';
+import DashBoard from 'pages/DashBoard/DashBoard';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -35,7 +37,10 @@ export const App = () => {
             />
           }
         />
-
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={<DashBoard />} />}
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
