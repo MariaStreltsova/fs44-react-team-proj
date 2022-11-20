@@ -7,6 +7,7 @@ import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
+import DashBoard from 'page/DashBoard/DashBoard';
 
 const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
 
@@ -36,6 +37,10 @@ export const App = () => {
         <Route
           path="/home"
           element={<PrivateRoute component={<AuthLayout />} />}
+        />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={<DashBoard />} />}
         />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
