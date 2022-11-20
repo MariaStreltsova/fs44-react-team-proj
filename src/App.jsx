@@ -2,14 +2,15 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
-import DashBoard from 'page/DashBoard/DashBoard';
+import { PeoleSvg } from 'images/icons/PeopleSvg';
+import DashBoard from 'pages/DashBoard/DashBoard';
 
-const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
+const Login = lazy(() => import('./pages/Login/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,18 +26,16 @@ export const App = () => {
     <Suspense fallback={<h1>Loading profile.</h1>}>
       <Routes>
         <Route
-          path="/login"
+          path="/"
           element={
             <PublicRoute
               restricted
-              redirectedTo="/login"
-              component={<NonAuthLayout component={<login />} />}
+              redirectedTo="/wallet"
+              component={
+                <NonAuthLayout component={<Login />} picture={PeoleSvg} />
+              }
             />
           }
-        />
-        <Route
-          path="/home"
-          element={<PrivateRoute component={<AuthLayout />} />}
         />
         <Route
           path="/dashboard"
