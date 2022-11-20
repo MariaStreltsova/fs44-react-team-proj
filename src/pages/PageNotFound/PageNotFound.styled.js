@@ -28,9 +28,19 @@ export const Img = styled.img`
     display: block;
     height: auto;
     width: 100%;
+
+    @media screen and (max-width: 768px) {
+  display:none ;
+  }
+
   `
 export const Main = styled.main`
     text-align: center;
+    @media screen and (max-width: 768px) {
+  margin-left: auto;
+  margin-right: auto;
+
+  }
     `
 export const Title = styled.h1`
     font-family: "Fontdiner Swanky", cursive;
