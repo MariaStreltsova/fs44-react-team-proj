@@ -1,0 +1,17 @@
+{
+  "button": {
+    "language": "Language",
+    "goHome": "To main"
+  },
+  "input": {},
+  "session": {},
+  "alert": {},
+  "dialog": {},
+  "validation": {},
+  "title": {
+    "404": {
+      "notFound": "Not found!",
+      "notExist": "This page does not exist"
+    }
+  }
+}

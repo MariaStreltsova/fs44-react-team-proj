@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import '../node_modules/flag-icons/css/flag-icons.min.css';
 import { authOperations } from 'redux/auth';
 import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
