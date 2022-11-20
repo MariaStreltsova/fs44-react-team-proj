@@ -6,7 +6,7 @@ export const Dashboard = styled.div`
   padding-right: 20px;
   background-color: rgba(230, 230, 230, 0.474);
   min-width: 320px;
-  height: 100 %;
+  height: 100%;
 `;
 
 export const Wrapper = styled.div`
