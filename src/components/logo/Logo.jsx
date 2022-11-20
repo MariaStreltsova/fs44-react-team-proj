@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Title } from './Logo.styled';
+import { Box } from 'Box';
+import { Title } from './Logo.styled';
 import wallet from '../../images/wallet.svg';
 
 const Logo = () => {
     return (
-        <Box>
+        <Box display="flex">
              <img
       src={wallet}
       alt="wallet"

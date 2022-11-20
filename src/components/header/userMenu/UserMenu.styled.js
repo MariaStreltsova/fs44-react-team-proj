@@ -1,33 +1,28 @@
 import styled from 'styled-components';
-//import { IoExitOutline } from "react-icons/io5";
-
-export const Box = styled.div`
-  display: flex;
-  align-items: center;
-`;
+import theme from 'theme';
 
 export const Text = styled.p`
   margin: 0 12px 0 0;
-  color: #BDBDBD;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
+  color: ${p => p.theme.colors.secondaryTxtColor};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.normal};
 `;
 
 export const Button = styled.button`
   cursor: pointer;
-  padding: 0px;
   display: flex;
-  color: #BDBDBD;
-  background: #fff;
-  border-left: 1px solid  #BDBDBD;
+  align-items: center;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.normal};
+  padding: ${p => p.theme.space[0]}px;
+  color: ${p => p.theme.colors.secondaryTxtColor};
+  background-color: ${p => p.theme.colors.lightBackgroundColor};
+  border-left: 1px solid ${theme.colors.secondaryTxtColor};
   border-right: transparent;
   border-bottom: transparent;
   border-top: transparent;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.5;
-  align-items: center;
 `;
 
 export const Icon = styled.img`

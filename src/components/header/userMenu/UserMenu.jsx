@@ -1,17 +1,19 @@
 import useAuth from "hooks/useAuht";
 import exit from "images/exit.svg";
-import { Box, Text, Button, Icon } from "./UserMenu.styled";
+import { Box } from "Box";
+import { Text, Button, Icon } from "./UserMenu.styled";
 
-const UserMenu = () => {
+const UserMenu = ({Modal}) => {
     const {user}  = useAuth();
     return (
-        <Box>
+        <Box display="flex" align-items="center">
             <Text>
                 name
                 {user?.name}
             </Text>
             
-            <Button type='button' onClick>
+            <Button type='button' onClick={() => {
+            Modal()}}>
                 <Icon
                     src={exit}
                     alt="exit"
