@@ -8,7 +8,6 @@ import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
 import DashBoard from 'page/DashBoard/DashBoard';
-import Header from 'components/header/Header';
 
 const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
 
@@ -24,8 +23,7 @@ export const App = () => {
     <h1>Refreshing user...</h1>
   ) : (
     <Suspense fallback={<h1>Loading profile.</h1>}>
-        <Routes>
-          <Route path='/Header'element={<Header/>}/>
+      <Routes>
         <Route
           path="/login"
           element={

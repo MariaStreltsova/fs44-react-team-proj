@@ -1,13 +1,24 @@
-//import { IoExitOutline } from 'react-icons';
+import useAuth from "hooks/useAuht";
+import exit from "images/exit.svg";
+import { Box, Text, Button, Icon } from "./UserMenu.styled";
 
 const UserMenu = () => {
+    const {user}  = useAuth();
     return (
-        <div>
-            name
-            <button  type='button'>    
+        <Box>
+            <Text>
+                name
+                {user?.name}
+            </Text>
+            
+            <Button type='button' onClick>
+                <Icon
+                    src={exit}
+                    alt="exit"
+                />
                 Exit
-            </button>
-        </div>
+            </Button>
+        </Box>
     )
 };
 
