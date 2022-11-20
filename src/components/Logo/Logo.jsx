@@ -1,10 +1,18 @@
+import React from 'react';
+import { Box, Title } from './Logo.styled';
+import wallet from '../../images/wallet.svg';
 
 const Logo = () => {
     return (
-        <div>
-            img 
+        <Box>
+             <img
+      src={wallet}
+      alt="wallet"
+            />
+            <Title>
             Wallet
-        </div>
+            </Title>
+        </Box>
     )
 };
 
