@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
+import Dollar from "../../images/404/Cursor404.png"
 
 export const Container = styled.div`
   background: linear-gradient(to right, white 50%, #383838 50%);
@@ -66,5 +67,5 @@ export const WrapperAll = styled.div`
     box-sizing: 0;
     margin: 0;
     padding: 0;
-    cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/cursors-edge.png"),
+    cursor: url(${Dollar}), auto;
       auto;`
