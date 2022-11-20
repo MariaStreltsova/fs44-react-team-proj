@@ -1,16 +1,29 @@
 import { Box } from 'Box';
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import { GlobalStyle } from '../../GlobalStyle';
+import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
 
-const NonAuthLayout = () => {
+import {
+  RootWrapper,
+  FormContainer,
+  ImageContainer,
+  BulbImg,
+  PeopleImg,
+} from './NonAuthLayoutStyles';
+
+const NonAuthLayout = ({ component, picture }) => {
   return (
-    <Box>
+    <RootWrapper>
       <Suspense fallback={null}>
-        <Outlet />
+        <Box w={'1920px'} height="100vh" display="flex">
+          <ImageContainer>
+            <PeopleImg>{picture()}</PeopleImg>
+
+            <BulbImg>{PurpurBulbSvg()}</BulbImg>
+          </ImageContainer>
+          <FormContainer>{component}</FormContainer>
+        </Box>
       </Suspense>
-      <GlobalStyle />
-    </Box>
+    </RootWrapper>
   );
 };
 

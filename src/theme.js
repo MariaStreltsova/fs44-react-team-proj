@@ -1,4 +1,4 @@
-import '../src/stylesheet/fonts.css'
+import '../src/stylesheet/fonts.css';
 
 const theme = {
   colors: {
@@ -14,15 +14,11 @@ const theme = {
     incomeColor: '#24CCA7',
     borderColor: 'rgba(224, 224, 224, 1)',
   },
-    fonts: {
-    body: "Circe",
-    title: "Poppins",
+  fonts: {
+    body: 'Circe',
+    title: 'Poppins',
   },
-    fontSizes: {
-    s: '12px',
-    m: '16px',
-    l: '18px',
-  },
+
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: {
     xs: '12px',
