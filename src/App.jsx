@@ -24,7 +24,8 @@ export const App = () => {
     <h1>Refreshing user...</h1>
   ) : (
     <Suspense fallback={<h1>Loading profile.</h1>}>
-      <Routes>
+        <Routes>
+        
         <Route
           path="/"
           element={
