@@ -78,6 +78,8 @@ const Login = () => {
           <Button variant="outlined">REGISTER</Button>
         </Box>
       </Box>
+
+      <p className='test123'> Тест </p>
     </Container>
   );
 };
