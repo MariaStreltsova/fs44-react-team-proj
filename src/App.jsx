@@ -6,7 +6,7 @@ import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
-import { PeoleSvg } from 'images/icons/PeopleSvg';
+import { PeopleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
@@ -32,7 +32,7 @@ export const App = () => {
               restricted
               redirectedTo="/wallet"
               component={
-                <NonAuthLayout component={<Login />} picture={PeoleSvg} />
+                <NonAuthLayout component={<Login />} picture={PeopleSvg} />
               }
             />
           }
