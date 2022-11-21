@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { useAuth } from 'hooks/useAuht';
-import Currency from 'components/Currency/Currency';
+
 // import PublicRoute from 'hooks/Route/PublicRoute';
 // import PrivateRoute from 'hooks/Route/PrivateRoute';
 
