@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   Aside,
   Button,
@@ -12,6 +13,7 @@ import {
 } from './PageNotFound.styled';
 
 const PageNotFound = () => {
+  const { t } = useTranslation();
   return (
     <>
       <WrapperAll>
@@ -25,11 +27,11 @@ const PageNotFound = () => {
             </Aside>
 
             <Main>
-              <Title>Не найдено!</Title>
+              <Title>{t('title.404.notFound')}</Title>
               <P>
-                <Em>Данной страницы не существует</Em>
+                <Em>{t('title.404.notExist')}</Em>
               </P>
-              <Button to="/">На главную!</Button>
+              <Button to="/">{t('button.goHome')}</Button>
             </Main>
           </Wrapper>
         </Container>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
+import Dollar from "../../images/404/Cursor404.png"
 
 export const Container = styled.div`
   background: linear-gradient(to right, white 50%, #383838 50%);
@@ -27,9 +28,19 @@ export const Img = styled.img`
     display: block;
     height: auto;
     width: 100%;
+
+    @media screen and (max-width: 768px) {
+  display:none ;
+  }
+
   `
 export const Main = styled.main`
     text-align: center;
+    @media screen and (max-width: 768px) {
+  margin-left: auto;
+  margin-right: auto;
+
+  }
     `
 export const Title = styled.h1`
     font-family: "Fontdiner Swanky", cursive;
@@ -66,5 +77,5 @@ export const WrapperAll = styled.div`
     box-sizing: 0;
     margin: 0;
     padding: 0;
-    cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/cursors-edge.png"),
+    cursor: url(${Dollar}), auto;
       auto;`
