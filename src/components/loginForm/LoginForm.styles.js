@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 
 export const Container = styled.div`
   display: flex;
@@ -19,4 +20,10 @@ export const TitleText = styled.h1`
 
 export const Logo = styled.div`
   margin-right: 20px;
+`;
+
+export const FormikForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

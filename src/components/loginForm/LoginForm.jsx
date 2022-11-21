@@ -1,4 +1,3 @@
-import { Container, Title, TitleText, Logo } from './LoginForm.styles';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -8,9 +7,26 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import { AuthBtn } from 'components/buttons/authButtons/loginBtn/AuthBtn';
+import { UniversalBtn } from 'components/buttons/authButtons/loginBtn/UniversalBtn';
 import { WalletSvg } from 'images/icons/WalletSvg';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import {
+  Container,
+  Title,
+  TitleText,
+  Logo,
+  FormikForm,
+} from './LoginForm.styles';
+
+const validationScheme = Yup.object().shape({
+  login: Yup.string().required('Login is requred field'),
+  password: Yup.string().required('password is requred field'),
+});
+const initialState = {
+  login: '',
+  password: '',
+};
 
 export const LoginForm = () => {
   const [values, setValues] = useState({
@@ -42,60 +58,56 @@ export const LoginForm = () => {
         <Logo> {WalletSvg()}</Logo>
         <TitleText>Wallet</TitleText>
       </Title>
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'center'}
+
+      <Formik
+        initialValues={{ ...initialState }}
+        validationSchema={validationScheme}
+        onSubmit={values => console.log(values)}
       >
-        <TextField
-          id="standard-basic"
-          label="E-mail"
-          variant="standard"
-          style={{ width: '100%', margin: '0 0 40px 0' }}
-        />
-        <FormControl
-          style={{ width: '100%', marginBottom: '40px' }}
-          variant="standard"
-        >
-          <InputLabel htmlFor="standard-adornment-password">
-            Password
-          </InputLabel>
-          <Input
-            id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
+        <FormikForm>
+          <TextField
+            id="standard-basic"
+            label="E-mail"
+            variant="standard"
+            name="login"
+            style={{ width: '100%', margin: '0 0 40px 0' }}
           />
-        </FormControl>
-        <Box display={'flex'} flexDirection={'column'} alignItems="center">
-          <AuthBtn
+          <FormControl
+            style={{ width: '100%', marginBottom: '40px' }}
+            variant="standard"
+          >
+            <InputLabel htmlFor="standard-adornment-password">
+              Password
+            </InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={values.showPassword ? 'text' : 'password'}
+              value={values.password}
+              name={'password'}
+              onChange={handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          <UniversalBtn
             title="LOG IN"
             variant="contained"
             type="submit"
             color="#24CCA7"
           />
-          <AuthBtn
-            title="REGISTER"
-            variant="outlined"
-            mb="0px"
-            href="https://youtu.be/JjNLA-EtsSQ?list=RDMM&t=34"
-          />
-        </Box>
-      </Box>
+          <UniversalBtn title="REGISTER" variant="outlined" mb="0px" />
+        </FormikForm>
+      </Formik>
     </Container>
   );
 };

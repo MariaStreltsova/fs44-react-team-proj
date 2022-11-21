@@ -7,7 +7,7 @@ import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
-import { PeopleSvg } from 'images/icons/PeopleSvg';
+import { MaleSvg } from 'images/icons/MaleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
@@ -26,22 +26,29 @@ export const App = () => {
   ) : (
     <Suspense fallback={<h1>Loading profile.</h1>}>
       <Routes>
+        <Route path="/" element={<NonAuthLayout picture={MaleSvg} />}>
+          <Route
+            path="login"
+            element={
+              <PublicRoute
+                restricted
+                redirectedTo="/dashboard"
+                component={<Login />}
+              />
+            }
+          />
+        </Route>
         <Route
-          path="/"
+          path="/dashboard"
           element={
-            <PublicRoute
-              restricted
-              redirectedTo="/wallet"
-              component={
-                <NonAuthLayout component={<Login />} picture={PeopleSvg} />
-              }
-            />
+            <PrivateRoute redirectTo="/login" component={<DashBoard />} />
           }
         />
         <Route
           path="/dashboard"
           element={<PrivateRoute component={<DashBoard />} />}
         />
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>

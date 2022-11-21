@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-export const AuthBtn = ({
+export const UniversalBtn = ({
   title = '',
   variant = 'contained',
   type = 'button',
@@ -7,19 +7,18 @@ export const AuthBtn = ({
   href = '',
   disabled = false,
   mb = '20px',
+  width = '300px',
 }) => {
   return (
     <Button
       variant={variant}
       type={type}
       disabled={disabled}
-      // color={color}
       href={href}
       style={{
-        width: '300px',
+        width: `${width}`,
         height: '50px',
         borderRadius: '20px',
-        marginBottom: '2px',
         backgroundColor: `${color}`,
         marginBottom: `${mb}`,
       }}
