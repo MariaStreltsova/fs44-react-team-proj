@@ -7,17 +7,23 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import theme from './theme';
+import { GlobalStyle } from './GlobalStyle';
+import './locales/i18n';
+import LanguageFlags from 'locales/LanguageFlags';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
- <React.StrictMode>
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename="/fs44-react-team-proj/">
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>
- </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <LanguageFlags />
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
+// basename="/fs44-react-team-proj"

@@ -1,14 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import '../node_modules/flag-icons/css/flag-icons.min.css';
 import { authOperations } from 'redux/auth';
-import { useAuth } from 'hooks/useAuht';
+import PublicRoute from 'hocs/Route/PublicRoute';
+import PrivateRoute from 'hocs/Route/PrivateRoute';
+import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
+import useAuth from 'hooks/useAuht';
+import { PeoleSvg } from 'images/icons/PeopleSvg';
+import DashBoard from 'pages/DashBoard/DashBoard';
 
-// import PublicRoute from 'hooks/Route/PublicRoute';
-// import PrivateRoute from 'hooks/Route/PrivateRoute';
-
-const Layout = lazy(() => import('./layout/Layout'));
-const PageNotFound = lazy(() => import('./page/PageNotFound/PageNotFound'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
+const Login = lazy(() => import('./pages/Login/Login'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -18,13 +21,29 @@ export const App = () => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return isRefreshing ? (<h1>Refreshing user...</h1>) :
-     (
-     <Suspense fallback={<h1>Loading profile.</h1>}>
-       <Routes>
-         <Route path="/" element={<Layout />} />
-         <Route path="*" element={<PageNotFound />} />
-       </Routes>
-     </Suspense>
-   );
+  return isRefreshing ? (
+    <h1>Refreshing user...</h1>
+  ) : (
+    <Suspense fallback={<h1>Loading profile.</h1>}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PublicRoute
+              restricted
+              redirectedTo="/wallet"
+              component={
+                <NonAuthLayout component={<Login />} picture={PeoleSvg} />
+              }
+            />
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={<DashBoard />} />}
+        />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Suspense>
+  );
 };
