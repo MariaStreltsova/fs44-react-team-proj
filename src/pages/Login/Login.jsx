@@ -79,7 +79,6 @@ const Login = () => {
         </Box>
       </Box>
 
-      <p className='test123'> Тест </p>
     </Container>
   );
 };
