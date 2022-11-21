@@ -1,6 +1,8 @@
 import { Container } from './Login.styled';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -9,6 +11,8 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { useState } from 'react';
+import { ButtonLogin, ButtonRegistr, BoxBottoms } from 'pages/Registration/Registration.styled';
+import LogoIcon from "../../components/Logo/LogoForm"
 
 import Box from '@mui/material/Box';
 
@@ -48,6 +52,10 @@ const Login = () => {
         flexDirection={'column'}
         justifyContent={'center'}
       >
+         <LogoIcon style={{
+            display: "inline-flex",
+            justifyContent: "center",
+            }}/> 
         <TextField id="standard-basic" label="E-mail" variant="standard" />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">
@@ -71,12 +79,16 @@ const Login = () => {
             }
           />
         </FormControl>
-        <Box display={'flex'} flexDirection={'column'}>
-          <Button variant="contained" type="submit">
+        <BoxBottoms display={'flex'} flexDirection={'column'}>
+           <ButtonRegistr variant="contained" type="submit">LOGIN IN</ButtonRegistr>
+            <Link to="/registration">
+             <ButtonLogin variant="outlined">REGISTER</ButtonLogin>
+          </Link>
+          {/* <Button variant="contained" type="submit">
             LOGIN IN
           </Button>
-          <Button variant="outlined">REGISTER</Button>
-        </Box>
+          <Button variant="outlined">REGISTER</Button> */}
+        </BoxBottoms>
       </Box>
     </Container>
   );

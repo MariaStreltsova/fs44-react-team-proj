@@ -8,6 +8,7 @@ import {
   ImageContainer,
   BulbImg,
   PeopleImg,
+  TitleApp
 } from './NonAuthLayoutStyles';
 
 const NonAuthLayout = ({ component, picture }) => {
@@ -17,7 +18,7 @@ const NonAuthLayout = ({ component, picture }) => {
         <Box w={'1920px'} height="100vh" display="flex">
           <ImageContainer>
             <PeopleImg>{picture()}</PeopleImg>
-
+            <TitleApp>Finance App</TitleApp>
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
           <FormContainer>{component}</FormContainer>
