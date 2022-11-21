@@ -1,6 +1,7 @@
 import { Box } from 'Box';
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
+import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
 
 import {
   RootWrapper,
@@ -21,6 +22,7 @@ const NonAuthLayout = ({ component, picture }) => {
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
           <FormContainer>{component}</FormContainer>
+          <AddTransactionBtn />
         </Box>
       </Suspense>
     </RootWrapper>
