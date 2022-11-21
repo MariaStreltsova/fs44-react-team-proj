@@ -9,7 +9,7 @@ import {
   InputLabelForm,
 } from './securInput.styles';
 
-export const SecurInput = ({ label = '', icon = null }) => {
+export const SecurInput = ({ label = '', icon = null, mb = 0 }) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -29,19 +29,16 @@ export const SecurInput = ({ label = '', icon = null }) => {
       showPassword: !values.showPassword,
     });
   };
-  //   const handleClickShowConfirmPassword = () => {
-  //     setValues({
-  //       ...values,
-  //       showConfirmPassword: !values.showConfirmPassword,
-  //     });
-  //   };
 
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
   return (
-    <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+    <FormControl
+      sx={{ m: 1, width: '100%', marginBottom: `${mb}px` }}
+      variant="standard"
+    >
       <InputLabelName htmlFor="standard-adornment-password">
         {label}
       </InputLabelName>
