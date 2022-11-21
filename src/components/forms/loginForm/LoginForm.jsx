@@ -8,16 +8,10 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { useState } from 'react';
 import { UniversalBtn } from 'components/buttons/authButtons/loginBtn/UniversalBtn';
-import { WalletSvg } from 'images/icons/WalletSvg';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {
-  Container,
-  Title,
-  TitleText,
-  Logo,
-  FormikForm,
-} from './LoginForm.styles';
+import { Container, FormikForm } from './LoginForm.styles';
+import { FormLogo } from '../formsLogo/formLogo';
 
 const validationScheme = Yup.object().shape({
   login: Yup.string().required('Login is requred field'),
@@ -54,10 +48,7 @@ export const LoginForm = () => {
 
   return (
     <Container>
-      <Title>
-        <Logo> {WalletSvg()}</Logo>
-        <TitleText>Wallet</TitleText>
-      </Title>
+      <FormLogo />
 
       <Formik
         initialValues={{ ...initialState }}
