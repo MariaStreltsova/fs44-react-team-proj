@@ -8,10 +8,12 @@ import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
 import { MaleSvg } from 'images/icons/MaleSvg';
+import { GirlSvg } from 'images/icons/GirlSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
+const Registration = lazy(() => import('./pages/Registration/Registration'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -31,19 +33,26 @@ export const App = () => {
             path="login"
             element={
               <PublicRoute
-                restricted
-                redirectedTo="/dashboard"
                 component={<Login />}
+                restricted
+                redirectTo="/dashboard"
               />
             }
           />
         </Route>
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute redirectTo="/login" component={<DashBoard />} />
-          }
-        />
+
+        <Route path="/" element={<NonAuthLayout picture={GirlSvg} />}>
+          <Route
+            path="registration"
+            element={
+              <PublicRoute
+                restricted
+                redirectedTo="/dashboard"
+                component={<Registration />}
+              />
+            }
+          />
+        </Route>
         <Route
           path="/dashboard"
           element={<PrivateRoute component={<DashBoard />} />}

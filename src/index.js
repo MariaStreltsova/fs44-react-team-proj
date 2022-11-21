@@ -26,4 +26,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
-// basename="/fs44-react-team-proj"
