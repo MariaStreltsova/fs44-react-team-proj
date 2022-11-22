@@ -1,12 +1,12 @@
-import { UniversalBtn } from 'components/buttons/authButtons/loginBtn/UniversalBtn';
+import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Container, FormikForm } from './LoginForm.styles';
-import { FormLogo } from '../formsLogo/formLogo';
+import { FormLogo } from '../FormsLogo/formLogo';
 import { EmailIcon } from 'images/icons/icon-form/Email';
 import { PasswordIcon } from 'images/icons/icon-form/LockPs';
-import { Input } from '../inputs/Input/Input';
-import { SecurInput } from '../inputs/securInput/securInput';
+import { Input } from '../Inputs/Input/Input';
+import { SecurInput } from '../Inputs/SecurInput/securInput';
 
 const validationScheme = Yup.object().shape({
   login: Yup.string().required('Login is requred field'),

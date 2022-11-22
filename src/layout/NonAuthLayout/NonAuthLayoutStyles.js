@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import formBackground from '../../images/Rectangle.jpg';
-// import imageBackground from '';
 
 export const RootWrapper = styled.div`
   width: 100vw;
@@ -45,4 +44,4 @@ export const TitleApp = styled.span`
   line-height: 45px;
 
   color: #000000;
-`
+`;
