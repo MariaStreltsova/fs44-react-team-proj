@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="/fs44-react-team-proj">
           <ThemeProvider theme={theme}>
             <GlobalStyle />
             <LanguageFlags />
@@ -26,4 +26,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
-// basename="/fs44-react-team-proj"
