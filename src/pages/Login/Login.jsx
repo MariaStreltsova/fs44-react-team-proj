@@ -78,6 +78,7 @@ const Login = () => {
           <Button variant="outlined">REGISTER</Button>
         </Box>
       </Box>
+
     </Container>
   );
 };
