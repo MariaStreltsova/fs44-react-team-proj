@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import theme from './theme';
 import { GlobalStyle } from './GlobalStyle';
+import './locales/i18n';
+import LanguageFlags from 'locales/LanguageFlags';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter basename="/fs44-react-team-proj">
           <ThemeProvider theme={theme}>
             <GlobalStyle />
+            <LanguageFlags />
             <App />
           </ThemeProvider>
         </BrowserRouter>

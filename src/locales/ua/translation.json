@@ -1,0 +1,17 @@
+{
+  "button": {
+    "language": "Мова",
+    "goHome": "На головну"
+  },
+  "input": {},
+  "session": {},
+  "alert": {},
+  "dialog": {},
+  "validation": {},
+  "title": {
+    "404": {
+      "notFound": "Не знайдено!",
+      "notExist": "Ця сторінка не існує"
+    }
+  }
+}
