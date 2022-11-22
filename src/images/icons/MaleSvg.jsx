@@ -1,8 +1,8 @@
 export const MaleSvg = () => {
   return (
     <svg
-      width="436"
-      height="420"
+      // width="436"
+      // height="420"
       viewBox="0 0 436 420"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
