@@ -35,44 +35,31 @@ const handleClose = () => setOpen(false);
   
 
   const [show, setShow ] = useState(true);
-    const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
+  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
 
 
   const f = useFormik({
     initialValues: {
-     
-      transactionDate: new Date(),
- 
-    },
-    onSubmit: async values => {
-      console.log(values)
+    addAmount: "",
+    transactionDate: new Date(),
+    comment: "",    
+    categories: "",
     },
   });
-  
-
-
-    const initialValues = {
-        addAmount: "",
-        date: "",
-        comment: "",    
-        categories: "",
-     }
     // const datePattern = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
     const validationSchema = object().shape({
         addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
         // date: string().matches(datePattern, "Choose date properly").required("Choose date"),
-        date: string().required("Choose date"),
+        transactionDate: string().required("Choose date"),
         comment: string(),
         // categories: string().required("Select a category"),
     });
-
 
    const onFormSubmit = async (values) => {
         console.log("my values:", values);
       return new Promise(res => setTimeout(res, 1500));
     }
-
 
     return (
       <>
@@ -105,49 +92,50 @@ const handleClose = () => setOpen(false);
                 </Stack>
             
               <Formik
-                 initialValues={initialValues}
+                 initialValues={f.initialValues}
                  validationSchema={validationSchema}
-                sx={{marginTop: "20px"}}
-              enableReinitialize={true}
-                onSubmit={onFormSubmit}>
-                 {({ values, errors, isSubmitting, touched, handleBlur, setFieldTouched, handleChange, handleSubmit, resetForm}) => (
+                  sx={{marginTop: "20px"}}
+                 enableReinitialize={true}
+                  onSubmit={onFormSubmit}>
+                 {({ values, errors, isSubmitting}) => (
                      <Form autoComplete="off">
                     <Grid container direction="column" spacing={5}>
                     
-                    <Grid item>
-                    <SelectFieldModal show={show} />
+                    <Grid item> 
+                      <SelectFieldModal show={show} value={f.values.categories}
+                        label="Select a category" />
                     </Grid>
 
                     <Grid item>
-                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField}/>
+                      <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField}/>
                     </Grid>
 
                     <Grid item>
                       <InputDate
-                              value={f.values.transactionDate}
-                              setValue={f.setFieldValue}
-                              valueKey="transactionDate"
+                        value={f.values.transactionDate}
+                        setValue={f.setFieldValue}
+                        valuekey="transactionDate"
                             />
-                        </Grid>
+                    </Grid>
+                    
                     <Grid item>
-                      <Field fullWidth  name="comment" label="Comment" component={TextField} />
+                      <Field fullWidth name="comment" label="Comment" component={TextField} />
                     </Grid>
                     
                   </Grid>     
                     
-                  {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
+                  <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
+                  
                   <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
                                  startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                                //  onSubmit={handleSubmit}
                                 sx={{ backgroundColor: "#24CCA7", color: "#ffffff",
                                  marginBottom: "20px", borderRadius: "10px", width: "300px", height: "50px"  }}
-                                    >{isSubmitting ? "Adding" : "Add"}
+                                    > {isSubmitting ? "Adding" : "Add"}
                                  </Button>
                      </Form>
              )}
             </Formik>
-                    <Button spacing={3}
-                                 sx={{ border: "2px solid #4A56E2", borderRadius: "10px", width: "300px", height: "50px" }}
+                    <Button  sx={{ border: "2px solid #4A56E2", borderRadius: "10px", width: "300px", height: "50px" }}
                                  onClick={handleClose}>Cancel</Button>
      </Box>
  </Modal>
