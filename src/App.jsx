@@ -27,6 +27,7 @@ export const App = () => {
     <h1>Refreshing user...</h1>
   ) : (
     <Suspense fallback={<h1>Loading profile.</h1>}>
+
       <Routes>
         <Route path="/" element={<NonAuthLayout picture={MaleSvg} />}>
           <Route
@@ -53,6 +54,7 @@ export const App = () => {
             }
           />
         </Route>
+
         <Route
           path="/dashboard"
           element={<PrivateRoute component={<DashBoard />} />}
