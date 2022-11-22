@@ -1,13 +1,12 @@
 import React, { useState, useCallback  } from "react";
-import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid, InputAdornment } from "@mui/material";
+import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { DatePicker } from '@mui/x-date-pickers';
-import {Form, Formik, Field} from 'formik';
+import {Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
 import { object, number, string} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
+import InputDate from "./InputDate";
 
 const style = {
   position: "absolute",
@@ -39,10 +38,18 @@ const handleClose = () => setOpen(false);
     const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
 
 
-    const [transaction, setTransaction] = useState();
-    const handleTransaction = (newValue) => {
-        setTransaction(newValue);
-    }
+  const f = useFormik({
+    initialValues: {
+     
+      transactionDate: new Date(),
+ 
+    },
+    onSubmit: async values => {
+      console.log(values)
+    },
+  });
+  
+
 
     const initialValues = {
         addAmount: "",
@@ -96,8 +103,6 @@ const handleClose = () => setOpen(false);
               <ToggleSwitch onToggle={handleToggle}  />     
                   <Typography sx={{marginLeft: "10px"}}>Expense</Typography>
                 </Stack>
-                 
-            <SelectFieldModal show={show} />
             
               <Formik
                  initialValues={initialValues}
@@ -105,53 +110,39 @@ const handleClose = () => setOpen(false);
                 sx={{marginTop: "20px"}}
               enableReinitialize={true}
                 onSubmit={onFormSubmit}>
-                 {({ values, errors, isSubmitting, touched, handleBlur, setFieldTouched, handleChange, resetForm}) => (
+                 {({ values, errors, isSubmitting, touched, handleBlur, setFieldTouched, handleChange, handleSubmit, resetForm}) => (
                      <Form autoComplete="off">
-                         <Grid container direction="column" spacing={5}>
-                          
-                         
-                             <Grid item>
-                                 <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField}/>
-                             </Grid>
-                        
+                    <Grid container direction="column" spacing={5}>
+                    
+                    <Grid item>
+                    <SelectFieldModal show={show} />
+                    </Grid>
 
-                             <Grid item
-                                 dateAdapter={DatePicker}
-                             >
-                                 <Field fullWidth name="date" placeholder="DD/MM/YYYY" format="DD/MM/YYYY"
-                                     selected={values.date}
-                                    value={values.date}
-                                     component={TextField}
-                                     onBlur={handleBlur}
-                                     onClick={() => setFieldTouched("date", true)}
-                                    
-                                     InputProps={{
-                                         endAdornment: (
-                                        <InputAdornment position="end">
-                                            <CalendarMonthIcon sx={{color: "#4A56E2"}} />
-                                        </InputAdornment>
-                                                    ),
-                                     }}
-                                 />
-                            </Grid>
-                             
-                             <Grid item>
-                                 <Field fullWidth  name="comment" label="Comment" component={TextField} />
-                             </Grid>
-                            
-                            <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
+                    <Grid item>
+                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField}/>
+                    </Grid>
+
+                    <Grid item>
+                      <InputDate
+                              value={f.values.transactionDate}
+                              setValue={f.setFieldValue}
+                              valueKey="transactionDate"
+                            />
+                        </Grid>
+                    <Grid item>
+                      <Field fullWidth  name="comment" label="Comment" component={TextField} />
+                    </Grid>
+                    
+                  </Grid>     
+                    
+                  {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
+                  <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
                                  startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                                 onClick={handleTransaction}
-                                     onSubmit={resetForm}
+                                //  onSubmit={handleSubmit}
                                 sx={{ backgroundColor: "#24CCA7", color: "#ffffff",
                                  marginBottom: "20px", borderRadius: "10px", width: "300px", height: "50px"  }}
                                     >{isSubmitting ? "Adding" : "Add"}
-                                     
                                  </Button>
-                             
-                         </Grid>     
-                    
-                         {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
                      </Form>
              )}
             </Formik>
