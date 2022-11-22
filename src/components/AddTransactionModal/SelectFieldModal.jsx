@@ -1,39 +1,52 @@
-import {  TextField } from "@mui/material";
-import Autocomplete from '@mui/material/Autocomplete';
+import React, {useState} from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
-function SelectFieldModal({show, handleChange, handleBlur}) {
+const categories = [
+    { key: "Main", value: "Main" },
+    { key: "Food", value: "Food" },
+    { key: "Auto", value: "Auto" },
+    { key: "Development", value: "Development" },
+    { key: "Children", value: "Children" },
+    { key: "House", value: "House" },
+    { key: "Education", value: "Education" },
+    { key: "Other", value: "Other" },
+];
 
+export default function SelectFieldModal({show}) {
 
-    const expenceList = [
-        { label: 'Main', name: "Main", value: "Main" },
-        { label: 'Food', name: "Food", value: "Food" },
-        { label: 'Auto', name: "Auto", value: "Auto" },
-        { label: 'Development', name: "Development", value: "Development"},
-        { label: 'Children', name: "Children", value: "Children" },
-        { label: 'House', name: "House", value: "House" },
-        { label: 'Education', name: "Education", value: "Education" },
-        { label: 'Other', name: "Other", value: "Other" },
-    ];
+const [category, setCategory] = useState("");
 
-  
+const handleCategory = (event) => {
+    console.log(event.target.value);
+    setCategory(event.target.value);
+  };
     return (
-        <div>
-            
-            {show && (<Autocomplete
-                disablePortal
-                options={expenceList}
-                name="categories"
-                type="select"
-                onChange={handleChange}
-              onBlur={handleBlur}
-            
-                    sx={{
-                        width: 300, marginTop: "40px", margonBottom: "40px"}}
-                renderInput={(params) => <TextField  {...params} name="select" value="" label="Select a category" />}
-            />) }
-        </div>
-)
-}
+  <>
+            {show && (<Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
 
-export default SelectFieldModal;
+                <InputLabel id="modalSelect">Select a category</InputLabel>
+                    <Select
+                        labelId="selectLabel"
+                        id="select"
+                        value={category}
+                        label="Select a category"
+                        onChange={handleCategory}
+                    >
+                        {categories.map((category) => (
+          <MenuItem value={category.value} key={category.key}>
+            {category.value}
+          </MenuItem>
+        ))}
+                      
+                    </Select>
+                </FormControl>
+            </Box>)}
+            </>
+  );
+}
