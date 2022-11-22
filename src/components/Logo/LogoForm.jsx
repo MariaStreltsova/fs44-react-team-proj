@@ -11,6 +11,7 @@ export default function LogoIcon() {
       <span className={style.logoText}
       style={{ color: "#000"}}
       >{"Wallet"}</span>
+
     </LogoIconSVG>
   );
 }
