@@ -1,4 +1,4 @@
-import { Box } from 'Box';
+// import { Box } from 'Box';
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
 import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
@@ -11,13 +11,14 @@ import {
   BulbImg,
   PeopleImg,
   TitleApp,
+  BoxContainer
 } from './NonAuthLayoutStyles';
 
 const NonAuthLayout = ({ picture }) => {
   return (
     <RootWrapper>
       <Suspense fallback={null}>
-        <Box w={'1920px'} height="100vh" display="flex">
+        <BoxContainer>
           <ImageContainer>
             {picture && <PeopleImg>{picture()}</PeopleImg>}
             <TitleApp>Finance App</TitleApp>
@@ -27,7 +28,7 @@ const NonAuthLayout = ({ picture }) => {
             <AddTransactionBtn />
             <Outlet />
           </FormContainer>
-        </Box>
+        </BoxContainer>
       </Suspense>
     </RootWrapper>
   );
