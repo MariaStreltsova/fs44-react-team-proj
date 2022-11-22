@@ -1,7 +1,7 @@
 import InputAdornment from '@mui/material/InputAdornment';
 import { InputForm, InputLabelForm, InputLabelName } from './Input.styles';
 
-export const Input = ({ icon = null, label = '', mb = 0 }) => {
+export const Input = ({ icon = null, label = '', mb = 0, id = '' }) => {
   return (
     <InputForm
       variant="standard"
@@ -9,7 +9,7 @@ export const Input = ({ icon = null, label = '', mb = 0 }) => {
     >
       <InputLabelName htmlFor="component-simple">{label}</InputLabelName>
       <InputLabelForm
-        id="input-with-icon-adornment"
+        id={id}
         startAdornment={
           <InputAdornment position="start">{icon && icon()}</InputAdornment>
         }

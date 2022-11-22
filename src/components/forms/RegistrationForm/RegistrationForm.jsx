@@ -1,12 +1,12 @@
-import { Container } from '../loginForm/LoginForm.styles';
+import { Container } from '../LoginForm/LoginForm.styles';
 import { EmailIcon } from 'images/icons/icon-form/Email';
 import { PasswordIcon } from '../../../images/icons/icon-form/LockPs';
 import { UserIcon } from '../../../images/icons/icon-form/User';
 import Box from '@mui/material/Box';
-import { FormLogo } from '../formsLogo/formLogo';
-import { SecurInput } from '../inputs/securInput/securInput';
-import { Input } from '../inputs/Input/Input';
-import { UniversalBtn } from 'components/buttons/authButtons/loginBtn/UniversalBtn';
+import { FormLogo } from '../FormsLogo/formLogo';
+import { SecurInput } from '../Inputs/SecurInput/securInput';
+import { Input } from '../Inputs/Input/Input';
+import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
 
 export const RegistrationForm = () => {
   return (
@@ -23,10 +23,14 @@ export const RegistrationForm = () => {
         }}
         noValidate
       >
-        <Input label="Name" icon={EmailIcon} />
-        <SecurInput label="Password" icon={PasswordIcon} />
-        <SecurInput label="Confirm password" icon={PasswordIcon} />
-        <Input label="Name" icon={UserIcon} />
+        <Input label="E-mail" icon={EmailIcon} id={'name'} />
+        <SecurInput label="Password" icon={PasswordIcon} id={'Password'} />
+        <SecurInput
+          label="Confirm password"
+          icon={PasswordIcon}
+          id={'Confirm password'}
+        />
+        <Input label="First name" icon={UserIcon} id={'First name'} />
 
         <UniversalBtn
           title="REGISTER"
@@ -38,7 +42,7 @@ export const RegistrationForm = () => {
           title="LOG IN"
           variant="outlined"
           mb="0px"
-          href="/login" //correct this navigate
+          href="/fs44-react-team-proj/login"
         />
       </Box>
     </Container>

@@ -1,8 +1,8 @@
-// import { Box } from 'Box';
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
-import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
-import { Outlet } from 'react-router-dom';
+// import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
+import { MaleSvg } from 'images/icons/MaleSvg';
+import { GirlSvg } from 'images/icons/GirlSvg';
 
 import {
   RootWrapper,
@@ -11,22 +11,28 @@ import {
   BulbImg,
   PeopleImg,
   TitleApp,
-  BoxContainer
+  BoxContainer,
 } from './NonAuthLayoutStyles';
 
-const NonAuthLayout = ({ picture }) => {
+const NonAuthLayout = ({ children }) => {
+  const path = window.location.pathname.endsWith('/login');
+
   return (
     <RootWrapper>
       <Suspense fallback={null}>
         <BoxContainer>
           <ImageContainer>
-            {picture && <PeopleImg>{picture()}</PeopleImg>}
+            {path ? (
+              <PeopleImg>{MaleSvg()}</PeopleImg>
+            ) : (
+              <PeopleImg>{GirlSvg()}</PeopleImg>
+            )}
             <TitleApp>Finance App</TitleApp>
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
           <FormContainer>
-            <AddTransactionBtn />
-            <Outlet />
+            {/* <AddTransactionBtn /> */}
+            {children}
           </FormContainer>
         </BoxContainer>
       </Suspense>
