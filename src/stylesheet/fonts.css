@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "Circe";
+    src: url('/src/assets/fonts/Circe-Regular/Сirce-Regular.eot');
+     /* IE9 Compat Modes */
+    src: url('/src/assets/fonts/Circe-Regular/Сirce-Regular.eot?#iefix') format('embedded-opentype'),
+         /* IE6-IE8 */
+        url('/src/assets/fonts/Circe-Regular/Circe-Regular.woff') format('woff'),
+         /* Pretty Modern Browsers */
+        url('/src/assets/fonts/Circe-Regular/Circe-Regular.ttf') format('truetype'),
+         /* Safari, Android, iOS */
+        url('/src/assets/fonts/Circe-Regular/Circe-Regular.svg') format('svg'); 
+        font-weight: 400;
+}
+
+@font-face {
+    font-family: "Circe";
+    src: url('/src/assets/fonts/Circe-Bold/Сirce-Bold.eot');
+    /* IE9 Compat Modes */
+    src: url('/src/assets/fonts/Circe-Bold/Сirce-Bold.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('/src/assets/fonts/Circe-Bold//Circe-Bold.woff') format('woff'),
+        /* Pretty Modern Browsers */
+        url('/src/assets/fonts/Circe-Bold/Circe-Bold.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('/src/assets/fonts/Circe-Bold/Circe-Bold.svg') format('svg');
+        font-weight: 700;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.eot');
+    /* IE9 Compat Modes */
+    src: url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.woff') format('woff'),
+        /* Pretty Modern Browsers */
+        url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.svg') format('svg');
+        font-weight: 400;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url('/src/assets/fonts/Poppins-Bold/Сirce-Bold.eot');
+    /* IE9 Compat Modes */
+    src: url('/src/assets/fonts/Poppins-Bold/Сirce-Bold.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('/src/assets/fonts/Poppins-Bold/Circe-Bold.woff') format('woff'),
+        /* Pretty Modern Browsers */
+        url('/src/assets/fonts/Poppins-Bold/Circe-Bold.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('/src/assets/fonts/Poppins-Bold/Circe-Bold.svg') format('svg');
+        font-weight: 700;
+}
+
