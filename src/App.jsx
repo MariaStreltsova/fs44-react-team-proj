@@ -5,13 +5,14 @@ import { authOperations } from 'redux/auth';
 import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
+import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
-import DashBoard from 'pages/DashBoard/DashBoard';
 import '../node_modules/flag-icons/css/flag-icons.min.css';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
+const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,36 +30,48 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <NonAuthLayout>
-              <PublicRoute
-                component={<Login />}
-                restricted
-                redirectTo="/dashboard"
-              />
-            </NonAuthLayout>
+            <PublicRoute
+              component={
+                <NonAuthLayout>
+                  <Login />
+                </NonAuthLayout>
+              }
+              restricted
+              redirectTo="/dashboard"
+            />
           }
         />
 
         <Route
           path="/registration"
           element={
-            <NonAuthLayout>
-              <PublicRoute
-                component={<Registration />}
-                restricted
-                redirectTo="/dashboard"
-              />
-            </NonAuthLayout>
+            <PublicRoute
+              component={
+                <NonAuthLayout>
+                  <Registration />
+                </NonAuthLayout>
+              }
+              restricted
+              redirectTo="/dashboard"
+            />
           }
         />
 
         <Route
-          path="dashboard"
-          element={<PrivateRoute component={<DashBoard />} />}
+          path="/dashboard"
+          element={
+            <PrivateRoute
+              component={
+                <AuthLayout>
+                  <DashBoard />
+                </AuthLayout>
+              }
+              redirectTo="/login"
+            />
+          }
         />
 
         <Route path="/" element={<Navigate to={'/login'} />} />
-
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
