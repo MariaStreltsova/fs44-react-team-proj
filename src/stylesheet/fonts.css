@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Circe";
+    font-family: "Circe-Regular";
     src: url('/src/assets/fonts/Circe-Regular/Сirce-Regular.eot');
      /* IE9 Compat Modes */
     src: url('/src/assets/fonts/Circe-Regular/Сirce-Regular.eot?#iefix') format('embedded-opentype'),
@@ -9,11 +9,10 @@
         url('/src/assets/fonts/Circe-Regular/Circe-Regular.ttf') format('truetype'),
          /* Safari, Android, iOS */
         url('/src/assets/fonts/Circe-Regular/Circe-Regular.svg') format('svg'); 
-        font-weight: 400;
 }
 
 @font-face {
-    font-family: "Circe";
+    font-family: "Circe-Bold";
     src: url('/src/assets/fonts/Circe-Bold/Сirce-Bold.eot');
     /* IE9 Compat Modes */
     src: url('/src/assets/fonts/Circe-Bold/Сirce-Bold.eot?#iefix') format('embedded-opentype'),
@@ -23,11 +22,10 @@
         url('/src/assets/fonts/Circe-Bold/Circe-Bold.ttf') format('truetype'),
         /* Safari, Android, iOS */
         url('/src/assets/fonts/Circe-Bold/Circe-Bold.svg') format('svg');
-        font-weight: 700;
 }
 
 @font-face {
-    font-family: "Poppins";
+    font-family: "Poppins-Regular";
     src: url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.eot');
     /* IE9 Compat Modes */
     src: url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
@@ -37,11 +35,10 @@
         url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.ttf') format('truetype'),
         /* Safari, Android, iOS */
         url('/src/assets/fonts/Poppins-Regular/Poppins-Regular.svg') format('svg');
-        font-weight: 400;
 }
 
 @font-face {
-    font-family: "Poppins";
+    font-family: "Poppins-Bold";
     src: url('/src/assets/fonts/Poppins-Bold/Сirce-Bold.eot');
     /* IE9 Compat Modes */
     src: url('/src/assets/fonts/Poppins-Bold/Сirce-Bold.eot?#iefix') format('embedded-opentype'),
@@ -51,6 +48,4 @@
         url('/src/assets/fonts/Poppins-Bold/Circe-Bold.ttf') format('truetype'),
         /* Safari, Android, iOS */
         url('/src/assets/fonts/Poppins-Bold/Circe-Bold.svg') format('svg');
-        font-weight: 700;
 }
-

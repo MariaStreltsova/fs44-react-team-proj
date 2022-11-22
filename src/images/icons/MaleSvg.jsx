@@ -1,4 +1,4 @@
-export const PeoleSvg = () => {
+export const MaleSvg = () => {
   return (
     <svg
       width="436"
