@@ -37,7 +37,12 @@ export const LoginForm = () => {
             type="submit"
             color="#24CCA7"
           />
-          <UniversalBtn title="REGISTER" variant="outlined" mb="0px" />
+          <UniversalBtn
+            title="REGISTER"
+            variant="outlined"
+            mb="0px"
+            href="/fs44-react-team-proj/registration"
+          />
         </FormikForm>
       </Formik>
     </Container>

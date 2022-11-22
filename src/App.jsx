@@ -8,7 +8,6 @@ import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
 import '../node_modules/flag-icons/css/flag-icons.min.css';
-
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));

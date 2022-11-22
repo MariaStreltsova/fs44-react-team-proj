@@ -1,7 +1,6 @@
-import { Box } from 'Box';
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
-import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
+// import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
 import { MaleSvg } from 'images/icons/MaleSvg';
 import { GirlSvg } from 'images/icons/GirlSvg';
 
@@ -12,6 +11,7 @@ import {
   BulbImg,
   PeopleImg,
   TitleApp,
+  BoxContainer,
 } from './NonAuthLayoutStyles';
 
 const NonAuthLayout = ({ children }) => {
@@ -20,7 +20,7 @@ const NonAuthLayout = ({ children }) => {
   return (
     <RootWrapper>
       <Suspense fallback={null}>
-        <Box w={'1920px'} height="100vh" display="flex">
+        <BoxContainer>
           <ImageContainer>
             {path ? (
               <PeopleImg>{MaleSvg()}</PeopleImg>
@@ -31,10 +31,10 @@ const NonAuthLayout = ({ children }) => {
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
           <FormContainer>
-            <AddTransactionBtn />
+            {/* <AddTransactionBtn /> */}
             {children}
           </FormContainer>
-        </Box>
+        </BoxContainer>
       </Suspense>
     </RootWrapper>
   );
