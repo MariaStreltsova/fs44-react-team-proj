@@ -1,11 +1,11 @@
 import theme from '../../../theme';
 import styled from 'styled-components';
 
-export const TableSection = styled.div`
+export const Section = styled.div`
   width: 280px;
-  background: #dcdcdf;
+  background: white;
 `;
-export const THead = styled.div`
+export const Head = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 20px;
@@ -14,39 +14,55 @@ export const THead = styled.div`
   border-radius: 30px;
   background: ${theme.colors.lightBackgroundColor};
   overflow: hidden;
+  align-items: center;
 `;
 export const HeadText = styled.span`
-  display: block;
-  outline: 1px solid tomato;
   font-size: ${theme.fontSizes.m};
   font-weight: ${theme.fontWeights.bold};
   font-family: ${theme.fonts.body};
   font-weight: ${theme.fontWeights.normal};
 `;
 
-export const TableRow = styled.tr`
-  height: 50px;
-`;
-export const FirstTd = styled.td`
+export const DataRow = styled.div`
   display: flex;
-  width: 200px;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
   padding-left: 20px;
-  font-size: ${theme.fontSizes.s};
-  font-weight: ${theme.fontWeights.normal};
-  vertical-align: baseline;
+  padding-right: 20px;
+  padding-top: 20px;
 `;
+
 export const ColorDiv = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 2px;
   margin-right: 16px;
 `;
-export const CategoryName = styled.span`
-  display: block;
+export const ExpBlock = styled.div`
+  display: flex;
+  align-items: center;
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeights.normal};
 `;
-export const SecondTd = styled.td`
-  padding-right: 20px;
-  text-align: end;
+export const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  align-self: baseline;
+  margin: 20px 0 0 0;
+  background-color: #dcdcdf;
+`;
+export const TotalLine = styled(DataRow)`
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  font-size: ${theme.fontSizes.s};
+  font-weight: ${theme.fontWeights.bold};
+`;
+export const TotalInc = styled.span`
+  color: ${theme.colors.incomeColor};
+`;
+
+export const TotalExp = styled.span`
+  color: ${theme.colors.expenseColor};
 `;

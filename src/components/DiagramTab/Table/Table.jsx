@@ -1,43 +1,45 @@
 import React from 'react';
 import {
   ColorDiv,
-  THead,
-  ChartTable,
-  TableSection,
-  FirstTd,
-  TableRow,
-  SecondTd,
-  CategoryName,
+  Head,
+  TotalLine,
+  Section,
+  TotalExp,
+  DataRow,
+  Line,
+  ExpBlock,
   HeadText,
+  TotalInc,
 } from './Table.styled';
 
 function Table({ totalIncome, totalExpense, expenses, isLoading }) {
   return (
-    <TableSection>
-      <THead>
+    <Section>
+      <Head>
         <HeadText>Category</HeadText>
         <HeadText>Sum</HeadText>
-      </THead>
+      </Head>
       {expenses.map(element => (
-        <ul key={element.category}>
-          <li>
-            <div>
-              <span style={{ background: element.color }}></span>
+        <div key={element.category}>
+          <DataRow>
+            <ExpBlock>
+              <ColorDiv style={{ background: element.color }}></ColorDiv>
               <span>{element.category}</span>
-            </div>
+            </ExpBlock>
             <span>{element.summary}</span>
-          </li>
-          <li>
-            <span>Expenses:</span>
-            <span>{totalExpense}</span>
-          </li>
-          <li>
-            <span>Income:</span>
-            <span>{totalIncome}</span>
-          </li>
-        </ul>
+          </DataRow>{' '}
+          <Line></Line>
+        </div>
       ))}
-    </TableSection>
+      <TotalLine>
+        <span>Expenses:</span>
+        <TotalExp>{totalExpense}</TotalExp>
+      </TotalLine>
+      <TotalLine>
+        <span>Income:</span>
+        <TotalInc>{totalIncome}</TotalInc>
+      </TotalLine>
+    </Section>
   );
 }
 
