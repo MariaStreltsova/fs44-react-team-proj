@@ -1,24 +1,34 @@
-import React from 'react';
+import Table from './Table/Table';
+import React, { useState } from 'react';
 import Chart from './Chart/Chart';
 import { H2Stat } from './DiagramTab.styled';
 
 function DiagramTab() {
-  const data = {
-    income: 25000,
-    expenses: 24000,
-    details: {
-      basic: 8700,
-      products: 3800.74,
-      car: 1500,
-      selfCare: 800,
-      child: 2208.5,
-      household: 300,
-      education: 3400,
-      leisure: 1230,
-      other: 610,
-    },
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
+  // заглушка, пока нет ответа с сервера
+  const data = {
+    totalIncome: 25000,
+    totalExpense: 24000,
+    expenses: [
+      { category_id: 1, category: 'basic', summary: 8700 },
+      { category_id: 1, category: 'products', summary: 3800.74 },
+      { category_id: 1, category: 'car', summary: 1500 },
+      { category_id: 1, category: 'selfCare', summary: 800 },
+      { category_id: 1, category: 'child', summary: 2208.5 },
+      { category_id: 1, category: 'household', summary: 300 },
+      { category_id: 1, category: 'education', summary: 3400 },
+      { category_id: 1, category: 'leisure', summary: 1230 },
+      { category_id: 1, category: 'other', summary: 610 },
+    ],
+  };
+  const { totalIncome, totalExpense, expenses } = data;
+
+  // создание массива сумм для чарта
+  const expenseSummary = [];
+  expenses.forEach((item, index) => (expenseSummary[index] = item.summary));
+
+  // создание массива цветов
   const backgroundColor = [
     'rgba(254, 208, 87, 1)',
     'rgba(255, 216, 208, 1)',
@@ -31,17 +41,25 @@ function DiagramTab() {
     'rgba(0, 173, 132, 1)',
   ];
 
-  const { income, expenses, details } = data;
+  // создание объекта название-расход-цвет для таблицы
+  const tableData = expenses;
+  tableData.forEach((item, index) => (item.color = backgroundColor[index]));
 
   return (
     <div>
       <H2Stat>Statistics</H2Stat>
       <Chart
-        expenses={expenses}
-        details={details}
+        totalExpense={totalExpense}
+        expenses={expenseSummary}
         backgroundColor={backgroundColor}
+        isLoading={isLoading}
       />
-      <div>Table</div>
+      <Table
+        totalIncome={totalIncome}
+        totalExpense={totalExpense}
+        expenses={tableData}
+        isLoading={isLoading}
+      />
     </div>
   );
 }

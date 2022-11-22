@@ -6,10 +6,11 @@ import CurrencyLoader from 'UI/loaders/CurrencyLoader';
 
 ChartJS.register(ArcElement, Tooltip);
 
-function Chart({ expenses, details, backgroundColor, isLoading = true }) {
-  expenses = expenses.toLocaleString('ru-RU') + expenses.toFixed(2).slice(-3);
+function Chart({ totalExpense, expenses, backgroundColor, isLoading }) {
+  const totalInChart =
+    totalExpense.toLocaleString('ru-RU') + totalExpense.toFixed(2).slice(-3);
 
-  const data = Object.values(details);
+  const data = Object.values(expenses);
   const chartData = {
     datasets: [
       {
@@ -30,7 +31,7 @@ function Chart({ expenses, details, backgroundColor, isLoading = true }) {
         <>
           {' '}
           <Doughnut data={chartData} />
-          <ChartText>₴ {expenses}</ChartText>
+          <ChartText>₴ {totalInChart}</ChartText>
         </>
       )}
     </ChartLayout>

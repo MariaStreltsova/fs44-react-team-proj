@@ -9,6 +9,8 @@ import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import useAuth from 'hooks/useAuht';
 import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
+import DiagramTab from 'components/DiagramTab/DiagramTab';
+import Currency from 'components/Currency/Currency';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -21,29 +23,34 @@ export const App = () => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <h1>Refreshing user...</h1>
-  ) : (
-    <Suspense fallback={<h1>Loading profile.</h1>}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <PublicRoute
-              restricted
-              redirectedTo="/wallet"
-              component={
-                <NonAuthLayout component={<Login />} picture={PeoleSvg} />
-              }
-            />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={<PrivateRoute component={<DashBoard />} />}
-        />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Suspense>
+  return (
+    <>
+      <DiagramTab />
+    </>
   );
+  // isRefreshing ? (
+  //   <h1>Refreshing user...</h1>
+  // ) : (
+  //   <Suspense fallback={<h1>Loading profile.</h1>}>
+  //     <Routes>
+  //       <Route
+  //         path="/"
+  //         element={
+  //           <PublicRoute
+  //             restricted
+  //             redirectedTo="/wallet"
+  //             component={
+  //               <NonAuthLayout component={<Login />} picture={PeoleSvg} />
+  //             }
+  //           />
+  //         }
+  //       />
+  //       <Route
+  //         path="/dashboard"
+  //         element={<PrivateRoute component={<DashBoard />} />}
+  //       />
+  //       <Route path="*" element={<PageNotFound />} />
+  //     </Routes>
+  //   </Suspense>
+  // );
 };
