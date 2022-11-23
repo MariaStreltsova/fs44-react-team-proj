@@ -1,12 +1,14 @@
 import Logo from 'components/Logo/Logo';
 import UserMenu from '../header/userMenu/UserMenu';
-import { Box } from './Header.styled';
+import { Box, Container } from './Header.styled';
 
 const Header = () => {
   return (
     <Box>
-      <Logo />
-      <UserMenu />
+      <Container>
+        <Logo />
+        <UserMenu />
+      </Container>
     </Box>
   );
 };
