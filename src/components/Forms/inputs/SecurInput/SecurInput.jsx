@@ -7,7 +7,7 @@ import {
   IconColorButtom,
   InputLabelName,
   InputLabelForm,
-} from './SecurInput1.styles';
+} from './SecurInput.styles';
 
 export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
   const [values, setValues] = useState({
