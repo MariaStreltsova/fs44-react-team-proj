@@ -61,6 +61,10 @@ export const FormContainer = styled.div`
     margin-top: 120px;
     padding: 40px 65px 60px;
   }
+  @media screen and (max-width: 767px) {
+    margin-top: 0;
+    padding: 150px 65px 60px;
+  }
 `;
 
 export const ImageContainer = styled.div`
