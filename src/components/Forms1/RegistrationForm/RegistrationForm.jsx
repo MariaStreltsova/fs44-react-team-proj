@@ -1,12 +1,12 @@
-import { Container } from '../LoginForm/LoginForm.styles';
+import { Container } from '../LoginForm1/LoginForm.styles';
 import { EmailIcon } from 'images/icons/icon-form/Email';
 import { PasswordIcon } from '../../../images/icons/icon-form/LockPs';
 import { UserIcon } from '../../../images/icons/icon-form/User';
 import Box from '@mui/material/Box';
 import { FormLogo } from '../FormsLogo/formLogo';
-import { SecurInput } from '../Inputs/SecurInput/securInput';
-import { Input } from '../Inputs/Input/Input';
-import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
+import { SecurInput } from '../inputs/SecurInput1/SecurInput1';
+import { Input } from '../inputs/Input/Input1';
+import { UniversalBtn } from 'components/Buttons1/AuthButtons1/loginBtn/UniversalBtn';
 
 export const RegistrationForm = () => {
   return (
