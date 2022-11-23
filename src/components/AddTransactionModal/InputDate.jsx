@@ -12,7 +12,7 @@ const InputDate = ({ value, setValue, valueKey }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locales.en}>
       <DatePicker
-        mask="..____"
+       
         value={value}
         maxDate={new Date()}
         onChange={newValue => {
