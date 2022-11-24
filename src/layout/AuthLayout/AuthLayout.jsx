@@ -8,8 +8,8 @@ const AuthLayout = () => {
   return (
     <RootWrapper>
       <Header />
+      <Navigation />
       <Suspense fallback={null}>
-        <Navigation />
         <Outlet />
       </Suspense>
     </RootWrapper>
