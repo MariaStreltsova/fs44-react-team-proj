@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
+  padding-left: 30px;
+  padding-top: 100px; //temporary
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
