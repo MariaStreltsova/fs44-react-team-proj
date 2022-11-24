@@ -7,9 +7,9 @@ import {
   IconColorButtom,
   InputLabelName,
   InputLabelForm,
-} from './securInput.styles';
+} from './SecurInput.styles';
 
-export const SecurInput = ({ label = '', icon = null, mb = 0 }) => {
+export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -39,11 +39,9 @@ export const SecurInput = ({ label = '', icon = null, mb = 0 }) => {
       sx={{ m: 1, width: '100%', marginBottom: `${mb}px` }}
       variant="standard"
     >
-      <InputLabelName htmlFor="standard-adornment-password">
-        {label}
-      </InputLabelName>
+      <InputLabelName htmlFor={id}>{label}</InputLabelName>
       <InputLabelForm
-        id="standard-adornment-password"
+        id={id}
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}
         onChange={handleChange('password')}

@@ -31,7 +31,7 @@ function DiagramTab() {
     'rgba(0, 173, 132, 1)',
   ];
 
-  const { income, expenses, details } = data;
+  const { expenses, details } = data;
 
   return (
     <div>

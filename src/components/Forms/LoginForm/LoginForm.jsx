@@ -1,12 +1,12 @@
-import { UniversalBtn } from 'components/buttons/authButtons/loginBtn/UniversalBtn';
+import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Container, FormikForm } from './LoginForm.styles';
-import { FormLogo } from '../formsLogo/formLogo';
+import { FormLogo } from '../FormsLogo/formLogo';
 import { EmailIcon } from 'images/icons/icon-form/Email';
 import { PasswordIcon } from 'images/icons/icon-form/LockPs';
 import { Input } from '../inputs/Input/Input';
-import { SecurInput } from '../inputs/securInput/securInput';
+import { SecurInput } from '../inputs/SecurInput/SecurInput';
 
 const validationScheme = Yup.object().shape({
   login: Yup.string().required('Login is requred field'),
@@ -37,7 +37,12 @@ export const LoginForm = () => {
             type="submit"
             color="#24CCA7"
           />
-          <UniversalBtn title="REGISTER" variant="outlined" mb="0px" />
+          <UniversalBtn
+            title="REGISTER"
+            variant="outlined"
+            mb="0px"
+            href="/fs44-react-team-proj/registration"
+          />
         </FormikForm>
       </Formik>
     </Container>

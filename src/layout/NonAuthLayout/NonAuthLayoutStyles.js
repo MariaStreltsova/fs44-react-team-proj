@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import formBackground from '../../images/Rectangle.jpg';
-import tableBg from "../../images/Ellipse.svg";
+import tableBg from '../../images/Ellipse.svg';
 import { Box } from 'Box';
 // import imageBackground from '';
-
 
 export const RootWrapper = styled.div`
   @media screen and (min-width: 1280px) {
     width: 100vw;
     height: 100%;
   }
-  @media screen and (min-width: 768px) and (max-width: 1279px){
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: relative;
     background-color: rgba(231, 234, 242, 1);
     background-repeat: no-repeat;
@@ -28,7 +27,7 @@ export const RootWrapper = styled.div`
       right: 0;
     }
   }
-  @media screen and (max-width: 767px){
+  @media screen and (max-width: 767px) {
     background-image: none;
     background-color: #fff;
   }
@@ -38,7 +37,7 @@ export const BoxContainer = styled(Box)`
   @media screen and (min-width: 1280px) {
     height: 100%;
     display: flex;
-    max-width: 1600px;
+    width: 100%;
   }
 `;
 
@@ -53,7 +52,7 @@ export const FormContainer = styled.div`
     background-image: url(${formBackground});
     background-size: cover;
   }
-  @media screen and (max-width: 1279px){
+  @media screen and (max-width: 1279px) {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -71,13 +70,13 @@ export const ImageContainer = styled.div`
     background-color: rgba(231, 234, 242, 1);
     position: relative;
   }
-  @media screen and (max-width: 1279px){
+  @media screen and (max-width: 1279px) {
     display: flex;
     justify-content: center;
   }
   @media screen and (max-width: 767px) {
     display: none;
-  } 
+  }
 `;
 export const BulbImg = styled.div`
   @media screen and (min-width: 1280px) {
@@ -85,7 +84,7 @@ export const BulbImg = styled.div`
     flex-direction: column;
     justify-content: end;
   }
-  @media screen and (max-width: 1279px){
+  @media screen and (max-width: 1279px) {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -102,11 +101,11 @@ export const PeopleImg = styled.div`
     left: 50%;
     transform: translateX(-50%);
   }
-  @media screen and (max-width: 1279px){
+  @media screen and (max-width: 1279px) {
     position: absolute;
     width: 250px;
     height: 260.26px;
-    margin-right: 265px
+    margin-right: 265px;
   }
 `;
 export const TitleApp = styled.span`
@@ -119,7 +118,7 @@ export const TitleApp = styled.span`
     line-height: 45px;
     color: #000000;
   }
-  @media screen and (max-width: 1279px){
+  @media screen and (max-width: 1279px) {
     position: initial;
     z-index: 8;
     display: block;
@@ -129,9 +128,7 @@ export const TitleApp = styled.span`
     font-size: 30px;
     line-height: 45px;
   }
-`
-
-
+`;
 
 // export const RootWrapper = styled.div`
 //   width: 100vw;
