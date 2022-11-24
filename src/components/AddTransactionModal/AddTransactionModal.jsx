@@ -8,7 +8,8 @@ import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
 // import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {DataPickerWrapper, MyDataPicker } from "./CustomizedDataPicker";
+import { DataPickerWrapper, MyDataPicker } from "./CustomizedDataPicker";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 // import {
 //     addTransaction,
@@ -151,7 +152,7 @@ const updateTransaction = (name, value) => {
                     </Grid>
 
                     <Grid item >
-        <DataPickerWrapper >
+                      <DataPickerWrapper direction="row">
          <MyDataPicker
          name="transactionDate"
          dateFormat="dd/MM/yyyy"              
@@ -160,9 +161,9 @@ const updateTransaction = (name, value) => {
         onChange={(date) => {
           const d = new Date(date).toLocaleDateString("en-gb");
           setFieldValue("transactionDate", d, true);
-        }}
+                          }}
                         />
-                
+                        <CalendarMonthIcon sx={{color: "#4A56E2"}} />
                 </DataPickerWrapper>
                     </Grid>
                     

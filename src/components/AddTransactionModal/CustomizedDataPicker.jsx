@@ -2,19 +2,21 @@ import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 
 export const MyDataPicker = styled(DatePicker)`
-color: "#000000";
-border: 1px solid #E0E0E0;
 outline: none;
-border-radius: 3px;
+border: none;
 width: 100%;
-height: 50px;
-padding: 20px 8px;
-
+height: 100%;
 `
 
-export const DataPickerWrapper = styled.div`
+export const DataPickerWrapper = styled.label`
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
 background-color: #fff;
-
+height: 100%;
+padding: 18px 20px;
+border: 1px solid #E0E0E0;
+border-radius: 3px;
 
 & .react-datepicker__day--keyboard-selected{
    background-color: green;
