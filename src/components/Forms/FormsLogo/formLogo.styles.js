@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.div`
   display: flex;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 `;
 
 export const TitleText = styled.h1`
