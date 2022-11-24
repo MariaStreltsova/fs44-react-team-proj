@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
-import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
 import { MaleSvg } from 'images/icons/MaleSvg';
 import { GirlSvg } from 'images/icons/GirlSvg';
 
@@ -31,7 +30,6 @@ const NonAuthLayout = ({ children }) => {
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
           <FormContainer>
-            <AddTransactionBtn />
             {children}
           </FormContainer>
         </BoxContainer>
