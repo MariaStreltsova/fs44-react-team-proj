@@ -1,6 +1,8 @@
-import { Box } from 'Box';
 import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
+// import AddTransactionBtn from '../../components/AddTransactionModal/AddTransactionModal';
+import { MaleSvg } from 'images/icons/MaleSvg';
+import { GirlSvg } from 'images/icons/GirlSvg';
 
 import {
   RootWrapper,
@@ -8,20 +10,31 @@ import {
   ImageContainer,
   BulbImg,
   PeopleImg,
+  TitleApp,
+  BoxContainer,
 } from './NonAuthLayoutStyles';
 
-const NonAuthLayout = ({ component, picture }) => {
+const NonAuthLayout = ({ children }) => {
+  const path = window.location.pathname.endsWith('/login');
+
   return (
     <RootWrapper>
       <Suspense fallback={null}>
-        <Box w={'1920px'} height="100vh" display="flex">
+        <BoxContainer>
           <ImageContainer>
-            <PeopleImg>{picture()}</PeopleImg>
-
+            {path ? (
+              <PeopleImg>{MaleSvg()}</PeopleImg>
+            ) : (
+              <PeopleImg>{GirlSvg()}</PeopleImg>
+            )}
+            <TitleApp>Finance App</TitleApp>
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
-          <FormContainer>{component}</FormContainer>
-        </Box>
+          <FormContainer>
+            {/* <AddTransactionBtn /> */}
+            {children}
+          </FormContainer>
+        </BoxContainer>
       </Suspense>
     </RootWrapper>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Formik, Field, Form } from 'formik';
 import {
   ColorDiv,
   Head,
@@ -15,6 +16,35 @@ import {
 function Table({ totalIncome, totalExpense, expenses, isLoading }) {
   return (
     <Section>
+      <Formik
+        initialValues={{
+          location: [],
+        }}
+        onSubmit={() => {}}
+      >
+        {({
+          isSubmitting,
+          getFieldProps,
+          handleChange,
+          handleBlur,
+          values,
+        }) => (
+          <Form>
+            <Field
+              component="select"
+              id="location"
+              name="location"
+              multiple={false}
+            >
+              <option value="NY">New York</option>
+              <option value="SF">San Francisco</option>
+              <option value="CH">Chicago</option>
+              <option value="OTHER">Other</option>
+            </Field>
+          </Form>
+        )}
+      </Formik>
+
       <Head>
         <HeadText>Category</HeadText>
         <HeadText>Sum</HeadText>

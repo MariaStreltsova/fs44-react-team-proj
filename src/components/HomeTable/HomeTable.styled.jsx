@@ -33,7 +33,7 @@ export const TransactionsWrap = styled.ul`
 export const TransactionCardWrap = styled.li`
   margin-top: 10px;
   height: 70vh;
-  overflow: scroll;
+  // overflow: scroll;
 `;
 export const TransactionCardList = styled.ul`
   list-style: none;

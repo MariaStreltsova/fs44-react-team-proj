@@ -4,6 +4,14 @@ import styled from 'styled-components';
 export const Section = styled.div`
   width: 280px;
   background: white;
+
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 395px;
+  }
 `;
 export const Head = styled.div`
   display: flex;
@@ -16,6 +24,7 @@ export const Head = styled.div`
   overflow: hidden;
   align-items: center;
 `;
+
 export const HeadText = styled.span`
   font-size: ${theme.fontSizes.m};
   font-weight: ${theme.fontWeights.bold};

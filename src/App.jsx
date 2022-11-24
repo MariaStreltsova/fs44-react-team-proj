@@ -1,19 +1,21 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import '../node_modules/flag-icons/css/flag-icons.min.css';
 import { authOperations } from 'redux/auth';
 import PublicRoute from 'hocs/Route/PublicRoute';
 import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
+import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
-import { PeoleSvg } from 'images/icons/PeopleSvg';
+// import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 import DiagramTab from 'components/DiagramTab/DiagramTab';
 import Currency from 'components/Currency/Currency';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
+const Registration = lazy(() => import('./pages/Registration/Registration'));
+// const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
 
 export const App = () => {
   const dispatch = useDispatch();
