@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from "react";
-import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid, } from "@mui/material";
+import { Box, Fab, CircularProgress, Grid, } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
 import { object, number, string, boolean} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { DataPickerWrapper, MyDataPicker } from "./CustomizedDataPicker";
+import {MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleLeft, ToggleRight, ToggleWrapper } from "./CustomizedDataPicker";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
 // import {
 //     addTransaction,
@@ -40,8 +40,7 @@ const style = {
 
 function AddTransactionBtn(){
   const [open, setIsOpen] = useState(false);
-  const [transaction, setTransaction] = useState("");
-  
+   
   const openModal = () => {
     setIsOpen(true);
   };
@@ -51,6 +50,9 @@ function AddTransactionBtn(){
     setIsOpen(false);
   };
 
+  const [show, setShow ] = useState(true);
+  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
+
 const handleInputChange = (event) => {
     const name = event.target.name
     const value =
@@ -59,15 +61,14 @@ const handleInputChange = (event) => {
         : event.target.value
     updateTransaction(name, value)
     if (event.target.type === 'checkbox') {
-      updateTransaction('category', '')
+      updateTransaction('categories', '')
     }
   }
 const updateTransaction = (name, value) => {
     setTransaction((prev) => ({ ...prev, [name]: value }))
   }
 
-  const [show, setShow ] = useState(true);
-  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
+  
 
 
   const f = useFormik({
@@ -80,22 +81,17 @@ const updateTransaction = (name, value) => {
     },
   });
 
+  const [transaction, setTransaction] = useState(f.initialValues);
+
     const validationSchema = object().shape({
-        addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
+      addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
       transactionDate: string().required("Choose date"),
       type: boolean().required(),
-        comment: string().max(15, "You can enter only 15 symbols"),
+      comment: string().max(15, "You can enter only 15 symbols"),
     });
-
-  // const onSubmit = async (values, { resetForm }) => {
-  //   console.log(values);
-  //   return new Promise(res => setTimeout(res, 1500));
-  //   resetForm({ values: "" });
-  // };
-
-
+  
     return (
-      <>
+      <StyledEngineProvider injectFirst>
         <Fab onClick={openModal} aria-label="add" sx={{
                 backgroundColor: "#24CCA7",
                 width: "44px", height: "44px",
@@ -104,7 +100,7 @@ const updateTransaction = (name, value) => {
             <AddIcon sx={{ color: "#ffffff"}}/>
         </Fab>
           
-        <Modal open={open}
+        <MyModal open={open}
         onClose={closeModal}
         aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -112,21 +108,23 @@ const updateTransaction = (name, value) => {
        >
                       
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2"
-              sx={{ fontSize: "24px", lineHeight: "36px", textAlign: "center", marginBottom: "40px", marginTop: "20px" }}
-            >
-           Add transaction 
-            </Typography>
+            <ModalHeader> Add transaction </ModalHeader>
 
-                <Stack direction="row" spacing={1} alignItems="center">
-              <Typography sx={{ marginRight: "10px" }} className={
-                !transaction.type ? 'active-green' : ''}>
-                Income</Typography>
+           
+              <ToggleWrapper>
+              <ToggleLeft value={!transaction.type}
+                // className={`${!transaction.type ? '#24CCA7' : '#E0E0E0'}`}
+              >
+                Income</ToggleLeft>
+              
               <ToggleSwitch onChange={handleInputChange} onToggle={handleToggle}
-              checked={transaction.type}/>     
-              <Typography sx={{ marginLeft: "10px" }} default="checked" value={f.values.type} className={transaction.type ? 'active-pink' : ''}
-              >Expense</Typography>
-            </Stack>
+                checked={transaction.type} />  
+              
+              <ToggleRight value={transaction.type}
+                // className={`${transaction.type ? '#FF6596' : '#E0E0E0'}`}
+              >Expense</ToggleRight>
+              
+              </ToggleWrapper>
 
              
              <Formik
@@ -135,15 +133,17 @@ const updateTransaction = (name, value) => {
               sx={{ marginTop: "20px" }}
               enableReinitialize={true}
               onSubmit={(values, { resetForm }) => {
-                console.log(values);
-                resetForm({ values: "" });
+                setTimeout(() => {
+                  console.log(values);
+                  resetForm({ values: "" });
+                }, 1000);
               }}
             >
-              {({ values, errors, isSubmitting, setFieldValue, handleSubmit, resetForm}) => (
+              {({ values, isSubmitting, setFieldValue, handleSubmit}) => (
                 <Form autoComplete="off" onSubmit={handleSubmit}>
-                  <Grid container direction="column" spacing={5}>
+                  <Grid container direction="column" spacing={3}>
                     
-                    <Grid item>
+                    <Grid item sx={{marginTop: "20px"}}>
                       <SelectFieldModal show={show} value={values.categories} />
                     </Grid>
 
@@ -153,44 +153,40 @@ const updateTransaction = (name, value) => {
 
                     <Grid item >
                       <DataPickerWrapper direction="row">
-         <MyDataPicker
-         name="transactionDate"
-         dateFormat="dd/MM/yyyy"              
-         value={values.transactionDate}
-        className="MyDataPicker"     
-        onChange={(date) => {
-          const d = new Date(date).toLocaleDateString("en-gb");
-          setFieldValue("transactionDate", d, true);
+                          <MyDataPicker
+                          name="transactionDate"
+                          dateFormat="dd/MM/yyyy"              
+                          value={values.transactionDate}
+                          className="MyDataPicker"     
+                          onChange={(date) => {
+                          const d = new Date(date).toLocaleDateString("en-gb");
+                          setFieldValue("transactionDate", d, true);
                           }}
                         />
                         <CalendarMonthIcon sx={{color: "#4A56E2"}} />
-                </DataPickerWrapper>
+                      </DataPickerWrapper>
                     </Grid>
                     
                     <Grid item>
-                      <Field fullWidth name="comment" label="Comment" component={TextField} />
+                      <Field fullWidth name="comment" label="Comment" component={TextField} minRows={1} maxRows={3} />
                     </Grid>
                   
                   </Grid>
 
-                  <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
+                  <ModalBtn disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={2}
                     startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                      sx={{
-                        backgroundColor: "#24CCA7", color: "#ffffff",
-                        marginBottom: "20px", borderRadius: "10px", width: "300px", height: "50px"
-                    }}
+                    sx={{ backgroundColor: "#24CCA7", color: "#ffffff",  marginBottom: "20px", marginTop: "20px",  }}
                   > {isSubmitting ? "Adding" : "Add"}
-                    </Button>
+                    </ModalBtn>
                 
                 </Form>
               )}
             </Formik>
-            
-                    <Button  sx={{ border: "2px solid #4A56E2", borderRadius: "10px", width: "300px", height: "50px" }}
-                                 onClick={closeModal}>Cancel</Button>
+                    <ModalBtn  sx={{ border: "2px solid #4A56E2", color: "#4A56E2" }}
+                                 onClick={closeModal}>Cancel</ModalBtn>
      </Box>
- </Modal>
-</>
+ </MyModal>
+</StyledEngineProvider>
     )
 }
 
