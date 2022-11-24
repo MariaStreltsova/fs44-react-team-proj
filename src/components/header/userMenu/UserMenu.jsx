@@ -2,9 +2,12 @@ import useAuth from 'hooks/useAuht';
 import exit from 'images/exit.svg';
 import { Box } from 'Box';
 import { Text, Button, Icon, Decor, Exit } from './UserMenu.styled';
+import Modal from "../../Modal/Modal";
+import { useState } from 'react';
 
-const UserMenu = ({ Modal }) => {
+const UserMenu = () => {
   const { user } = useAuth();
+  const [modalActive, setModalActive] = useState(true)
   return (
     <Box
       as="div"
@@ -22,14 +25,16 @@ const UserMenu = ({ Modal }) => {
       <Button
         type="button"
         onClick={() => {
-          Modal();
+        setModalActive(true);
         }}
       >
         <Icon src={exit} alt="exit" />
         <Exit>Exit</Exit>
-      </Button>
+          </Button>
+    <Modal active={modalActive} setActive={setModalActive}/>
     </Box>
   );
+
 };
 
 export default UserMenu;
