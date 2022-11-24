@@ -5,7 +5,6 @@ export const ChartLayout = styled.h2`
   position: relative;
   width: 280px;
   height: 280px;
-  outline: 1px solid tomato;
 
   @media (min-width: 768px) {
     width: 336px;

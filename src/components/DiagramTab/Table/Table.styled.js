@@ -13,6 +13,20 @@ export const Section = styled.div`
     width: 395px;
   }
 `;
+
+export const SelectorsArea = styled.div`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    gap: 32px;
+  }
+`;
 export const Head = styled.div`
   display: flex;
   justify-content: space-between;

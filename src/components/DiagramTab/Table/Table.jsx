@@ -1,5 +1,4 @@
-import React from 'react';
-import { Formik, Field, Form } from 'formik';
+import React, { useState } from 'react';
 import {
   ColorDiv,
   Head,
@@ -11,40 +10,34 @@ import {
   ExpBlock,
   HeadText,
   TotalInc,
+  SelectorsArea,
 } from './Table.styled';
+import Selector from './Selector/Selector';
 
 function Table({ totalIncome, totalExpense, expenses, isLoading }) {
+  const dataYear = {
+    2019: [4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
+    2020: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
+    2021: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
+    2022: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].reverse(),
+  };
+
+  const [monthes, setMonthes] = useState(dataYear[2022]);
+  const years = Object.keys(dataYear).reverse();
+
+  const onYearHandle = e => {
+    setMonthes(dataYear[e.target.value]);
+  };
+  const onMonthHandle = e => {
+    console.log(e.target.value);
+  };
+
   return (
     <Section>
-      <Formik
-        initialValues={{
-          location: [],
-        }}
-        onSubmit={() => {}}
-      >
-        {({
-          isSubmitting,
-          getFieldProps,
-          handleChange,
-          handleBlur,
-          values,
-        }) => (
-          <Form>
-            <Field
-              component="select"
-              id="location"
-              name="location"
-              multiple={false}
-            >
-              <option value="NY">New York</option>
-              <option value="SF">San Francisco</option>
-              <option value="CH">Chicago</option>
-              <option value="OTHER">Other</option>
-            </Field>
-          </Form>
-        )}
-      </Formik>
-
+      <SelectorsArea>
+        <Selector options={monthes} id="month" onChange={onMonthHandle} />
+        <Selector options={years} id="year" onChange={onYearHandle} />
+      </SelectorsArea>
       <Head>
         <HeadText>Category</HeadText>
         <HeadText>Sum</HeadText>
