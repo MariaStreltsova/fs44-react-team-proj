@@ -1,24 +1,37 @@
 import styled from 'styled-components';
 
 export const Box = styled.header`
-  /* display: flex;
-  align-items: center;
+  display: flex;
+
   justify-content: space-between;
-  padding: 20px 16px; */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  /* padding-right: 20px; */
+
   position: fixed;
   z-index: 2;
-  padding-top: 20px;
-  padding-bottom: 20px;
+
   width: 100%;
-  /* left: calc((100% - 1280px) / 2); */
   background-color: #fff;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 //color: ${p => p.theme.colors.accent};
 export const Container = styled.div`
-  width: 1280px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding-left: 85px;
-  padding-right: 85px;
+  align-items: center;
 `;

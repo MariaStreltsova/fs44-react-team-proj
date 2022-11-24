@@ -1,7 +1,7 @@
 import useAuth from 'hooks/useAuht';
 import exit from 'images/exit.svg';
 import { Box } from 'Box';
-import { Text, Button, Icon } from './UserMenu.styled';
+import { Text, Button, Icon, Decor, Exit } from './UserMenu.styled';
 
 const UserMenu = ({ Modal }) => {
   const { user } = useAuth();
@@ -18,14 +18,7 @@ const UserMenu = ({ Modal }) => {
         name
         {user?.name}
       </Text>
-      <Box
-        as="div"
-        width="1px"
-        height="30px"
-        mr={15}
-        ml={15}
-        backgroundColor="secondaryTxtColor"
-      />
+      <Decor />
       <Button
         type="button"
         onClick={() => {
@@ -33,7 +26,7 @@ const UserMenu = ({ Modal }) => {
         }}
       >
         <Icon src={exit} alt="exit" />
-        Exit
+        <Exit>Exit</Exit>
       </Button>
     </Box>
   );

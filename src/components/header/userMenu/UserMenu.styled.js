@@ -27,6 +27,7 @@ export const Text = styled.span`
 export const Button = styled.button`
   display: inline-flex;
   align-items: center;
+
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -34,16 +35,39 @@ export const Button = styled.button`
   background-color: ${p => p.theme.colors.lightBackgroundColor};
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.button};
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover,
-  &:focus {
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12),
-      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+  @media screen and (min-width: 768px) {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+    }
   }
 `;
 
 export const Icon = styled.img`
   width: 18px;
   height: 18px;
-  margin-right: 20px;
+  margin-right: 8px;
+`;
+
+export const Decor = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    width: 1px;
+    height: 30px;
+    margin: 0px 15px;
+    background-color: ${p => p.theme.colors.secondaryTxtColor};
+  }
+`;
+export const Exit = styled.span`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: ${p => p.theme.lineHeights.normal};
+  }
 `;
