@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Box, Fab, CircularProgress, Grid, } from "@mui/material";
+import { CircularProgress, Grid, } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
@@ -7,7 +7,7 @@ import { object, number, string, boolean} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
 import "react-datepicker/dist/react-datepicker.css";
-import {MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleLeft, ToggleRight, ToggleWrapper } from "./CustomizedDataPicker";
+import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleLeft, ToggleRight, ToggleWrapper } from "./CustomizedDataPicker";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
@@ -18,25 +18,7 @@ import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 // import { useDispatch} from 'react-redux'
 // import { getCategoriesList } from '../../redux/wallet/wallet-selectors';
 
-const style = {
-  position: "absolute",
-    top: 0,
-  left: 0,
-  rigth: 0,
-    bottom: 0,
-    width: '100vw',
-    height: '100vh',
-  overflowY: "scroll",
-    overflowX: "scroll",
-    scrollbarWidth: "hidden",
-    border: "none",
-   backgroundColor: "#ffffff",
-    display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "0",
-  zIdex: 10,
-};
+
 
 function AddTransactionBtn(){
   const [open, setIsOpen] = useState(false);
@@ -84,7 +66,7 @@ const updateTransaction = (name, value) => {
   const [transaction, setTransaction] = useState(f.initialValues);
 
     const validationSchema = object().shape({
-      addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
+      addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
       transactionDate: string().required("Choose date"),
       type: boolean().required(),
       comment: string().max(15, "You can enter only 15 symbols"),
@@ -92,13 +74,9 @@ const updateTransaction = (name, value) => {
   
     return (
       <StyledEngineProvider injectFirst>
-        <Fab onClick={openModal} aria-label="add" sx={{
-                backgroundColor: "#24CCA7",
-                width: "44px", height: "44px",
-                borderRadius: "50px", position: "fixed", bottom: "20px", right: "20px", zIndex: 99,
-            }}>
+        <MyFab onClick={openModal} aria-label="add">
             <AddIcon sx={{ color: "#ffffff"}}/>
-        </Fab>
+        </MyFab>
           
         <MyModal open={open}
         onClose={closeModal}
@@ -107,13 +85,12 @@ const updateTransaction = (name, value) => {
           sx={{  padding:"20px 11px"}}
        >
                       
-          <Box sx={style}>
+          <MyBox >
             <ModalHeader> Add transaction </ModalHeader>
 
-           
               <ToggleWrapper>
               <ToggleLeft value={!transaction.type}
-                // className={`${!transaction.type ? '#24CCA7' : '#E0E0E0'}`}
+                className={`${!transaction.type ? '#24CCA7' : '#E0E0E0'}`}
               >
                 Income</ToggleLeft>
               
@@ -121,7 +98,7 @@ const updateTransaction = (name, value) => {
                 checked={transaction.type} />  
               
               <ToggleRight value={transaction.type}
-                // className={`${transaction.type ? '#FF6596' : '#E0E0E0'}`}
+                className={`${transaction.type ? '#FF6596' : '#E0E0E0'}`}
               >Expense</ToggleRight>
               
               </ToggleWrapper>
@@ -144,7 +121,7 @@ const updateTransaction = (name, value) => {
                   <Grid container direction="column" spacing={3}>
                     
                     <Grid item sx={{marginTop: "20px"}}>
-                      <SelectFieldModal show={show} value={values.categories} />
+                      <SelectFieldModal show={show} value={transaction.categories} />
                     </Grid>
 
                     <Grid item>
@@ -157,7 +134,6 @@ const updateTransaction = (name, value) => {
                           name="transactionDate"
                           dateFormat="dd/MM/yyyy"              
                           value={values.transactionDate}
-                          className="MyDataPicker"     
                           onChange={(date) => {
                           const d = new Date(date).toLocaleDateString("en-gb");
                           setFieldValue("transactionDate", d, true);
@@ -184,7 +160,7 @@ const updateTransaction = (name, value) => {
             </Formik>
                     <ModalBtn  sx={{ border: "2px solid #4A56E2", color: "#4A56E2" }}
                                  onClick={closeModal}>Cancel</ModalBtn>
-     </Box>
+     </MyBox>
  </MyModal>
 </StyledEngineProvider>
     )
