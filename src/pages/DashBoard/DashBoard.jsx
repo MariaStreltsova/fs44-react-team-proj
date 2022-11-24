@@ -5,7 +5,8 @@ export default function DashBoard() {
     <>
       <Dashboard>
         <Wrapper>
-          <div> DashBoard</div>
+          <div> DashBoard
+          </div>
         </Wrapper>
       </Dashboard>
     </>

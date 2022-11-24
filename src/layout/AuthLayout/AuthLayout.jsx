@@ -1,3 +1,4 @@
+import AddTransactionBtn from 'components/AddTransactionModal/AddTransactionModal';
 import Header from 'components/header/Header';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -10,6 +11,7 @@ const AuthLayout = () => {
       <Header />
       <Navigation />
       <Suspense fallback={null}>
+        <AddTransactionBtn />
         <Outlet />
       </Suspense>
     </RootWrapper>
