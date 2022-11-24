@@ -1,23 +1,29 @@
 import React from 'react';
 import { Field } from 'formik';
 import { allCategories } from './allCategories';
+import CustomizedSelectForFormik from "./CustomizedSelect";
+import { FormControl, MenuItem, InputLabel } from '@mui/material';
 
 export default function SelectFieldModal({show}) {
   
     return (
       <>
         {show && (           
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label" >Select a category</InputLabel>
             <Field
-              as="select"
-              name="categories"
+            type="select"
+            name="categories"
+            label="Select a category"
+            component={CustomizedSelectForFormik} 
 >
-              <option>Select a category</option>
               {allCategories.map((category) => (
-          <option value={category.value} key={category.key}>
+          < MenuItem value={category.value} key={category.key}>
             {category.value}
-          </option>
+          </ MenuItem>
         ))}
-</Field>
+            </Field>
+            </FormControl>
  )}
             </>
   );

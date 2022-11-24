@@ -1,13 +1,15 @@
 import React, { useState, useCallback } from "react";
-import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid } from "@mui/material";
+import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid, } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import { Form, Formik, Field, useFormik } from 'formik';
+import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
-import { object, number, string} from "yup";
+import { object, number, string, boolean} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {DataPickerWrapper, MyDataPicker } from "./CustomizedDataPicker";
+
 // import {
 //     addTransaction,
 //     getTransactionsList,
@@ -75,19 +77,21 @@ const updateTransaction = (name, value) => {
     comment: "",    
     categories: "",
     },
-  
   });
 
     const validationSchema = object().shape({
         addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
-        transactionDate: string().required("Choose date"),
+      transactionDate: string().required("Choose date"),
+      type: boolean().required(),
         comment: string().max(15, "You can enter only 15 symbols"),
     });
 
-   const onFormSubmit = async (values) => {
-        console.log("my values:", values);
-      return new Promise(res => setTimeout(res, 1500));
-    }
+  // const onSubmit = async (values, { resetForm }) => {
+  //   console.log(values);
+  //   return new Promise(res => setTimeout(res, 1500));
+  //   resetForm({ values: "" });
+  // };
+
 
     return (
       <>
@@ -119,39 +123,47 @@ const updateTransaction = (name, value) => {
                 Income</Typography>
               <ToggleSwitch onChange={handleInputChange} onToggle={handleToggle}
               checked={transaction.type}/>     
-              <Typography sx={{ marginLeft: "10px" }} className={transaction.type ? 'active-pink' : ''}
+              <Typography sx={{ marginLeft: "10px" }} default="checked" value={f.values.type} className={transaction.type ? 'active-pink' : ''}
               >Expense</Typography>
             </Stack>
 
              
              <Formik
-                 initialValues={f.initialValues}
-                 validationSchema={validationSchema}
-                  sx={{marginTop: "20px"}}
-                 enableReinitialize={true}
-                  onSubmit={onFormSubmit}>
-              {({ values, errors, isSubmitting, setFieldValue}) => (
-                <Form autoComplete="off">
+              initialValues={f.initialValues}
+              validationSchema={validationSchema}
+              sx={{ marginTop: "20px" }}
+              enableReinitialize={true}
+              onSubmit={(values, { resetForm }) => {
+                console.log(values);
+                resetForm({ values: "" });
+              }}
+            >
+              {({ values, errors, isSubmitting, setFieldValue, handleSubmit, resetForm}) => (
+                <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Grid container direction="column" spacing={5}>
                     
                     <Grid item>
-                      <SelectFieldModal show={show} value={values.categories} label="Select a category" fullWidth/>
+                      <SelectFieldModal show={show} value={values.categories} />
                     </Grid>
 
                     <Grid item>
                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField} />
                     </Grid>
 
-                    <Grid item>
-                      <DatePicker
-                        name="transactionDate"
-        dateFormat="dd/MM/yyyy"
-        value={values.transactionDate}
+                    <Grid item >
+        <DataPickerWrapper >
+         <MyDataPicker
+         name="transactionDate"
+         dateFormat="dd/MM/yyyy"              
+         value={values.transactionDate}
+        className="MyDataPicker"     
         onChange={(date) => {
           const d = new Date(date).toLocaleDateString("en-gb");
           setFieldValue("transactionDate", d, true);
         }}
-      />
+                        />
+                
+                </DataPickerWrapper>
                     </Grid>
                     
                     <Grid item>
@@ -161,12 +173,12 @@ const updateTransaction = (name, value) => {
                   </Grid>
 
                   <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
-                      startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
+                    startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
                       sx={{
                         backgroundColor: "#24CCA7", color: "#ffffff",
                         marginBottom: "20px", borderRadius: "10px", width: "300px", height: "50px"
-                      }}
-                    > {isSubmitting ? "Adding" : "Add"}
+                    }}
+                  > {isSubmitting ? "Adding" : "Add"}
                     </Button>
                 
                 </Form>
