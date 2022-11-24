@@ -2,10 +2,10 @@ import useAuth from 'hooks/useAuht';
 import exit from 'images/exit.svg';
 import { Box } from 'Box';
 import { Text, Button, Icon, Decor, Exit } from './UserMenu.styled';
-import Modal  from "../../Modal/Modal"
+import Modal from "../../Modal/Modal";
 import { useState } from 'react';
 
-const UserMenu = ({ Modal }) => {
+const UserMenu = () => {
   const { user } = useAuth();
   const [modalActive, setModalActive] = useState(true)
   return (
