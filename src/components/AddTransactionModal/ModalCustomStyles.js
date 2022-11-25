@@ -36,6 +36,11 @@ z-index: 98;
 border: 0;
 outline: none;
 box-shadow: none;
+
+&:hover, &:focus {
+background-color: transparent;
+
+}
 }
 `
 
@@ -63,18 +68,22 @@ flex-direction: column;
 align-items: center;
 padding: 0;
 z-index: 1;
+&::-webkit-scrollbar {
+  display: none;
+}
 @media screen and (min-width: 768px){
   position: relative;
   padding: 40px 75px 60px 75px;
   max-width: 540px;
-  max-height: 80vh;
+  height: 560px;
   border-radius: 20px;
   scrollbar-width: hidden;
-  margin: 5% auto;
-
-  &::-webkit-scrollbar {
-  display: none;
+   margin: 60px auto;
 }
+
+@media screen and (min-width: 1280px){
+    max-height: 80vh;
+    max-height: 90vh;
 }
 
 `
@@ -126,6 +135,7 @@ export const MyMenuItem = styled(MenuItem)`
 &.Mui-selected, &.Mui-selected:hover, &.Mui-selected:focus, &.Mui-focusVisible, &.Mui-focusVisible:hover, &.Mui-focusVisible:focus{
     color: #FF6596;
     background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
 }
 `
 
