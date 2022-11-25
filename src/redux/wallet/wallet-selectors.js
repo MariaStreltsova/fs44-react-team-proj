@@ -1,8 +1,8 @@
-const getUserBalance = state => state.wallet.balance;
+const getTransactions = state => state.wallet.transactions;
 export const getCategoriesList = state => state.wallet.categoriesList;
 
 const walletSelectors = {
-  getUserBalance,
+  getTransactions,
   getCategoriesList,
 };
 

@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://вставте.нужный.адрес.com';
+export const BASE_URL = 'https://svetlya4ki.onrender.com/api';
