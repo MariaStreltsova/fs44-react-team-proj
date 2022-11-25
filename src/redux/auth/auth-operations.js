@@ -1,5 +1,6 @@
 import * as api from '../../api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { token } from '../../api/authApi';
 
 const register = createAsyncThunk('auth/signup', async data => {
   try {
@@ -13,6 +14,7 @@ const register = createAsyncThunk('auth/signup', async data => {
 const logIn = createAsyncThunk('auth/login', async data => {
   try {
     const result = await api.login(data);
+    token.set(data.token);
     return result;
   } catch (error) {
     console.log.error(
@@ -31,7 +33,7 @@ const logOut = createAsyncThunk('auth/logout', async data => {
 });
 
 const fetchCurrentUser = createAsyncThunk(
-  'auth/getCurrentUser',
+  'auth/current',
   async (_, thunkAPI) => {
     try {
       const { auth } = thunkAPI.getState();
