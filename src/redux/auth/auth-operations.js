@@ -4,7 +4,8 @@ import { token } from '../../api/authApi';
 
 const register = createAsyncThunk('auth/signup', async data => {
   try {
-    const result = await api.signup(data);
+    const { result } = await api.signup(data);
+    token.set(result.token);
     return result;
   } catch (error) {
     console.log.error(`Sorry, Register failed. Try again.`);
@@ -14,7 +15,7 @@ const register = createAsyncThunk('auth/signup', async data => {
 const logIn = createAsyncThunk('auth/login', async data => {
   try {
     const result = await api.login(data);
-    token.set(data.token);
+    token.set(result.token);
     return result;
   } catch (error) {
     console.log.error(
@@ -32,26 +33,46 @@ const logOut = createAsyncThunk('auth/logout', async data => {
   }
 });
 
-const fetchCurrentUser = createAsyncThunk(
-  'auth/current',
-  async (_, thunkAPI) => {
-    try {
-      const { auth } = thunkAPI.getState();
-      const result = await api.getCurrentUser(auth.token);
+// const fetchCurrentUser = createAsyncThunk(
+//   'auth/current',
+//   async (_, thunkAPI) => {
+//     try {
+//       const { auth } = thunkAPI.getState();
+//       const result = await api.getCurrentUser(auth.token);
 
-      return result;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error,
-        console.log.error('Sorry, your token is dead or time is out ')
-      );
+//       return result;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(
+//         error,
+//         console.log.error('Sorry, your token is dead or time is out ')
+//       );
+//     }
+//   },
+//   {
+//     condition: (_, thunkAPI) => {
+//       const { auth } = thunkAPI.getState();
+//       if (!auth.token) return false;
+//     },
+//   }
+// );
+
+const fetchCurrentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
     }
-  },
-  {
-    condition: (_, thunkAPI) => {
-      const { auth } = thunkAPI.getState();
-      if (!auth.token) return false;
-    },
+    token.set(persistedToken);
+
+    try {
+      const { data } = await api.refreshUser();
+      return data;
+    } catch (error) {
+      console.log.error('Sorry, your token is dead or time is out ');
+    }
   }
 );
 

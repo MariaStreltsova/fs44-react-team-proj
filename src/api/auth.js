@@ -1,31 +1,35 @@
 import authApi from './authApi';
-import setToken from './authApi';
+// import token from './authApi';
 
 export const signup = async data => {
   const { data: result } = await authApi.post('/users/signup', data);
-  setToken(result.token);
+  // token.set(result.token);
   return result;
 };
 
 export const login = async data => {
   const { data: result } = await authApi.post('/api/auth/login', data);
-  setToken(result.token);
+  // token.set(result.token);
   return result;
 };
 
 export const logout = async data => {
   const { data: result } = await authApi.post('/api/auth/logout', data);
-  setToken('');
+  // token.set('');
   return result;
 };
 
-export const getCurrentUser = async token => {
+export const refreshUser = () => {
+  return authApi.get('/api/auth/current');
+};
+
+export const getCurrentUser = async newToken => {
   try {
-    setToken(token);
+    // token.set(newToken);
     const result = await authApi.get('/api/auth/current');
     return result.data;
   } catch (error) {
-    setToken('');
+    // token.set('');
     throw error;
   }
 };
