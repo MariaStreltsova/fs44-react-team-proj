@@ -3,55 +3,24 @@ import { CircularProgress, Grid, } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
-import { object, number, string, boolean} from "yup";
+import { object, number, string} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
-import ToggleSwitch from "./ToggleSwitch";
 import "react-datepicker/dist/react-datepicker.css";
-import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader } from "./ModalCustomStyles";
+import { MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader } from "./ModalCustomStyles";
+import { ToggleWrapper, SwitchLabel, Income, Expense, SwitchField, Slider } from "./ToggleSwitch.styled";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
-
+// import { useDispatch, useSelector } from 'react-redux';
 // import {
 //     addTransaction,
 //     getTransactionsList,
 // } from '../../redux/wallet/wallet-operations';
-// import { useDispatch} from 'react-redux'
 // import { getCategoriesList } from '../../redux/wallet/wallet-selectors';
 
 
-
-function AddTransactionBtn(){
-  const [open, setIsOpen] = useState(false);
-   
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setTransaction("");
-    setIsOpen(false);
-  };
-
-  const [show, setShow ] = useState(true);
-  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
-
-// const handleInputChange = (event) => {
-//     const name = event.target.name
-//     const value =
-//       event.target.type === 'checkbox'
-//         ? event.target.checked
-//         : event.target.value
-//     updateTransaction(name, value)
-//     if (event.target.type === 'checkbox') {
-//       updateTransaction('categories', '')
-//     }
-//   }
-// const updateTransaction = (name, value) => {
-//     setTransaction((prev) => ({ ...prev, [name]: value }))
-//   }
-
-
-  const f = useFormik({
+function AddTransactionBtn() {
+  
+const f = useFormik({
     initialValues: {
     type: false,
     addAmount: "",
@@ -61,14 +30,39 @@ function AddTransactionBtn(){
     },
   });
 
-  const [transaction, setTransaction] = useState(f.initialValues);
-
-    const validationSchema = object().shape({
+  const validationSchema = object().shape({
       addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
       transactionDate: string().required("Choose date"),
-      type: boolean().required(),
+      type: string().required(),
       comment: string().max(15, "You can enter only 15 symbols"),
-    });
+  });
+
+  const [open, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setTransaction("");
+    setIsOpen(false);
+  };
+  const [transaction, setTransaction] = useState(f.initialValues);
+  
+  const [show, setShow ] = useState(true);
+  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []); 
+
+   const [isChecked, setIsChecked] = useState(true);
+  const addClass = (checked) => {
+        if (!checked) {
+          return "disabled";
+    }
+  }
+  
+    const handleCheck = () => {
+      setIsChecked(!isChecked);
+      f.setFieldValue(f.values.type);  
+      handleToggle();
+  }
+
   
     return (
       <StyledEngineProvider injectFirst>
@@ -102,16 +96,30 @@ function AddTransactionBtn(){
                 <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Grid container direction="column" spacing={3}>
                     
-                    <Field name="type" value={transaction.type} component={ToggleSwitch} onChange={handleToggle}
-                     />
+                    {/* <Field value={f.type} name={`attributes.${f.type}.values.in.${0}`}
+                      id={`boolenField.${f.type}`}
+                      component={ToggleSwitch} onChange={handleToggle} sx={{ marginTop: "20px" }}
+                    /> */}
+                    
+                    <ToggleWrapper >
+      <SwitchLabel>
+        <Income className={addClass(!isChecked)} name={!f.type}>Income</Income> 
+        <SwitchField checked={isChecked} type="checkbox" name="checkbox" value={f.type} onChange={handleCheck} />
+                    <Slider />
+        <Expense className={addClass(isChecked)} name={f.type}>Expense</Expense>
+      </SwitchLabel>
+      </ToggleWrapper>
 
-                   <Grid item sx={{marginTop: "40px"}}>
-                        <SelectFieldModal show={show} value={transaction.categories} />
+
+                    {!f.type && (
+                      <Grid item sx={{marginTop: "40px"}}>
+                      <SelectFieldModal show={show} value={transaction.categories} />
                     </Grid>
+                  )}
                     
 
                     <Grid item>
-                      <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField} />
+                      <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)"  component={TextField} />
                     </Grid>
 
                     <Grid item >
