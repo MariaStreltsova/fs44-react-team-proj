@@ -9,7 +9,15 @@ import {
   InputLabelForm,
 } from './SecurInput.styles';
 
-export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
+export const SecurInput = ({
+  label = '',
+  icon = null,
+  mb = 0,
+  id = '',
+  value,
+  onChange,
+  error,
+}) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -19,9 +27,9 @@ export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
     showConfirmPassword: false,
   });
 
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // const handleChange = prop => event => {
+  //   setValues({ ...values, [prop]: event.target.value });
+  // };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -43,8 +51,9 @@ export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
       <InputLabelForm
         id={id}
         type={values.showPassword ? 'text' : 'password'}
-        value={values.password}
-        onChange={handleChange('password')}
+        value={value}
+        onChange={onChange}
+        error={error}
         startAdornment={
           <InputAdornment position="start">{icon && icon()}</InputAdornment>
         }
