@@ -20,7 +20,7 @@ export const Navigation = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/home/diagram">
+        <NavLink to="/home/statistics">
           <Svg>
             <use href={`${Sprite}#icon-stat`}></use>
           </Svg>
