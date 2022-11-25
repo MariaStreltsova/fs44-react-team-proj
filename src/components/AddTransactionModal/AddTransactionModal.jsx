@@ -50,8 +50,6 @@ const updateTransaction = (name, value) => {
     setTransaction((prev) => ({ ...prev, [name]: value }))
   }
 
-  
-
 
   const f = useFormik({
     initialValues: {

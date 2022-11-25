@@ -1,6 +1,7 @@
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
-import { Button, Modal, Box,Fab} from '@mui/material';
+import { Button, Modal, Box,Fab, MenuItem} from '@mui/material';
+
 
 export const MyFab = styled(Fab)`
 background-color: #24CCA7;
@@ -12,7 +13,6 @@ bottom: 20px;
 right: 20px;
 z-index: 99;
 `
-
 
 export const MyModal = styled(Modal)`
 outline: none;
@@ -110,3 +110,10 @@ color: #E0E0E0;
 margin-left: 5px;
 `
 
+
+export const MyMenuItem = styled(MenuItem)`
+&.Mui-selected, &.Mui-selected:hover, &.Mui-selected:focus, &.Mui-focusVisible, &.Mui-focusVisible:hover, &.Mui-focusVisible:focus{
+    color: #FF6596;
+    background: rgba(255, 255, 255, 0.7);
+}
+`
