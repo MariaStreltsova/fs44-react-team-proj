@@ -1,0 +1,56 @@
+.protection {
+    display: block;
+    position: relative;
+    top: -20px;
+    height: 4px;
+    width: 1%;
+    border: 3px solid transparent;
+    background-color: transparent;
+    border-radius: 4px;
+    right: 137px;
+}
+
+.lowProtection {
+    composes: protection;
+    transition: 0.4s;
+    width: 33%;
+    border: 3px solid rgb(222, 108, 100);
+    background-color: rgba(222, 108, 100);
+    box-shadow: 0px 1px 8px rgba(235, 126, 167, 0.5);
+}
+
+.middleProtection {
+    composes: protection;
+    transition: 1.5s;
+    width: 66%;
+    border: 3px solid rgb(234, 199, 124);
+    ;
+    background-color: rgba(234, 199, 124);
+    box-shadow: 0px 1px 8px rgba(255, 220, 143, 0.5);
+    right: 70px;
+}
+
+.strongProtection {
+    composes: protection;
+    transition: 1.5s;
+    width: 100%;
+    border: 3px solid #24cca7;
+    ;
+    background-color: #24cca7;
+    box-shadow: 0px 1px 8px rgba(36, 204, 167, 0.5);
+    right: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .protection {
+        right: 92px;
+    }
+
+    .strongProtection {
+        right: 0;
+    }
+
+    .middleProtection {
+        right: 50px;
+    }
+}
