@@ -2,18 +2,11 @@ import PlusSvg from '../../images/icons/modal/plus.svg';
 import MinusSvg from '../../images/icons/modal/minus.svg'
 import styled from 'styled-components';
 
-export const ToggleWrapper = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-position: absolute;
-`
-
 
 export const SwitchLabel = styled.label`
 position: relative;
-display: inline-block;
+display: flex;
+margin: 0 auto;
 width: 80px;
 height: 40px;
 font-family: 'Circe';
@@ -21,7 +14,6 @@ font-weight: 700;
 font-size: 16px;
 line-height: 1.5;
 text-align: center;
-transform: translateX(150%)
 `;
 
 export const SwitchField = styled.input`

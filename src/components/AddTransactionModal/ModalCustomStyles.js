@@ -1,6 +1,6 @@
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
-import { Button, Modal, Box,Fab, MenuItem, Grid} from '@mui/material';
+import { Button, Modal, Box,Fab, MenuItem} from '@mui/material';
 
 export const MyFab = styled(Fab)`
 background-color: #24CCA7;
@@ -19,12 +19,12 @@ right: 40px;
 `
 
 export const CloseFab = styled(Fab)`
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
 display: none;
 }
 
 @media screen and (min-width: 768px){
-
+display: inline;
 background-color: transparent;
 color: #000000;
 width: 20px;
@@ -65,8 +65,8 @@ border: none;
 background-color: #ffffff;
 display: flex;
 flex-direction: column;
-align-items: center;
-padding: 0;
+justify-content: space-evenly;
+padding: 20px;
 z-index: 1;
 &::-webkit-scrollbar {
   display: none;
@@ -115,6 +115,7 @@ height: 50px;
 font-size: 18px;
 line-height: 1.5;
 text-align: center;
+align-self: center;
 
 &:hover, &:focus{
 background-color: #24CCA7;
@@ -127,7 +128,7 @@ font-size: 24px;
 line-height: 1.5;
 text-align: center;
 color: #000000;
-margin-bottom: 40px;
+margin-bottom: 20px;
 margin-top: 20px;
 `
 
@@ -139,16 +140,33 @@ export const MyMenuItem = styled(MenuItem)`
 }
 `
 
-export const MiddleWrapper = styled(Grid)`
+export const MiddleWrapper = styled.div`
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 767px){
 display:flex;
 justufy-content: space-evenly;
 align-items: center;
 width: 400px;
 }
+
 `
-export const GridAmount = styled(Grid)`
-width: 190px;
-height: 55px;
+export const BasicWrapper = styled.div`
+display: flex;
+flex-direction: column;
+
+margin-top: 10px;
+`
+
+export const BasicFormDiv = styled.div`
+// margin-top: 10px;
+// margin-bottom: 10px;
+padding: 8px;
+
+`
+
+export const BtnDiv = styled.div`
+display: flex;
+flex-direction: column;
+padding: 8px;
+
 `

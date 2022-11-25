@@ -1,13 +1,13 @@
 import React, { useState, useCallback} from "react";
-import { CircularProgress, Grid, } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
 import { object, number, string} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import "react-datepicker/dist/react-datepicker.css";
-import { MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, MiddleWrapper, GridAmount, CloseFab } from "./ModalCustomStyles";
-import { ToggleWrapper, SwitchLabel, Income, Expense, SwitchField, Slider } from "./ToggleSwitch.styled";
+import { MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, MiddleWrapper, CloseFab, BasicFormDiv, BasicWrapper, BtnDiv } from "./ModalCustomStyles";
+import {  SwitchLabel, Income, Expense, SwitchField, Slider } from "./ToggleSwitch.styled";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import CloseIcon from '@mui/icons-material/Close';
@@ -84,13 +84,14 @@ const f = useFormik({
           <MyBox >
             <CloseFab onClick={closeModal} aria-label="add">
             <CloseIcon sx={{ color: "#000000", backgroundColor: "transparent", width: "16px", height: "16px"}} onClick={closeModal}/>
-        </CloseFab> 
+            </CloseFab> 
+
             <ModalHeader> Add transaction </ModalHeader>
 
              <Formik
               initialValues={f.initialValues}
               validationSchema={validationSchema}
-              sx={{ marginTop: "20px" }}
+              
               enableReinitialize={true}
               onSubmit={(values, { resetForm }) => {
                 setTimeout(() => {
@@ -102,9 +103,9 @@ const f = useFormik({
             >
               {({ values, isSubmitting, setFieldValue, handleSubmit}) => (
                 <Form autoComplete="off" onSubmit={handleSubmit}>
-                  <Grid container direction="column" spacing={3}>
+                  <BasicWrapper>
                     
-      <ToggleWrapper >
+      <BasicFormDiv >
       <SwitchLabel>
                         <Income
                           className={addClass(!isChecked && `${!transaction.type}`)}
@@ -115,21 +116,21 @@ const f = useFormik({
                           className={addClass(isChecked && `${transaction.type}`)}
                           name="Expense">Expense</Expense>
       </SwitchLabel>
-      </ToggleWrapper>
+      </BasicFormDiv>
 
 
                     {!f.type && (
-                      <Grid item sx={{marginTop: "40px"}}>
+                      <BasicFormDiv item >
                       <SelectFieldModal show={show} value={transaction.categories} />
-                    </Grid>
+                    </BasicFormDiv>
                   )}
                     
-                    <MiddleWrapper>
-                    <GridAmount>
+                  <MiddleWrapper container>
+                    <BasicFormDiv item>
                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)"  component={TextField} />
-                    </GridAmount>
-<GridAmount>
-                   
+                    </BasicFormDiv>
+                    
+                    <BasicFormDiv item>
                       <DataPickerWrapper direction="row">
                           <MyDataPicker
                           name="transactionDate"
@@ -142,26 +143,30 @@ const f = useFormik({
                         />
                         <CalendarMonthIcon sx={{color: "#4A56E2"}} />
                       </DataPickerWrapper>
-                      </GridAmount>
-                      </MiddleWrapper>
+                    </BasicFormDiv>
+                  </MiddleWrapper>
                     
-                    <Grid item>
+                    <BasicFormDiv item>
                       <Field fullWidth name="comment" label="Comment" component={TextField} minRows={1} maxRows={3} />
-                    </Grid>
+                    </BasicFormDiv>
                   
-                  </Grid>
-
-                  <ModalBtn disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={2}
+                  </BasicWrapper>
+                        
+                  <BtnDiv>
+                <ModalBtn disabled={isSubmitting} type="submit" variant="contained" color="success" 
                     startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                    sx={{ backgroundColor: "#24CCA7", color: "#ffffff",  marginBottom: "20px", marginTop: "20px",  }}
+                    sx={{ backgroundColor: "#24CCA7", color: "#ffffff",  margin: "20px 0", alignSelf: "center" }}
                   > {isSubmitting ? "Adding" : "Add"}
                     </ModalBtn>
-                
+                <ModalBtn  sx={{ border: "2px solid #4A56E2", color: "#4A56E2" }}
+                      onClick={closeModal}>Cancel</ModalBtn>
+                    </BtnDiv>
+                   
                 </Form>
+                
               )}
             </Formik>
-                    <ModalBtn  sx={{ border: "2px solid #4A56E2", color: "#4A56E2" }}
-                                 onClick={closeModal}>Cancel</ModalBtn>
+                    
      </MyBox>
  </MyModal>
 </StyledEngineProvider>
