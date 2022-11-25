@@ -1,5 +1,5 @@
-import { transactions } from './mock';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,45 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { useTableStyles } from './HomeTable.styled';
 import { visuallyHidden } from '@mui/utils';
-
-const headCells = [
-  {
-    id: 'date',
-    align: 'left',
-    label: 'Date',
-    sorting: true,
-  },
-  {
-    id: 'type',
-    align: 'center',
-    label: 'Type',
-    sorting: false,
-  },
-  {
-    id: 'category',
-    align: 'left',
-    label: 'Category',
-    sorting: true,
-  },
-  {
-    id: 'comments',
-    align: 'left',
-    label: 'Comments',
-    sorting: false,
-  },
-  {
-    id: 'amount',
-    align: 'right',
-    label: 'Sum',
-    sorting: true,
-  },
-  {
-    id: 'balance',
-    align: 'right',
-    label: 'Balance',
-    sorting: false,
-  },
-];
+import { useTranslation } from 'react-i18next';
+import walletSelectors from '../../redux/wallet/wallet-selectors';
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -57,6 +20,47 @@ const SORT_TYPES = {
 };
 
 const HomeTable = () => {
+  const { t } = useTranslation();
+  const headCells = [
+    {
+      id: 'date',
+      align: 'left',
+      label: t('homeTable.date'),
+      sorting: true,
+    },
+    {
+      id: 'type',
+      align: 'center',
+      label: t('homeTable.type'),
+      sorting: false,
+    },
+    {
+      id: 'category',
+      align: 'left',
+      label: t('homeTable.category'),
+      sorting: true,
+    },
+    {
+      id: 'comments',
+      align: 'left',
+      label: t('homeTable.comment'),
+      sorting: false,
+    },
+    {
+      id: 'amount',
+      align: 'right',
+      label: t('homeTable.sum'),
+      sorting: true,
+    },
+    {
+      id: 'balance',
+      align: 'right',
+      label: t('homeTable.balance'),
+      sorting: false,
+    },
+  ];
+
+  const transactions = useSelector(walletSelectors.getTransactions);
   const [order, setOrder] = useState(SORT_TYPES.asc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
@@ -171,7 +175,7 @@ const HomeTable = () => {
                 ({
                   id,
                   date,
-                  type,
+                  direction,
                   category,
                   comments,
                   amount,
@@ -182,7 +186,7 @@ const HomeTable = () => {
                       {date}
                     </TableCell>
                     <TableCell className={styles.tableCell} align="center">
-                      {type === 'expense' ? '+' : '-'}
+                      {direction === 'expense' ? '+' : '-'}
                     </TableCell>
                     <TableCell className={styles.tableCell} align="left">
                       {category}
@@ -193,7 +197,7 @@ const HomeTable = () => {
                     <TableCell
                       className={styles.tableCell}
                       sx={{
-                        color: type === 'expense' ? '#FF6596' : '#24CCA7',
+                        color: direction === 'expense' ? '#FF6596' : '#24CCA7',
                       }}
                       align="right"
                     >

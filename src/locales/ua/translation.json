@@ -13,5 +13,14 @@
       "notFound": "Не знайдено!",
       "notExist": "Ця сторінка не існує"
     }
+  },
+  "balance": { "title": "Ваш баланс" },
+  "homeTable": {
+    "date": "Дата",
+    "type": "Тип",
+    "category": "Категорія",
+    "comment": "Коментар",
+    "sum": "Сума",
+    "balance": "Баланс"
   }
 }
