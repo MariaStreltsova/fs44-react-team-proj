@@ -83,35 +83,6 @@ margin-bottom: 40px;
 margin-top: 20px;
 `
 
-export const ToggleWrapper = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-`
-
-// export const ToggleLeft = styled.p`
-// font-family: 'Circe';
-// font-weight: 700;
-// font-size: 16px;
-// line-height: 1.5;
-// text-align: center;
-// color: #E0E0E0;
-// margin-right: 24px;
-// `
-
-// export const ToggleRight = styled.span`
-// font-family: 'Circe';
-// font-weight: 700;
-// font-size: 16px;
-// line-height: 1.5;
-// text-align: center;
-// color: #E0E0E0;
-// margin-left: 16px;
-// `
-
-
-
 export const MyMenuItem = styled(MenuItem)`
 &.Mui-selected, &.Mui-selected:hover, &.Mui-selected:focus, &.Mui-focusVisible, &.Mui-focusVisible:hover, &.Mui-focusVisible:focus{
     color: #FF6596;

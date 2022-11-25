@@ -67,12 +67,26 @@ import styled from 'styled-components';
 //     )
 // }
 
+export const ToggleWrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+position: absolute;
+`
+
+
 export const SwitchLabel = styled.label`
-    position: relative;
-    display: inline-block;
-    width: 80px;
-    height: 40px;
-    margin-bottom: 40px;
+position: relative;
+display: inline-block;
+width: 80px;
+height: 40px;
+font-family: 'Circe';
+font-weight: 700;
+font-size: 16px;
+line-height: 1.5;
+text-align: center;
+transform: translateX(150%)
 `;
 
 export const SwitchField = styled.input`
@@ -88,10 +102,10 @@ position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${p=> p.theme.colors.lightBackgroundColor};
+  background-color: #fff;
   border-radius: 34px;
-  border: ${p => p.theme.borders.normal};
-  border-color: ${p=> p.theme.colors.borderColor};
+  border: 1px solid;
+  border-color: rgba(224, 224, 224, 1);
   transition: .4s;
   &::before {
   position: absolute;
@@ -104,13 +118,13 @@ position: absolute;
   width: 44px;
   left: 0;
   bottom: -3px;
-  background-color:  ${p => p.theme.colors.incomeColor};
-  border-radius: ${p => p.theme.radii.round};
+  background-color:  #24CCA7;
+  border-radius: 50px;
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
   transition: .4s;
   ${SwitchField}:checked + &{
       transform: translateX(34px);
-      background-color: ${p => p.theme.colors.expenseColor};
+      background-color: #FF6596;
       background-image: url(${MinusSvg});
       box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
   }
@@ -156,12 +170,14 @@ const addClass = (checked) => {
 
   return (
     <>
+      <ToggleWrapper >
       <SwitchLabel>
         <Income className={addClass(!isChecked)}>Income</Income> 
         <SwitchField checked={isChecked} type="checkbox" name="toggle" onClick={handleToggle} onChange={handleCheck} />
                     <Slider />
         <Expence className={addClass(isChecked)}>Expence</Expence>
-            </SwitchLabel>
+      </SwitchLabel>
+      </ToggleWrapper>
     </>
   )
 }

@@ -7,7 +7,7 @@ import { object, number, string, boolean} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
 import "react-datepicker/dist/react-datepicker.css";
-import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleWrapper } from "./ModalCustomStyles";
+import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader } from "./ModalCustomStyles";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
@@ -86,24 +86,6 @@ function AddTransactionBtn(){
           <MyBox >
             <ModalHeader> Add transaction </ModalHeader>
 
-              <ToggleWrapper >
-              {/* <ToggleLeft
-                // value={!transaction.type}
-                className={`${!transaction.type ? '#24CCA7' : '#E0E0E0'}`}
-              >
-                Income</ToggleLeft> */}
-              
-              {/* <ToggleSwitch  onChange={handleToggle}
-                />   */}
-              
-              {/* <ToggleRight
-                // value={transaction.type}
-                className={`${transaction.type ? '#FF6596' : '#E0E0E0'}`}
-              >Expense</ToggleRight> */}
-              
-              </ToggleWrapper>
-
-             
              <Formik
               initialValues={f.initialValues}
               validationSchema={validationSchema}
@@ -120,9 +102,10 @@ function AddTransactionBtn(){
                 <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Grid container direction="column" spacing={3}>
                     
-                    <Field name="type" value={transaction.type} component={ToggleSwitch} onChange={handleToggle} />
+                    <Field name="type" value={transaction.type} component={ToggleSwitch} onChange={handleToggle}
+                     />
 
-                   <Grid item sx={{marginTop: "20px"}}>
+                   <Grid item sx={{marginTop: "40px"}}>
                         <SelectFieldModal show={show} value={transaction.categories} />
                     </Grid>
                     
