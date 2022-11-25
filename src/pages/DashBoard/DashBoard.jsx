@@ -1,13 +1,11 @@
-import { Dashboard, Wrapper } from './DashBoard.styled';
+import { Dashboard } from './DashBoard.styled';
+import AddTransactionBtn from 'components/AddTransactionModal/AddTransactionModal';
 
 export default function DashBoard() {
   return (
     <>
       <Dashboard>
-        <Wrapper>
-          <div> DashBoard
-          </div>
-        </Wrapper>
+        <AddTransactionBtn />
       </Dashboard>
     </>
   );

@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const UserMenu = () => {
   const { user } = useAuth();
-  const [modalActive, setModalActive] = useState(true)
+  const [modalActive, setModalActive] = useState(false)
   return (
     <Box
       as="div"

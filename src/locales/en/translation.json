@@ -13,5 +13,14 @@
       "notFound": "Not found!",
       "notExist": "This page does not exist"
     }
+  },
+  "balance": { "title": "Your balance" },
+  "homeTable": {
+    "date": "Date",
+    "type": "Type",
+    "category": "Category",
+    "comment": "Comment",
+    "sum": "Sum",
+    "balance": "Balance"
   }
 }
