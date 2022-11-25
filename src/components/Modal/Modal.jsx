@@ -1,25 +1,20 @@
-import './Modal.css'
+import { Modal, ModalContent, Button, Svg} from './ModalStyled'
 import Icons from '../../images/icons/sprite.svg';
 
-const Modal = ({active, setActive}) => {
+const ModalClose = ({active, setActive}) => {
     return (
-        <div className={active ? "modal active": "modal"} onClick={() => setActive(false)}>
-            <div className={active ? "modal__content active": "modal__content"} onClick={e => e.stopPropagation()}>
-                
-<div className='modal__box'>
-    <button className='modal__close__button'>      
-        <svg className='modal__close__svg'>
+        <Modal> {active} onClick={() => setActive(false)}
+        <ModalContent>{active} onClick={e => e.stopPropagation()}
+            
+    <Button>      
+        <Svg>
             <use href={`${Icons}#icon-close-cross`} />
-        </svg>
-    </button>   
-    <p>Вы точно хотите выйти?</p>
-
-                <button>Да</button>
-                <button>Нет</button>
-            </div>
-            </div>
-            </div>
+        </Svg>
+    </Button>   
+    
+            </ModalContent>
+        </Modal>
     );
 };
 
-export default Modal;
+export default ModalClose;
