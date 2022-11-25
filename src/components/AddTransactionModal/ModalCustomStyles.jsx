@@ -52,7 +52,7 @@ flex-direction: row;
 justify-content: space-evenly;
 background-color: #fff;
 height: 100%;
-padding: 18px 20px;
+padding: 18px 20px 18px 10px;
 border: 1px solid #E0E0E0;
 border-radius: 3px;
 
@@ -90,25 +90,26 @@ align-items: center;
 justify-content: space-between;
 `
 
-export const ToggleLeft = styled.p`
-font-family: 'Circe';
-font-weight: 700;
-font-size: 16px;
-line-height: 1.5;
-text-align: center;
-color: #E0E0E0;
-margin-right: 20px;
-`
+// export const ToggleLeft = styled.p`
+// font-family: 'Circe';
+// font-weight: 700;
+// font-size: 16px;
+// line-height: 1.5;
+// text-align: center;
+// color: #E0E0E0;
+// margin-right: 24px;
+// `
 
-export const ToggleRight = styled.span`
-font-family: 'Circe';
-font-weight: 700;
-font-size: 16px;
-line-height: 1.5;
-text-align: center;
-color: #E0E0E0;
-margin-left: 5px;
-`
+// export const ToggleRight = styled.span`
+// font-family: 'Circe';
+// font-weight: 700;
+// font-size: 16px;
+// line-height: 1.5;
+// text-align: center;
+// color: #E0E0E0;
+// margin-left: 16px;
+// `
+
 
 
 export const MyMenuItem = styled(MenuItem)`

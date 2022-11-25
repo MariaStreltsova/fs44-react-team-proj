@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback} from "react";
 import { CircularProgress, Grid, } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
@@ -7,7 +7,7 @@ import { object, number, string, boolean} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import ToggleSwitch from "./ToggleSwitch";
 import "react-datepicker/dist/react-datepicker.css";
-import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleLeft, ToggleRight, ToggleWrapper } from "./CustomizedDataPicker";
+import {MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, ToggleWrapper } from "./ModalCustomStyles";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
@@ -35,20 +35,20 @@ function AddTransactionBtn(){
   const [show, setShow ] = useState(true);
   const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
 
-const handleInputChange = (event) => {
-    const name = event.target.name
-    const value =
-      event.target.type === 'checkbox'
-        ? event.target.checked
-        : event.target.value
-    updateTransaction(name, value)
-    if (event.target.type === 'checkbox') {
-      updateTransaction('categories', '')
-    }
-  }
-const updateTransaction = (name, value) => {
-    setTransaction((prev) => ({ ...prev, [name]: value }))
-  }
+// const handleInputChange = (event) => {
+//     const name = event.target.name
+//     const value =
+//       event.target.type === 'checkbox'
+//         ? event.target.checked
+//         : event.target.value
+//     updateTransaction(name, value)
+//     if (event.target.type === 'checkbox') {
+//       updateTransaction('categories', '')
+//     }
+//   }
+// const updateTransaction = (name, value) => {
+//     setTransaction((prev) => ({ ...prev, [name]: value }))
+//   }
 
 
   const f = useFormik({
@@ -86,18 +86,20 @@ const updateTransaction = (name, value) => {
           <MyBox >
             <ModalHeader> Add transaction </ModalHeader>
 
-              <ToggleWrapper>
-              <ToggleLeft value={!transaction.type}
+              <ToggleWrapper >
+              {/* <ToggleLeft
+                // value={!transaction.type}
                 className={`${!transaction.type ? '#24CCA7' : '#E0E0E0'}`}
               >
-                Income</ToggleLeft>
+                Income</ToggleLeft> */}
               
-              <ToggleSwitch onChange={handleInputChange} onToggle={handleToggle}
-                checked={transaction.type} />  
+              {/* <ToggleSwitch  onChange={handleToggle}
+                />   */}
               
-              <ToggleRight value={transaction.type}
+              {/* <ToggleRight
+                // value={transaction.type}
                 className={`${transaction.type ? '#FF6596' : '#E0E0E0'}`}
-              >Expense</ToggleRight>
+              >Expense</ToggleRight> */}
               
               </ToggleWrapper>
 
@@ -118,9 +120,12 @@ const updateTransaction = (name, value) => {
                 <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Grid container direction="column" spacing={3}>
                     
-                    <Grid item sx={{marginTop: "20px"}}>
-                      <SelectFieldModal show={show} value={transaction.categories} />
+                    <Field name="type" value={transaction.type} component={ToggleSwitch} onChange={handleToggle} />
+
+                   <Grid item sx={{marginTop: "20px"}}>
+                        <SelectFieldModal show={show} value={transaction.categories} />
                     </Grid>
+                    
 
                     <Grid item>
                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField} />

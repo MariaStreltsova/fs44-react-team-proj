@@ -3,7 +3,7 @@ import { Field } from 'formik';
 import { allCategories } from './allCategories';
 import CustomizedSelectForFormik from "./CustomizedSelect";
 import { FormControl, InputLabel } from '@mui/material';
-import { MyMenuItem } from "./CustomizedDataPicker";
+import { MyMenuItem } from "./ModalCustomStyles";
 
 export default function SelectFieldModal({show}) {
   
