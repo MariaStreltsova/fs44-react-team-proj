@@ -1,19 +1,18 @@
-import AddTransactionBtn from 'components/AddTransactionModal/AddTransactionModal';
 import Header from 'components/header/Header';
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
 import { RootWrapper } from './AuthLayout.styles';
 import { Navigation } from '../../components/Navigation/Navigation';
+import Balance from 'components/Balance';
+import Currency from 'components/Currency/Currency';
 
-const AuthLayout = () => {
+const AuthLayout = ({ children }) => {
   return (
     <RootWrapper>
       <Header />
       <Navigation />
-      <Suspense fallback={null}>
-        <AddTransactionBtn />
-        <Outlet />
-      </Suspense>
+      <Balance />
+      <Currency />
+      <Suspense fallback={null}>{children}</Suspense>
     </RootWrapper>
   );
 };

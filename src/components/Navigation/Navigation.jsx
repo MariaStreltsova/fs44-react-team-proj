@@ -11,7 +11,7 @@ export const Navigation = () => {
   return (
     <NavigationContainer>
       <NavItem>
-        <NavLink to="/dashboard">
+        <NavLink to="/home">
           {/* dashboard/home */}
           <Svg>
             <use href={`${Sprite}#icon-home`}></use>
@@ -20,7 +20,7 @@ export const Navigation = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/dashboard/diagram">
+        <NavLink to="/home/diagram">
           <Svg>
             <use href={`${Sprite}#icon-stat`}></use>
           </Svg>
@@ -28,7 +28,7 @@ export const Navigation = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/dashboard/currency">
+        <NavLink to="/home/currency">
           {/* dashboard/diagram */}
 
           <Svg>
