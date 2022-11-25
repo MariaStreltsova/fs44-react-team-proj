@@ -1,5 +1,6 @@
-// import { useSelector } from 'react-redux';
-// import { authSelectors } from '../../redux/auth';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
+import { useTranslation } from 'react-i18next';
 
 import {
   BalanceWrapper,
@@ -9,14 +10,14 @@ import {
 } from './Balance.styled';
 
 const Balance = () => {
-  // const { balance } = useSelector(authSelectors.getUser);
-
+  const balance = useSelector(authSelectors.getBalance);
+  const { t } = useTranslation();
   return (
     <BalanceWrapper>
-      <BalanceTitle>Your balance</BalanceTitle>
+      <BalanceTitle>{t('balance.title')}</BalanceTitle>
       <BalanceValue>
         <BalanceSymbol>&#8372;</BalanceSymbol>
-        {/* {balance} */}
+        {balance}
       </BalanceValue>
     </BalanceWrapper>
   );

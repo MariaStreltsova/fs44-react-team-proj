@@ -1,4 +1,4 @@
-import { transactions } from './mock';
+import { useSelector } from 'react-redux';
 import {
   TransactionsWrap,
   TransactionCardList,
@@ -7,22 +7,33 @@ import {
   ColoredSum,
   CardsContainer,
 } from './HomeTable.styled';
+import walletSelectors from '../../redux/wallet/wallet-selectors';
 
 const HomeTableMobile = () => {
+  const transactions = useSelector(walletSelectors.getTransactions);
+
   return (
     <CardsContainer>
       <TransactionsWrap>
         {transactions.map(
-          ({ id, date, type, category, comments, amount, balanceAfter }) => (
+          ({
+            id,
+            date,
+            direction,
+            category,
+            comments,
+            amount,
+            balanceAfter,
+          }) => (
             <TransactionCardWrap key={id}>
-              <TransactionCardList type={type}>
+              <TransactionCardList type={direction}>
                 <TransactionCardItem>
                   <span>Date</span>
                   <span>{date}</span>
                 </TransactionCardItem>
                 <TransactionCardItem>
                   <span>Type</span>
-                  <span> {type === 'expense' ? '+' : '-'}</span>
+                  <span> {direction === 'expense' ? '+' : '-'}</span>
                 </TransactionCardItem>
                 <TransactionCardItem>
                   <span>Category</span>
@@ -34,7 +45,7 @@ const HomeTableMobile = () => {
                 </TransactionCardItem>
                 <TransactionCardItem>
                   <span>Sum</span>
-                  <ColoredSum type={type}>{amount.toFixed(2)}</ColoredSum>
+                  <ColoredSum type={direction}>{amount.toFixed(2)}</ColoredSum>
                 </TransactionCardItem>
                 <TransactionCardItem>
                   <span>Balance</span>

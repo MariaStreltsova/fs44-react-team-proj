@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import walletOperations from './wallet-operations';
 
 const initialState = {
-  balance: null,
+  transactions: null,
   isLoading: false,
   error: null,
 };
@@ -11,15 +11,15 @@ const walletSlice = createSlice({
   name: 'wallet',
   initialState,
   extraReducers: {
-    [walletOperations.fetchUserBalance.pending](state) {
+    [walletOperations.fetchTransactions.pending](state) {
       state.isLoading = true;
     },
 
-    [walletOperations.fetchUserBalance.fulfilled](state, action) {
-      state.balance = action.payload;
+    [walletOperations.fetchTransactions.fulfilled](state, action) {
+      state.transactions = action.payload;
     },
 
-    [walletOperations.fetchUserBalance.rejected](state, action) {
+    [walletOperations.fetchTransactions.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
     },
