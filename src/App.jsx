@@ -36,7 +36,7 @@ export const App = () => {
                 </NonAuthLayout>
               }
               restricted
-              redirectTo="/dashboard"
+              redirectTo="/home"
             />
           }
         />
@@ -51,13 +51,13 @@ export const App = () => {
                 </NonAuthLayout>
               }
               restricted
-              redirectTo="/dashboard"
+              redirectTo="/home"
             />
           }
         />
 
         <Route
-          path="/dashboard"
+          path="/home"
           element={
             <PrivateRoute
               component={
@@ -65,6 +65,16 @@ export const App = () => {
                   <DashBoard />
                 </AuthLayout>
               }
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route
+          path="/statistics"
+          element={
+            <PrivateRoute
+              component={<AuthLayout></AuthLayout>}
               redirectTo="/login"
             />
           }
