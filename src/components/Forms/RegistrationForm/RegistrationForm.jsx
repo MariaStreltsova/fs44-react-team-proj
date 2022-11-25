@@ -27,9 +27,10 @@ export const RegistrationForm = () => {
       firstName: '',
     },
     validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
+    onSubmit: ({ email, password, firstName }, { resetForm }) => {
+      console.log({ email, password, firstName });
       //  dispatch(authOperations.logIn(values));
+
       resetForm();
     },
   });
