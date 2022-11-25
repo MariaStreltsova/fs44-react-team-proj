@@ -46,6 +46,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await api.refreshUser();
+      console.log(data);
       return data;
     } catch (error) {
       console.log.error('Sorry, your token is dead or time is out ');

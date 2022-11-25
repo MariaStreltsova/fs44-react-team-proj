@@ -20,11 +20,7 @@ export const refreshUser = () => {
   return authApi.get('/api/auth/current');
 };
 
-export const getCurrentUser = async newToken => {
-  try {
-    const result = await authApi.get('/api/auth/current');
-    return result.data;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const refreshUser = async newToken => {
+
+//     const result = await authApi.get('/api/auth/current');
+//     return result.data;
