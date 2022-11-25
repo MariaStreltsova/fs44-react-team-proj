@@ -4,6 +4,7 @@ import {
   Svg,
   NavigationContainer,
   TextNav,
+  NavItemCurrency,
 } from './Navigation.styled';
 import Sprite from '../../images/icons/symbol-defs.svg';
 
@@ -27,7 +28,7 @@ export const Navigation = () => {
           <TextNav>Statistics</TextNav>
         </NavLink>
       </NavItem>
-      <NavItem>
+      <NavItemCurrency>
         <NavLink to="/dashboard/currency">
           {/* dashboard/diagram */}
 
@@ -36,7 +37,7 @@ export const Navigation = () => {
           </Svg>
           <TextNav>Currency</TextNav>
         </NavLink>
-      </NavItem>
+      </NavItemCurrency>
     </NavigationContainer>
   );
 };
