@@ -1,7 +1,6 @@
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
-import { Button, Modal, Box,Fab, MenuItem} from '@mui/material';
-
+import { Button, Modal, Box,Fab, MenuItem, Grid} from '@mui/material';
 
 export const MyFab = styled(Fab)`
 background-color: #24CCA7;
@@ -12,7 +11,34 @@ position: fixed;
 bottom: 20px;
 right: 20px;
 z-index: 99;
+
+@media screen and (min-width: 768px){
+bottom: 40px;
+right: 40px; 
+}
 `
+
+export const CloseFab = styled(Fab)`
+@media screen and (max-width: 767px){
+display: none;
+}
+
+@media screen and (min-width: 768px){
+
+background-color: transparent;
+color: #000000;
+width: 20px;
+height: 20px;
+position: absolute;
+top: 20px;
+right: 20px;
+z-index: 98;
+border: 0;
+outline: none;
+box-shadow: none;
+}
+`
+
 
 export const MyModal = styled(Modal)`
 outline: none;
@@ -23,7 +49,7 @@ export const MyBox = styled(Box)`
 position: absolute;
 top: 0;
 left: 0;
-rigth: 0;
+right: 0;
 bottom: 0;
 width: 100vw;
 height: 100vh;
@@ -37,6 +63,20 @@ flex-direction: column;
 align-items: center;
 padding: 0;
 z-index: 1;
+@media screen and (min-width: 768px){
+  position: relative;
+  padding: 40px 75px 60px 75px;
+  max-width: 540px;
+  max-height: 80vh;
+  border-radius: 20px;
+  scrollbar-width: hidden;
+  margin: 5% auto;
+
+  &::-webkit-scrollbar {
+  display: none;
+}
+}
+
 `
 
 export const MyDataPicker = styled(DatePicker)`
@@ -49,7 +89,6 @@ height: 100%;
 export const DataPickerWrapper = styled.label`
 display: flex;
 flex-direction: row;
-justify-content: space-evenly;
 background-color: #fff;
 height: 100%;
 padding: 18px 20px 18px 10px;
@@ -88,4 +127,18 @@ export const MyMenuItem = styled(MenuItem)`
     color: #FF6596;
     background: rgba(255, 255, 255, 0.7);
 }
+`
+
+export const MiddleWrapper = styled(Grid)`
+
+@media screen and (min-width: 768px){
+display:flex;
+justufy-content: space-evenly;
+align-items: center;
+width: 400px;
+}
+`
+export const GridAmount = styled(Grid)`
+width: 190px;
+height: 55px;
 `

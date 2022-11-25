@@ -6,11 +6,12 @@ import { TextField} from "formik-mui";
 import { object, number, string} from "yup";
 import SelectFieldModal from "./SelectFieldModal";
 import "react-datepicker/dist/react-datepicker.css";
-import { MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader } from "./ModalCustomStyles";
+import { MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, MiddleWrapper, GridAmount, CloseFab } from "./ModalCustomStyles";
 import { ToggleWrapper, SwitchLabel, Income, Expense, SwitchField, Slider } from "./ToggleSwitch.styled";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
-// import { useDispatch, useSelector } from 'react-redux';
+import CloseIcon from '@mui/icons-material/Close';
+// import { useDispatch} from 'react-redux';
 // import {
 //     addTransaction,
 //     getTransactionsList,
@@ -50,19 +51,22 @@ const f = useFormik({
   const [show, setShow ] = useState(true);
   const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []); 
 
-   const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(true);
   const addClass = (checked) => {
-        if (!checked) {
+    if (!checked) {
           return "disabled";
     }
   }
   
-    const handleCheck = () => {
+  const handleCheck = () => {
       setIsChecked(!isChecked);
-      f.setFieldValue(f.values.type);  
-      handleToggle();
+      f.setFieldValue();  
+        handleToggle();
+ 
+    
   }
 
+  // const dispatch = useDispatch();
   
     return (
       <StyledEngineProvider injectFirst>
@@ -76,8 +80,11 @@ const f = useFormik({
           aria-describedby="modal-modal-description"
           sx={{  padding:"20px 11px"}}
        >
-                      
+                     
           <MyBox >
+            <CloseFab onClick={closeModal} aria-label="add">
+            <CloseIcon sx={{ color: "#000000", backgroundColor: "transparent", width: "16px", height: "16px"}} onClick={closeModal}/>
+        </CloseFab> 
             <ModalHeader> Add transaction </ModalHeader>
 
              <Formik
@@ -87,6 +94,7 @@ const f = useFormik({
               enableReinitialize={true}
               onSubmit={(values, { resetForm }) => {
                 setTimeout(() => {
+                  // dispatch(addTransaction(values));
                   console.log(values);
                   resetForm({ values: "" });
                 }, 1000);
@@ -96,17 +104,16 @@ const f = useFormik({
                 <Form autoComplete="off" onSubmit={handleSubmit}>
                   <Grid container direction="column" spacing={3}>
                     
-                    {/* <Field value={f.type} name={`attributes.${f.type}.values.in.${0}`}
-                      id={`boolenField.${f.type}`}
-                      component={ToggleSwitch} onChange={handleToggle} sx={{ marginTop: "20px" }}
-                    /> */}
-                    
-                    <ToggleWrapper >
+      <ToggleWrapper >
       <SwitchLabel>
-        <Income className={addClass(!isChecked)} name={!f.type}>Income</Income> 
-        <SwitchField checked={isChecked} type="checkbox" name="checkbox" value={f.type} onChange={handleCheck} />
+                        <Income
+                          className={addClass(!isChecked && `${!transaction.type}`)}
+                          name="Income">Income</Income> 
+                        <SwitchField checked={isChecked} type="checkbox" name="type" onChange={handleCheck} />
                     <Slider />
-        <Expense className={addClass(isChecked)} name={f.type}>Expense</Expense>
+                        <Expense
+                          className={addClass(isChecked && `${transaction.type}`)}
+                          name="Expense">Expense</Expense>
       </SwitchLabel>
       </ToggleWrapper>
 
@@ -117,12 +124,12 @@ const f = useFormik({
                     </Grid>
                   )}
                     
-
-                    <Grid item>
+                    <MiddleWrapper>
+                    <GridAmount>
                       <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)"  component={TextField} />
-                    </Grid>
-
-                    <Grid item >
+                    </GridAmount>
+<GridAmount>
+                   
                       <DataPickerWrapper direction="row">
                           <MyDataPicker
                           name="transactionDate"
@@ -135,7 +142,8 @@ const f = useFormik({
                         />
                         <CalendarMonthIcon sx={{color: "#4A56E2"}} />
                       </DataPickerWrapper>
-                    </Grid>
+                      </GridAmount>
+                      </MiddleWrapper>
                     
                     <Grid item>
                       <Field fullWidth name="comment" label="Comment" component={TextField} minRows={1} maxRows={3} />
