@@ -14,7 +14,7 @@ const fetchUserBalance = createAsyncThunk(
   }
 );
 
-const addTransaction = createAsyncThunk(
+export const addTransaction = createAsyncThunk(
   "wallet/addTransaction",
   async (transactionBody, thunkAPI) => {
     try {

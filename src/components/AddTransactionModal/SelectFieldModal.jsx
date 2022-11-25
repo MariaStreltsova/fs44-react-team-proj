@@ -2,7 +2,8 @@ import React from 'react';
 import { Field } from 'formik';
 import { allCategories } from './allCategories';
 import CustomizedSelectForFormik from "./CustomizedSelect";
-import { FormControl, MenuItem, InputLabel } from '@mui/material';
+import { FormControl, InputLabel } from '@mui/material';
+import { MyMenuItem } from "./ModalCustomStyles";
 
 export default function SelectFieldModal({show}) {
   
@@ -15,12 +16,12 @@ export default function SelectFieldModal({show}) {
             type="select"
             name="categories"
             label="Select a category"
-            component={CustomizedSelectForFormik} 
+              component={CustomizedSelectForFormik} 
 >
               {allCategories.map((category) => (
-          < MenuItem value={category.value} key={category.key}>
+                < MyMenuItem value={category.value}  key={category.key}> 
             {category.value}
-          </ MenuItem>
+                  </ MyMenuItem>
         ))}
             </Field>
             </FormControl>
@@ -28,3 +29,4 @@ export default function SelectFieldModal({show}) {
             </>
   );
 }
+
