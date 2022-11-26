@@ -1,5 +1,6 @@
-import { useState } from 'react';
-// import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,8 +12,10 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
-// import walletSelectors from '../../redux/wallet/wallet-selectors';
-import { transactions } from './mock';
+import { format } from 'date-fns';
+import operations from '../../redux/wallet/wallet-operations';
+import walletSelectors from '../../redux/wallet/wallet-selectors';
+
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -59,14 +62,20 @@ const HomeTable = () => {
       sorting: false,
     },
   ];
-
-  // const transactions = useSelector(walletSelectors.getTransactions);
+  const dispatch = useDispatch();
+  const transactions = useSelector(walletSelectors.getTransactions);
   const [order, setOrder] = useState(SORT_TYPES.asc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - transactions.length) : 0;
+    transactions && page > 0
+      ? Math.max(0, (1 + page) * rowsPerPage - transactions?.length)
+      : 0;
+
+  useEffect(() => {
+    dispatch(operations.fetchTransactions());
+  }, [dispatch]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === SORT_TYPES.asc;
@@ -150,6 +159,7 @@ const HomeTable = () => {
               lineHeight: '18px',
             },
             [`& .${tableCellClasses.head}`]: {
+              height: '56px',
               fontWeight: 700,
               fontSize: '18px',
               lineHeight: '26px',
@@ -178,38 +188,44 @@ const HomeTable = () => {
               },
             }}
           >
-            {transactions
-              .sort(getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(
-                ({
-                  id,
-                  date,
-                  direction,
-                  category,
-                  comments,
-                  amount,
-                  balanceAfter,
-                }) => (
-                  <TableRow key={id}>
-                    <TableCell align="left">{date}</TableCell>
-                    <TableCell align="center">
-                      {direction === 'expense' ? '+' : '-'}
-                    </TableCell>
-                    <TableCell align="left">{category}</TableCell>
-                    <TableCell align="left">{comments}</TableCell>
-                    <TableCell
-                      sx={{
-                        color: direction === 'expense' ? '#FF6596' : '#24CCA7',
-                      }}
-                      align="right"
-                    >
-                      {amount.toFixed(2)}
-                    </TableCell>
-                    <TableCell align="right">{balanceAfter}</TableCell>
-                  </TableRow>
-                )
-              )}
+            {transactions &&
+              [...transactions]
+                .sort(getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(
+                  ({
+                    _id,
+                    date,
+                    direction,
+                    category,
+                    comment,
+                    amount,
+                    balanceAfter,
+                  }) => (
+                    <TableRow key={_id}>
+                      <TableCell align="left">
+                        {format(new Date(date), 'dd.MM.yy')}
+                      </TableCell>
+                      <TableCell align="center">
+                        {direction === 'expense' ? '+' : '-'}
+                      </TableCell>
+                      <TableCell align="left">{category}</TableCell>
+                      <TableCell align="left">{comment}</TableCell>
+                      <TableCell
+                        sx={{
+                          color:
+                            direction === 'expense' ? '#FF6596' : '#24CCA7',
+                        }}
+                        align="right"
+                      >
+                        {amount.toFixed(2)}
+                      </TableCell>
+                      <TableCell align="right">
+                        {balanceAfter.toFixed(2)}
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
             {emptyRows > 0 && (
               <TableRow
                 style={{
@@ -225,7 +241,7 @@ const HomeTable = () => {
       <TablePagination
         rowsPerPageOptions={[5]}
         component="div"
-        count={transactions.length}
+        count={transactions ? transactions.length : 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
