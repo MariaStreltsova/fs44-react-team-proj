@@ -6,9 +6,9 @@ import { FormLogo } from '../FormsLogo/formLogo';
 import { SecurInput } from '../inputs/SecurInput/SecurInput';
 import { Input } from '../inputs/Input/Input';
 import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
-import { Form } from './RegistrationForm.styles';
+import { Form, PasswordBar} from './RegistrationForm.styles';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import { useFormik} from 'formik';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -21,9 +21,12 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required('firstName is requred field'),
 });
 
+
+
 export const RegistrationForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +42,7 @@ export const RegistrationForm = () => {
       resetForm();
     },
   });
-
+  
   return (
     <Container>
       <FormLogo mb={40} />
@@ -48,33 +51,42 @@ export const RegistrationForm = () => {
           label={t('input.email')}
           icon={EmailIcon}
           id={'email'}
+          onBlur={formik.handleBlur}
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
+          helper={formik.errors.email}
         />
         <SecurInput
           label={t('input.password')}
           icon={PasswordIcon}
+          onBlur={formik.handleBlur}
           id={'password'}
           value={formik.values.password}
           onChange={formik.handleChange}
+          helper={formik.errors.password}
           error={formik.touched.password && Boolean(formik.errors.password)}
         />
         <SecurInput
           label={t('input.confirmPassword')}
           icon={PasswordIcon}
+          onBlur={formik.handleBlur}
           id={'confirmPassword'}
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
+          helper={formik.errors.confirmPassword}
           error={
             formik.touched.password && Boolean(formik.errors.confirmPassword)
           }
         />
+        {formik.values.password && <PasswordBar password={formik.values.password} />}
         <Input
           label={t('input.firstName')}
           icon={UserIcon}
+          onBlur={formik.handleBlur}
           id={'name'}
           value={formik.values.name}
+          helper={formik.errors.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
         />
