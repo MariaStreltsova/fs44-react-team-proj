@@ -4,7 +4,7 @@ import authOperations from './auth-operations';
 const initialState = {
   user: { name: null, email: null, balance: null },
   token: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isRefreshingUser: false,
 };
 

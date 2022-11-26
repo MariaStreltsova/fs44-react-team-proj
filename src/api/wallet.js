@@ -1,5 +1,4 @@
 import authApi from './authApi';
-import axios from 'axios';
 
 export const getTransactions = async () => {
   try {
