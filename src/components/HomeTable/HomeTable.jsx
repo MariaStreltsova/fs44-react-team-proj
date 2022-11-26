@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { useTableStyles } from './HomeTable.styled';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
@@ -64,7 +63,6 @@ const HomeTable = () => {
   const [order, setOrder] = useState(SORT_TYPES.asc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
-  const styles = useTableStyles();
   const rowsPerPage = 5;
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - transactions.length) : 0;
@@ -103,7 +101,7 @@ const HomeTable = () => {
     };
 
     return (
-      <TableHead className={styles.tableHeadRow}>
+      <TableHead>
         <TableRow>
           {headCells.map(headCell => (
             <TableCell
@@ -112,7 +110,7 @@ const HomeTable = () => {
               padding={'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
             >
-              <div className={styles.tableHeadCell}>
+              <div>
                 {headCell.sorting ? (
                   <TableSortLabel
                     active={orderBy === headCell.id}
@@ -142,14 +140,25 @@ const HomeTable = () => {
     <Box>
       <TableContainer>
         <Table
-          className={styles.table}
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none',
               fontFamily: 'Circle',
+              fontWeight: 400,
+              fontSize: '16px',
+              lineHeight: '18px',
+            },
+            [`& .${tableCellClasses.head}`]: {
               fontWeight: 700,
               fontSize: '18px',
-              lineHeight: '26.53px',
+              lineHeight: '26px',
+              backgroundColor: '#fff',
+              '&:first-of-type': {
+                borderRadius: '30px 0px 0px 30px',
+              },
+              '&:last-of-type': {
+                borderRadius: '0px 30px 30px 0px',
+              },
             },
           }}
         >
@@ -181,21 +190,14 @@ const HomeTable = () => {
                   amount,
                   balanceAfter,
                 }) => (
-                  <TableRow key={id} className={styles.tableRow}>
-                    <TableCell className={styles.tableCell} align="left">
-                      {date}
-                    </TableCell>
-                    <TableCell className={styles.tableCell} align="center">
+                  <TableRow key={id}>
+                    <TableCell align="left">{date}</TableCell>
+                    <TableCell align="center">
                       {direction === 'expense' ? '+' : '-'}
                     </TableCell>
-                    <TableCell className={styles.tableCell} align="left">
-                      {category}
-                    </TableCell>
-                    <TableCell className={styles.tableCell} align="left">
-                      {comments}
-                    </TableCell>
+                    <TableCell align="left">{category}</TableCell>
+                    <TableCell align="left">{comments}</TableCell>
                     <TableCell
-                      className={styles.tableCell}
                       sx={{
                         color: direction === 'expense' ? '#FF6596' : '#24CCA7',
                       }}
@@ -203,9 +205,7 @@ const HomeTable = () => {
                     >
                       {amount.toFixed(2)}
                     </TableCell>
-                    <TableCell className={styles.tableCell} align="right">
-                      {balanceAfter}
-                    </TableCell>
+                    <TableCell align="right">{balanceAfter}</TableCell>
                   </TableRow>
                 )
               )}
