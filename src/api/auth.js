@@ -1,8 +1,7 @@
 import authApi from './authApi';
-// import token from './authApi';
 
 export const signup = async data => {
-  const { data: result } = await authApi.post('/api/users/signup', data);
+  const { data: result } = await authApi.post('/api/auth/register', data);
   return result;
 };
 
@@ -19,8 +18,3 @@ export const logout = async data => {
 export const refreshUser = () => {
   return authApi.get('/api/auth/current');
 };
-
-// export const refreshUser = async newToken => {
-
-//     const result = await authApi.get('/api/auth/current');
-//     return result.data;

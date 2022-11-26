@@ -1,11 +1,11 @@
 import { Title, Logo, TitleText } from './formLogo.styles';
 import { WalletSvg } from 'images/icons/WalletSvg';
 
-export const FormLogo = () => {
+export const FormLogo = ({ mb = 0, w = 40, h = 40 }) => {
   return (
-    <Title>
+    <Title style={{ marginBottom: `${mb}px` }}>
       <Logo>
-        <WalletSvg />
+        <WalletSvg w={w} h={h} />
       </Logo>
       <TitleText>Wallet</TitleText>
     </Title>

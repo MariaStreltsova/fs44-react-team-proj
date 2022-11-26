@@ -11,36 +11,38 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('email is requred field'),
   password: Yup.string().required('password is requred field'),
   confirmPassword: Yup.string().required('confirmPassword is requred field'),
-  firstName: Yup.string().required('firstName is requred field'),
+  name: Yup.string().required('firstName is requred field'),
 });
 
 export const RegistrationForm = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       confirmPassword: '',
-      firstName: '',
+      name: '',
     },
     validationSchema,
-    onSubmit: ({ email, password, firstName }, { resetForm }) => {
-      console.log({ email, password, firstName });
-      //  dispatch(authOperations.logIn(values));
-
+    onSubmit: ({ email, password, name }, { resetForm }) => {
+      console.log({ email, password, name });
+      dispatch(authOperations.register({ email, password, name }));
       resetForm();
     },
   });
 
   return (
     <Container>
-      <FormLogo />
+      <FormLogo mb={40} />
       <Form onSubmit={formik.handleSubmit}>
         <Input
           label={t('input.email')}
@@ -71,10 +73,10 @@ export const RegistrationForm = () => {
         <Input
           label={t('input.firstName')}
           icon={UserIcon}
-          id={'firstName'}
-          value={formik.values.firstName}
+          id={'name'}
+          value={formik.values.name}
           onChange={formik.handleChange}
-          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+          error={formik.touched.name && Boolean(formik.errors.name)}
         />
 
         <UniversalBtn

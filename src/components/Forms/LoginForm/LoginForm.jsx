@@ -36,7 +36,7 @@ export const LoginForm = () => {
 
   return (
     <Container>
-      <FormLogo />
+      <FormLogo mb={40} />
       <Form onSubmit={formik.handleSubmit}>
         <Input
           label={t('input.email')}
