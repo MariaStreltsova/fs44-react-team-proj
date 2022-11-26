@@ -3,11 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {
-  IconColorButtom,
-  InputLabelName,
-  InputLabelForm,
-} from './SecurInput.styles';
+import { IconColorButtom, InputLabelForm } from './SecurInput.styles';
 
 export const SecurInput = ({
   label = '',
@@ -47,13 +43,13 @@ export const SecurInput = ({
       sx={{ m: 1, width: '100%', marginBottom: `${mb}px` }}
       variant="standard"
     >
-      <InputLabelName htmlFor={id}>{label}</InputLabelName>
       <InputLabelForm
         id={id}
         type={values.showPassword ? 'text' : 'password'}
         value={value}
         onChange={onChange}
         error={error}
+        placeholder={label}
         startAdornment={
           <InputAdornment position="start">{icon && icon()}</InputAdornment>
         }

@@ -10,36 +10,42 @@ import { Form } from './RegistrationForm.styles';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('email is requred field'),
   password: Yup.string().required('password is requred field'),
   confirmPassword: Yup.string().required('confirmPassword is requred field'),
-  firstName: Yup.string().required('firstName is requred field'),
+  name: Yup.string().required('firstName is requred field'),
 });
 
 export const RegistrationForm = () => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
       confirmPassword: '',
-      firstName: '',
+      name: '',
     },
     validationSchema,
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      //  dispatch(authOperations.logIn(values));
+    onSubmit: ({ email, password, name }, { resetForm }) => {
+      console.log({ email, password, name });
+      dispatch(authOperations.register({ email, password, name }));
       resetForm();
     },
   });
 
   return (
     <Container>
-      <FormLogo />
+      <FormLogo mb={40} />
       <Form onSubmit={formik.handleSubmit}>
         <Input
-          label="E-mail"
+          label={t('input.email')}
           icon={EmailIcon}
           id={'email'}
           value={formik.values.email}
@@ -47,7 +53,7 @@ export const RegistrationForm = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         <SecurInput
-          label="Password"
+          label={t('input.password')}
           icon={PasswordIcon}
           id={'password'}
           value={formik.values.password}
@@ -55,7 +61,7 @@ export const RegistrationForm = () => {
           error={formik.touched.password && Boolean(formik.errors.password)}
         />
         <SecurInput
-          label="Confirm password"
+          label={t('input.confirmPassword')}
           icon={PasswordIcon}
           id={'confirmPassword'}
           value={formik.values.confirmPassword}
@@ -65,23 +71,23 @@ export const RegistrationForm = () => {
           }
         />
         <Input
-          label="First name"
+          label={t('input.firstName')}
           icon={UserIcon}
-          id={'firstName'}
-          value={formik.values.firstName}
+          id={'name'}
+          value={formik.values.name}
           onChange={formik.handleChange}
-          error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+          error={formik.touched.name && Boolean(formik.errors.name)}
         />
 
         <UniversalBtn
-          title="REGISTER"
+          title={t('button.register')}
           variant="contained"
           type="submit"
           color="#24CCA7"
         />
       </Form>
       <UniversalBtn
-        title="LOG IN"
+        title={t('button.login')}
         variant="outlined"
         mb="0px"
         href={`${BASE_URL_FRONT}/login`}

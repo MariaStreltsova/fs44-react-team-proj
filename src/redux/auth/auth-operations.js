@@ -4,7 +4,9 @@ import { token } from '../../api/authApi';
 
 const register = createAsyncThunk('auth/signup', async data => {
   try {
-    const { result } = await api.signup(data);
+
+    const result = await api.signup(data);
+
     token.set(result.token);
     return result;
   } catch (error) {
@@ -62,10 +64,12 @@ const fetchCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
+
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
+
 
     try {
       const { data } = await api.refreshUser();

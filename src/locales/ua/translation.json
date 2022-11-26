@@ -1,9 +1,16 @@
 {
   "button": {
     "language": "Мова",
-    "goHome": "На головну"
+    "goHome": "На головну",
+    "login": "УВІЙТИ",
+    "register": "ЗАРЕЄСТРУВАТИСЯ"
   },
-  "input": {},
+  "input": {
+    "email": "Пошта",
+    "password": "Пароль",
+    "confirmPassword": "Підтведіть пароль",
+    "firstName": "Ім'я"
+  },
   "session": {},
   "alert": {},
   "dialog": {},
