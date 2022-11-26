@@ -1,30 +1,5 @@
 import styled from 'styled-components';
 import theme from '../../theme';
-import { makeStyles } from '@mui/styles';
-
-export const useTableStyles = makeStyles({
-  table: {
-    fontFamily: 'Circle',
-    '& @media screen and (min-width: 768px)': {
-      width: '704px',
-    },
-    '& @media screen and (min-width: 1280px)': {
-      width: '715px',
-    },
-  },
-
-  tableHeadRow: {
-    backgroundColor: '#fff',
-    '& th:first-of-type': {
-      borderRadius: '30px 0px 0px 30px',
-    },
-    '& th:last-of-type': {
-      borderRadius: '0px 30px 30px 0px',
-    },
-  },
-});
-
-// ===================================================
 
 export const TransactionsWrap = styled.ul`
   list-style: none;
