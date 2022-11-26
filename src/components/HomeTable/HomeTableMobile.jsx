@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { format } from 'date-fns';
+import { format } from 'fecha';
 import {
   TransactionsWrap,
   TransactionCardList,
@@ -37,7 +37,7 @@ const HomeTableMobile = () => {
                 <TransactionCardList type={direction}>
                   <TransactionCardItem>
                     <span>Date</span>
-                    <span>{format(new Date(date), 'dd.MM.yy')}</span>
+                    <span>{format(new Date(date), 'dd.MM.YY')}</span>
                   </TransactionCardItem>
                   <TransactionCardItem>
                     <span>Type</span>

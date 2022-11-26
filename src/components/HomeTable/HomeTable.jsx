@@ -12,10 +12,9 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
-import { format } from 'date-fns';
+import { format } from 'fecha';
 import operations from '../../redux/wallet/wallet-operations';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
-
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -204,7 +203,7 @@ const HomeTable = () => {
                   }) => (
                     <TableRow key={_id}>
                       <TableCell align="left">
-                        {format(new Date(date), 'dd.MM.yy')}
+                        {format(new Date(date), 'dd.MM.YY')}
                       </TableCell>
                       <TableCell align="center">
                         {direction === 'expense' ? '+' : '-'}
