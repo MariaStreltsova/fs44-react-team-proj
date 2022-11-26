@@ -5,6 +5,7 @@ const initialState = {
   balance: null,
   isLoading: false,
   error: null,
+  statData: null,
 };
 
 const walletSlice = createSlice({
@@ -22,6 +23,19 @@ const walletSlice = createSlice({
     [walletOperations.fetchUserBalance.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+
+    // получение статистики
+    [walletOperations.getStatisticData.pending](state) {
+      state.isLoading = true;
+    },
+    [walletOperations.getStatisticData.fulfilled](state, action) {
+      state.statData = action.payload;
+      state.isLoading = false;
+    },
+    [walletOperations.getStatisticData.rejected](state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
     },
   },
 });

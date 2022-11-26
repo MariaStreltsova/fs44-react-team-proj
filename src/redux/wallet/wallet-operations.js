@@ -15,12 +15,10 @@ const fetchUserBalance = createAsyncThunk(
 );
 
 const addTransaction = createAsyncThunk(
-  "wallet/addTransaction",
+  'wallet/addTransaction',
   async (transactionBody, thunkAPI) => {
     try {
-      const result = await api.addTransaction(
-        transactionBody
-      );
+      const result = await api.addTransaction(transactionBody);
       return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,7 +27,7 @@ const addTransaction = createAsyncThunk(
 );
 
 export const getTransactionsList = createAsyncThunk(
-  "wallet/getTransactionsList",
+  'wallet/getTransactionsList',
   async (_, thunkAPI) => {
     try {
       const result = await api.getTransactionsList();
@@ -40,10 +38,23 @@ export const getTransactionsList = createAsyncThunk(
   }
 );
 
+export const getStatisticData = createAsyncThunk(
+  'wallet/getStatisticData',
+  async (statBody, thunkAPI) => {
+    try {
+      const result = await api.getStatisticData(statBody);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const operations = {
   fetchUserBalance,
   addTransaction,
   getTransactionsList,
+  getStatisticData,
 };
+
 export default operations;

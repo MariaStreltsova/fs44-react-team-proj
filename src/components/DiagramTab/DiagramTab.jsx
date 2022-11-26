@@ -2,9 +2,22 @@ import Table from './Table/Table';
 import React, { useState } from 'react';
 import Chart from './Chart/Chart';
 import { H2Stat } from './DiagramTab.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsLoading, getStatData } from '../../redux/wallet/wallet-selectors';
+import { getStatisticData } from 'api/wallet';
 
 function DiagramTab() {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
+  const statData = useSelector(getStatData);
+
+  if (statData === null) {
+    const today = new
+      let today = new Date(); // Mon Nov 23 2020 15:23:46 GMT+0300 (Москва, стандартное время)
+let year = today.getFullYear(); // 2020
+      // первый запрос на сервер
+      dispatch(getStatisticData({ year: year, month: month }));
+  }
 
   // заглушка, пока нет ответа с сервера
   const data = {

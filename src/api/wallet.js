@@ -27,3 +27,12 @@ export const getTransactionsList = async () => {
     throw error;
   }
 };
+
+export const getStatisticData = async ({ year, month }) => {
+  try {
+    const result = await authApi.get(`transactions/statistic/${year}/${month}`);
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+};
