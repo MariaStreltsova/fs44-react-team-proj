@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
+export const NavigationLink = styled(NavLink)`
+  &.active {
+    font-weight: ${p => p.theme.fontWeights.bold};
+  }
+`;
 
 export const NavigationContainer = styled.ul`
   display: flex;
@@ -21,6 +28,8 @@ export const NavItem = styled.li`
   &:hover,
   &:focus {
     font-weight: ${p => p.theme.fontWeights.bold};
+    /* fill: ${p => p.theme.colors.accentColor}; */
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
 `;
 
@@ -35,6 +44,10 @@ export const Svg = styled.svg`
   &:focus {
     fill: ${p => p.theme.colors.accentColor};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+
+  &[data-active] {
+    color: red;
   }
   @media screen and (min-width: 768px) {
     margin-right: 23px;
