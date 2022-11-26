@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../theme';
 
 export const Modal = styled.div`
     display: flex;
@@ -23,8 +24,8 @@ export const ModalContent = styled.div`
     padding: 20px;
     border-radius: 12px;
     background-color: white;
-    height: 400px;
-    width: 400px;
+    height: 800px;
+    width: 800px;
     transform: scale(0.5);
     transition: 0.4s all;
     &.active {
@@ -36,8 +37,13 @@ export const Button = styled.button`
     padding: 20px;
     border-radius: 12px;
     background-color: white;
-    height: 400px;
-    width: 400px;
+    height: 100px;
+    width: 100px;
+    font-family: ${theme.fonts.title};
+    font-weight: ${theme.fontWeights.normal};
+    font-size: ${theme.fontSizes.l};
+    line-height: ${theme.lineHeights.normal};
+    color: ${theme.colors.mainTxtColor};
     transform: scale(0.5);
     transition: 0.4s all;
     &.active {
@@ -48,12 +54,21 @@ export const Button = styled.button`
 export const Svg = styled.svg`
     padding: 20px;
     border-radius: 12px;
-    background-color: white;
-    height: 400px;
-    width: 400px;
+    background-color: white; 
     transform: scale(0.5);
     transition: 0.4s all;
     &.active {
         transform: scale(1);
     }
 `;
+
+export const P = styled.p`
+  display: flex;
+  justify-content: center;
+  font-family: ${theme.fonts.title};
+  font-weight: ${theme.fontWeights.normal};
+  font-size: ${theme.fontSizes.l};
+  line-height: ${theme.lineHeights.normal};
+  color: ${theme.colors.mainTxtColor};
+`;
+
