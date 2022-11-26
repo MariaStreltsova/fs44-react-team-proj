@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +11,8 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
-import walletSelectors from '../../redux/wallet/wallet-selectors';
+// import walletSelectors from '../../redux/wallet/wallet-selectors';
+import { transactions } from './mock';
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -59,7 +60,7 @@ const HomeTable = () => {
     },
   ];
 
-  const transactions = useSelector(walletSelectors.getTransactions);
+  // const transactions = useSelector(walletSelectors.getTransactions);
   const [order, setOrder] = useState(SORT_TYPES.asc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
