@@ -6,18 +6,21 @@ import { FormLogo } from '../FormsLogo/formLogo';
 import { SecurInput } from '../inputs/SecurInput/SecurInput';
 import { Input } from '../inputs/Input/Input';
 import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
-import { Form, PasswordBar} from './RegistrationForm.styles';
+import { Form} from './RegistrationForm.styles';
 import * as Yup from 'yup';
 import { useFormik} from 'formik';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import PasswordStrenghtMeter from './PasswordStrengthMeter';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('email is requred field'),
   password: Yup.string().required('password is requred field'),
-  confirmPassword: Yup.string().required('confirmPassword is requred field'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords are not the same')
+    .required('confirmPassword is requred field'),
   name: Yup.string().required('firstName is requred field'),
 });
 
@@ -79,7 +82,7 @@ export const RegistrationForm = () => {
             formik.touched.password && Boolean(formik.errors.confirmPassword)
           }
         />
-        {formik.values.password && <PasswordBar password={formik.values.password} />}
+        {formik.values.password && <PasswordStrenghtMeter password={formik.values.password} />}
         <Input
           label={t('input.firstName')}
           icon={UserIcon}
