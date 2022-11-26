@@ -19,6 +19,10 @@
     "404": {
       "notFound": "Not found!",
       "notExist": "This page does not exist"
+    },
+    "navigation": {
+      "Home": "Home",
+      "Statistics": "Statistics"
     }
   },
   "balance": { "title": "Your balance" },
