@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const DivLoader = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding-top: 30px;
+  /* width: 100%;
+  height: 100%; */
+  /* padding-top: 30px; */
 `;
 
 export const ImgLoader = styled.img`

@@ -4,8 +4,8 @@ const CURRENCY_URL = 'https://api.monobank.ua/bank/currency';
 
 async function fetchCurrency() {
   try {
-    const response = await axios.get(CURRENCY_URL);
-    const currencyData = response.data.filter(
+    const result = await axios.get(CURRENCY_URL);
+    const currencyData = result.data.filter(
       item =>
         (item.currencyCodeA === 840 ||
           item.currencyCodeA === 978 ||

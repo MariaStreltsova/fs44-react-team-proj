@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import backPicture from './images/bg.png';
 
 export const CurrencyBlock = styled.div`
+  position: relative;
   width: 280px;
   height: 174px;
   border-radius: 30px;
