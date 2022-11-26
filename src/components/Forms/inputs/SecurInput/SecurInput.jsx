@@ -4,6 +4,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { IconColorButtom, InputLabelForm } from './SecurInput.styles';
+import { FormHelperText } from '@mui/material';
 
 export const SecurInput = ({
   label = '',
@@ -13,6 +14,7 @@ export const SecurInput = ({
   value,
   onChange,
   error,
+  helper,
 }) => {
   const [values, setValues] = useState({
     email: '',
@@ -65,6 +67,7 @@ export const SecurInput = ({
           </InputAdornment>
         }
       />
+      {error && <FormHelperText name={id} style={{color: "red"}}>{helper}</FormHelperText>}
     </FormControl>
   );
 };

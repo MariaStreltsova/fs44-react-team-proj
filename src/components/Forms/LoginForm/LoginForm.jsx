@@ -44,8 +44,10 @@ export const LoginForm = () => {
           mb={30}
           id={'email'}
           value={formik.values.email}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
+          helper={formik.errors.email}
         />
         <SecurInput
           label={t('input.password')}
@@ -53,7 +55,9 @@ export const LoginForm = () => {
           mb={40}
           id={'password'}
           value={formik.values.password}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
+          helper={formik.errors.password}
           error={formik.touched.password && Boolean(formik.errors.password)}
         />
 
