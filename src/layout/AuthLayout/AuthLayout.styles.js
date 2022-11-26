@@ -8,3 +8,16 @@ export const RootWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 `;
+
+export const WrapperChildren = styled.div`
+display: block;
+position: relative;
+;
+`
+export const WrapperChildrens = styled.div`
+display: block;
+position: absolute;
+top:136px;
+left:555px;
+;
+`
