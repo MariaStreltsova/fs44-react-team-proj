@@ -3,7 +3,6 @@ import { Arrow, SelectorGroup, Select } from './Selector.styled';
 import arrow from './Vector19.png';
 
 function Selector({ options, id, onChange }) {
-  console.log(options);
   return (
     <SelectorGroup>
       <Arrow src={arrow} alt="arrow"></Arrow>

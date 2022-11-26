@@ -78,7 +78,11 @@ export const App = () => {
           path="/statistics"
           element={
             <PrivateRoute
-              component={<AuthLayout></AuthLayout>}
+              component={
+                <AuthLayout>
+                  <DiagramTab></DiagramTab>
+                </AuthLayout>
+              }
               redirectTo="/login"
             />
           }
@@ -89,29 +93,4 @@ export const App = () => {
       </Routes>
     </Suspense>
   );
-  // isRefreshing ? (
-  //   <h1>Refreshing user...</h1>
-  // ) : (
-  //   <Suspense fallback={<h1>Loading profile.</h1>}>
-  //     <Routes>
-  //       <Route
-  //         path="/"
-  //         element={
-  //           <PublicRoute
-  //             restricted
-  //             redirectedTo="/wallet"
-  //             component={
-  //               <NonAuthLayout component={<Login />} picture={PeoleSvg} />
-  //             }
-  //           />
-  //         }
-  //       />
-  //       <Route
-  //         path="/dashboard"
-  //         element={<PrivateRoute component={<DashBoard />} />}
-  //       />
-  //       <Route path="*" element={<PageNotFound />} />
-  //     </Routes>
-  //   </Suspense>
-  // );
 };

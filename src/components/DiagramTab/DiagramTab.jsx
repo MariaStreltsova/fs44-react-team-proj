@@ -1,23 +1,48 @@
 import Table from './Table/Table';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { H2Stat } from './DiagramTab.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getIsLoading, getStatData } from '../../redux/wallet/wallet-selectors';
-import { getStatisticData } from 'api/wallet';
+import { getStatisticYear, getStatisticYearMonth } from 'api/wallet';
+import theme from 'theme';
 
 function DiagramTab() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const statData = useSelector(getStatData);
+  const [statData, setStatData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [date, setDate] = useState({ year: null, month: 0 });
 
-  if (statData === null) {
-    const today = new
-      let today = new Date(); // Mon Nov 23 2020 15:23:46 GMT+0300 (Москва, стандартное время)
-let year = today.getFullYear(); // 2020
-      // первый запрос на сервер
-      dispatch(getStatisticData({ year: year, month: month }));
+  // функция чтения данных о месяце и годе из локалсториджа при старте
+  async function readLocalStorageDate() {
+    const today = new Date();
+    const localStorageDate = JSON.parse(
+      localStorage.getItem('dateUserSelected')
+    );
+    console.log(localStorageDate);
+    if (localStorageDate && localStorageDate.month && localStorageDate.year) {
+      setDate(localStorageDate);
+    } else {
+      setDate({ month: today.getMonth(), year: today.getFullYear() });
+    }
   }
+
+  // при старте запускаем чтение начальных данных о месяце-годе из сториджа
+  useEffect(() => {
+    readLocalStorageDate();
+  }, []);
+
+  // реакция на изменение года или месяца для запрос на получение данных
+  useEffect(() => {
+    setIsLoading(true);
+    let data = null;
+
+    if (date.month !== 12) {
+      data = getStatisticYearMonth(date.year, date.month);
+    } else {
+      data = getStatisticYear(date.year);
+    }
+    localStorage.setItem('dateUserSelected', JSON.stringify({ date }));
+    setStatData(data);
+    setIsLoading(false);
+  }, [date]);
 
   // заглушка, пока нет ответа с сервера
   const data = {
@@ -41,22 +66,16 @@ let year = today.getFullYear(); // 2020
   const expenseSummary = [];
   expenses.forEach((item, index) => (expenseSummary[index] = item.summary));
 
-  // создание массива цветов
-  const backgroundColor = [
-    'rgba(254, 208, 87, 1)',
-    'rgba(255, 216, 208, 1)',
-    'rgba(253, 148, 152, 1)',
-    'rgba(197, 186, 255, 1)',
-    'rgba(110, 120, 232, 1)',
-    'rgba(74, 86, 226, 1)',
-    'rgba(129, 225, 255, 1)',
-    'rgba(36, 204, 167, 1)',
-    'rgba(0, 173, 132, 1)',
-  ];
-
   // создание объекта название-расход-цвет для таблицы
   const tableData = expenses;
-  tableData.forEach((item, index) => (item.color = backgroundColor[index]));
+  tableData.forEach((item, index) => (item.color = theme.chartColors[index]));
+
+  const onMonthHandle = e => {
+    setDate({ month: e });
+  };
+  const onYearHandle = e => {
+    setDate({ year: e });
+  };
 
   return (
     <div>
@@ -64,7 +83,7 @@ let year = today.getFullYear(); // 2020
       <Chart
         totalExpense={totalExpense}
         expenses={expenseSummary}
-        backgroundColor={backgroundColor}
+        backgroundColor={theme.chartColors}
         isLoading={isLoading}
       />
       <Table
@@ -72,6 +91,8 @@ let year = today.getFullYear(); // 2020
         totalExpense={totalExpense}
         expenses={tableData}
         isLoading={isLoading}
+        onMonthHandle={onMonthHandle}
+        onYearHandle={onYearHandle}
       />
     </div>
   );

@@ -14,7 +14,14 @@ import {
 } from './Table.styled';
 import Selector from './Selector/Selector';
 
-function Table({ totalIncome, totalExpense, expenses, isLoading }) {
+function Table({
+  totalIncome,
+  totalExpense,
+  expenses,
+  isLoading,
+  onMonthHandle,
+  onYearHandle,
+}) {
   const dataYear = {
     2019: [4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
     2020: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
@@ -25,18 +32,19 @@ function Table({ totalIncome, totalExpense, expenses, isLoading }) {
   const [monthes, setMonthes] = useState(dataYear[2022]);
   const years = Object.keys(dataYear).reverse();
 
-  const onYearHandle = e => {
-    setMonthes(dataYear[e.target.value]);
-  };
-  const onMonthHandle = e => {
-    console.log(e.target.value);
-  };
-
   return (
     <Section>
       <SelectorsArea>
-        <Selector options={monthes} id="month" onChange={onMonthHandle} />
-        <Selector options={years} id="year" onChange={onYearHandle} />
+        <Selector
+          options={monthes}
+          id="month"
+          onChange={e => onMonthHandle(e.target.value)}
+        />
+        <Selector
+          options={years}
+          id="year"
+          onChange={e => onYearHandle(e.target.value)}
+        />
       </SelectorsArea>
       <Head>
         <HeadText>Category</HeadText>

@@ -24,7 +24,7 @@ export const Navigation = () => {
         </NavigationLink>
       </NavItem>
       <NavItem>
-        <NavigationLink to="/home/statistics">
+        <NavigationLink to="/statistics">
           <Svg>
             <use href={`${Sprite}#icon-stat`}></use>
           </Svg>
