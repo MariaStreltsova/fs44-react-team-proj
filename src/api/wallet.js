@@ -1,9 +1,8 @@
 import authApi from './authApi';
 
-export const getUserBalance = async () => {
+export const getTransactions = async () => {
   try {
-    const result = await authApi.get('/user/balance');
-
+    const result = await authApi.get('/transactions');
     return result.data;
   } catch (error) {
     throw error;

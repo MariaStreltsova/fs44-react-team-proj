@@ -3,13 +3,17 @@ import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import {
-  IconColorButtom,
-  InputLabelName,
-  InputLabelForm,
-} from './SecurInput.styles';
+import { IconColorButtom, InputLabelForm } from './SecurInput.styles';
 
-export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
+export const SecurInput = ({
+  label = '',
+  icon = null,
+  mb = 0,
+  id = '',
+  value,
+  onChange,
+  error,
+}) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -19,9 +23,9 @@ export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
     showConfirmPassword: false,
   });
 
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // const handleChange = prop => event => {
+  //   setValues({ ...values, [prop]: event.target.value });
+  // };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -39,12 +43,13 @@ export const SecurInput = ({ label = '', icon = null, mb = 0, id = '' }) => {
       sx={{ m: 1, width: '100%', marginBottom: `${mb}px` }}
       variant="standard"
     >
-      <InputLabelName htmlFor={id}>{label}</InputLabelName>
       <InputLabelForm
         id={id}
         type={values.showPassword ? 'text' : 'password'}
-        value={values.password}
-        onChange={handleChange('password')}
+        value={value}
+        onChange={onChange}
+        error={error}
+        placeholder={label}
         startAdornment={
           <InputAdornment position="start">{icon && icon()}</InputAdornment>
         }

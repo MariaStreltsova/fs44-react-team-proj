@@ -1,5 +1,5 @@
-import { transactions } from './mock';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,47 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { useTableStyles } from './HomeTable.styled';
 import { visuallyHidden } from '@mui/utils';
-
-const headCells = [
-  {
-    id: 'date',
-    align: 'left',
-    label: 'Date',
-    sorting: true,
-  },
-  {
-    id: 'type',
-    align: 'center',
-    label: 'Type',
-    sorting: false,
-  },
-  {
-    id: 'category',
-    align: 'left',
-    label: 'Category',
-    sorting: true,
-  },
-  {
-    id: 'comments',
-    align: 'left',
-    label: 'Comments',
-    sorting: false,
-  },
-  {
-    id: 'amount',
-    align: 'right',
-    label: 'Sum',
-    sorting: true,
-  },
-  {
-    id: 'balance',
-    align: 'right',
-    label: 'Balance',
-    sorting: false,
-  },
-];
+import { useTranslation } from 'react-i18next';
+import walletSelectors from '../../redux/wallet/wallet-selectors';
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -57,10 +19,50 @@ const SORT_TYPES = {
 };
 
 const HomeTable = () => {
+  const { t } = useTranslation();
+  const headCells = [
+    {
+      id: 'date',
+      align: 'left',
+      label: t('homeTable.date'),
+      sorting: true,
+    },
+    {
+      id: 'type',
+      align: 'center',
+      label: t('homeTable.type'),
+      sorting: false,
+    },
+    {
+      id: 'category',
+      align: 'left',
+      label: t('homeTable.category'),
+      sorting: true,
+    },
+    {
+      id: 'comments',
+      align: 'left',
+      label: t('homeTable.comment'),
+      sorting: false,
+    },
+    {
+      id: 'amount',
+      align: 'right',
+      label: t('homeTable.sum'),
+      sorting: true,
+    },
+    {
+      id: 'balance',
+      align: 'right',
+      label: t('homeTable.balance'),
+      sorting: false,
+    },
+  ];
+
+  const transactions = useSelector(walletSelectors.getTransactions);
   const [order, setOrder] = useState(SORT_TYPES.asc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
-  const styles = useTableStyles();
   const rowsPerPage = 5;
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - transactions.length) : 0;
@@ -99,7 +101,7 @@ const HomeTable = () => {
     };
 
     return (
-      <TableHead className={styles.tableHeadRow}>
+      <TableHead>
         <TableRow>
           {headCells.map(headCell => (
             <TableCell
@@ -108,7 +110,7 @@ const HomeTable = () => {
               padding={'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
             >
-              <div className={styles.tableHeadCell}>
+              <div>
                 {headCell.sorting ? (
                   <TableSortLabel
                     active={orderBy === headCell.id}
@@ -138,14 +140,25 @@ const HomeTable = () => {
     <Box>
       <TableContainer>
         <Table
-          className={styles.table}
           sx={{
             [`& .${tableCellClasses.root}`]: {
               borderBottom: 'none',
               fontFamily: 'Circle',
+              fontWeight: 400,
+              fontSize: '16px',
+              lineHeight: '18px',
+            },
+            [`& .${tableCellClasses.head}`]: {
               fontWeight: 700,
               fontSize: '18px',
-              lineHeight: '26.53px',
+              lineHeight: '26px',
+              backgroundColor: '#fff',
+              '&:first-of-type': {
+                borderRadius: '30px 0px 0px 30px',
+              },
+              '&:last-of-type': {
+                borderRadius: '0px 30px 30px 0px',
+              },
             },
           }}
         >
@@ -171,37 +184,28 @@ const HomeTable = () => {
                 ({
                   id,
                   date,
-                  type,
+                  direction,
                   category,
                   comments,
                   amount,
                   balanceAfter,
                 }) => (
-                  <TableRow key={id} className={styles.tableRow}>
-                    <TableCell className={styles.tableCell} align="left">
-                      {date}
+                  <TableRow key={id}>
+                    <TableCell align="left">{date}</TableCell>
+                    <TableCell align="center">
+                      {direction === 'expense' ? '+' : '-'}
                     </TableCell>
-                    <TableCell className={styles.tableCell} align="center">
-                      {type === 'expense' ? '+' : '-'}
-                    </TableCell>
-                    <TableCell className={styles.tableCell} align="left">
-                      {category}
-                    </TableCell>
-                    <TableCell className={styles.tableCell} align="left">
-                      {comments}
-                    </TableCell>
+                    <TableCell align="left">{category}</TableCell>
+                    <TableCell align="left">{comments}</TableCell>
                     <TableCell
-                      className={styles.tableCell}
                       sx={{
-                        color: type === 'expense' ? '#FF6596' : '#24CCA7',
+                        color: direction === 'expense' ? '#FF6596' : '#24CCA7',
                       }}
                       align="right"
                     >
                       {amount.toFixed(2)}
                     </TableCell>
-                    <TableCell className={styles.tableCell} align="right">
-                      {balanceAfter}
-                    </TableCell>
+                    <TableCell align="right">{balanceAfter}</TableCell>
                   </TableRow>
                 )
               )}

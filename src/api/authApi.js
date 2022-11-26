@@ -2,14 +2,16 @@ import axios from 'axios';
 import { BASE_URL } from '../baseUrl/baseUrl';
 
 const authApi = axios.create({
-    baseURL: BASE_URL,
+  baseURL: BASE_URL,
 });
 
-export const setToken = (token = '') => {
-    if (token) {
-        return (authApi.defaults.headers.authorization = `Bearer ${token}`);
-    }
-    authApi.defaults.headers.authorization = '';
+export const token = {
+  set(token) {
+    authApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    authApi.defaults.headers.common.Authorization = '';
+  },
 };
 
 export default authApi;

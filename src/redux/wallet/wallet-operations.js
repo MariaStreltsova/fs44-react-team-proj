@@ -2,12 +2,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/wallet';
 
-const fetchUserBalance = createAsyncThunk(
-  'wallet/getUserBalance',
+const fetchTransactions = createAsyncThunk(
+  'wallet/getTransactions',
   async (_, thunkAPI) => {
     try {
-      // const result = await api.getUserBalance();
-      // return result;
+      const result = await api.getTransactions();
+      return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -16,6 +16,9 @@ const fetchUserBalance = createAsyncThunk(
 
 const addTransaction = createAsyncThunk(
   'wallet/addTransaction',
+
+export const addTransaction = createAsyncThunk(
+  "wallet/addTransaction",
   async (transactionBody, thunkAPI) => {
     try {
       const result = await api.addTransaction(transactionBody);
@@ -31,6 +34,7 @@ export const getTransactionsList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const result = await api.getTransactionsList();
+      const result = await api.addTransaction(transactionBody);
       return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -51,7 +55,7 @@ export const getStatisticData = createAsyncThunk(
 );
 
 const operations = {
-  fetchUserBalance,
+  fetchTransactions,
   addTransaction,
   getTransactionsList,
   getStatisticData,

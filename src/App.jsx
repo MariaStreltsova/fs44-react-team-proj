@@ -25,10 +25,69 @@ export const App = () => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  return (
-    <>
-      <DiagramTab />
-    </>
+  return isRefreshing ? (
+    <h1>Refreshing user...</h1>
+  ) : (
+    <Suspense fallback={<h1>Loading profile.</h1>}>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute
+              component={
+                <NonAuthLayout>
+                  <Login />
+                </NonAuthLayout>
+              }
+              restricted
+              redirectTo="/home"
+            />
+          }
+        />
+
+        <Route
+          path="/registration"
+          element={
+            <PublicRoute
+              component={
+                <NonAuthLayout>
+                  <Registration />
+                </NonAuthLayout>
+              }
+              restricted
+              redirectTo="/home"
+            />
+          }
+        />
+
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute
+              component={
+                <AuthLayout>
+                  <DashBoard />
+                </AuthLayout>
+              }
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route
+          path="/statistics"
+          element={
+            <PrivateRoute
+              component={<AuthLayout></AuthLayout>}
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route path="/" element={<Navigate to={'/login'} />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Suspense>
   );
   // isRefreshing ? (
   //   <h1>Refreshing user...</h1>
