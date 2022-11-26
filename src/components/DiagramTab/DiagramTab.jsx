@@ -1,7 +1,7 @@
 import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
-import { H2Stat } from './DiagramTab.styled';
+import { TitleStat, DiagramBlock } from './DiagramTab.styled';
 import { getStatisticYear, getStatisticYearMonth } from 'api/wallet';
 import theme from 'theme';
 
@@ -78,14 +78,16 @@ function DiagramTab() {
   };
 
   return (
-    <div>
-      <H2Stat>Statistics</H2Stat>
-      <Chart
-        totalExpense={totalExpense}
-        expenses={expenseSummary}
-        backgroundColor={theme.chartColors}
-        isLoading={isLoading}
-      />
+    <DiagramBlock>
+      <div>
+        <TitleStat>Statistics</TitleStat>
+        <Chart
+          totalExpense={totalExpense}
+          expenses={expenseSummary}
+          backgroundColor={theme.chartColors}
+          isLoading={isLoading}
+        />
+      </div>
       <Table
         totalIncome={totalIncome}
         totalExpense={totalExpense}
@@ -94,7 +96,7 @@ function DiagramTab() {
         onMonthHandle={onMonthHandle}
         onYearHandle={onYearHandle}
       />
-    </div>
+    </DiagramBlock>
   );
 }
 

@@ -5,6 +5,7 @@ export const ChartLayout = styled.h2`
   position: relative;
   width: 280px;
   height: 280px;
+  margin-bottom: 30px;
 
   @media (min-width: 768px) {
     width: 336px;

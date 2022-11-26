@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 export const Section = styled.div`
   width: 280px;
-  background: white;
 
   @media (min-width: 768px) {
     width: 336px;
+    margin-top: 22px;
   }
 
   @media (min-width: 1280px) {
+    margin-top: 70px;
     width: 395px;
   }
 `;
