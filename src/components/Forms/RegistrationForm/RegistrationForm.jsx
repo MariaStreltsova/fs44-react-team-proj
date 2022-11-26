@@ -10,6 +10,7 @@ import { Form } from './RegistrationForm.styles';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('email is requred field'),
@@ -19,6 +20,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export const RegistrationForm = () => {
+  const { t } = useTranslation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -40,7 +43,7 @@ export const RegistrationForm = () => {
       <FormLogo />
       <Form onSubmit={formik.handleSubmit}>
         <Input
-          label="E-mail"
+          label={t('input.email')}
           icon={EmailIcon}
           id={'email'}
           value={formik.values.email}
@@ -48,7 +51,7 @@ export const RegistrationForm = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         <SecurInput
-          label="Password"
+          label={t('input.password')}
           icon={PasswordIcon}
           id={'password'}
           value={formik.values.password}
@@ -56,7 +59,7 @@ export const RegistrationForm = () => {
           error={formik.touched.password && Boolean(formik.errors.password)}
         />
         <SecurInput
-          label="Confirm password"
+          label={t('input.confirmPassword')}
           icon={PasswordIcon}
           id={'confirmPassword'}
           value={formik.values.confirmPassword}
@@ -66,7 +69,7 @@ export const RegistrationForm = () => {
           }
         />
         <Input
-          label="First name"
+          label={t('input.firstName')}
           icon={UserIcon}
           id={'firstName'}
           value={formik.values.firstName}
@@ -75,14 +78,14 @@ export const RegistrationForm = () => {
         />
 
         <UniversalBtn
-          title="REGISTER"
+          title={t('button.register')}
           variant="contained"
           type="submit"
           color="#24CCA7"
         />
       </Form>
       <UniversalBtn
-        title="LOG IN"
+        title={t('button.login')}
         variant="outlined"
         mb="0px"
         href={`${BASE_URL_FRONT}/login`}

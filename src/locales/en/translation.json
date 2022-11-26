@@ -1,9 +1,16 @@
 {
   "button": {
     "language": "Language",
-    "goHome": "To main"
+    "goHome": "To main",
+    "login": "LOG IN",
+    "register": "REGISTER"
   },
-  "input": {},
+  "input": {
+    "email": "E-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name"
+  },
   "session": {},
   "alert": {},
   "dialog": {},

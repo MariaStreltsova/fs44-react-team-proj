@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('email is requred field'),
@@ -18,6 +19,7 @@ const validationSchema = Yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -37,7 +39,7 @@ export const LoginForm = () => {
       <FormLogo />
       <Form onSubmit={formik.handleSubmit}>
         <Input
-          label="E-mail"
+          label={t('input.email')}
           icon={EmailIcon}
           mb={30}
           id={'email'}
@@ -46,7 +48,7 @@ export const LoginForm = () => {
           error={formik.touched.email && Boolean(formik.errors.email)}
         />
         <SecurInput
-          label="Password"
+          label={t('input.password')}
           icon={PasswordIcon}
           mb={40}
           id={'password'}
@@ -56,14 +58,14 @@ export const LoginForm = () => {
         />
 
         <UniversalBtn
-          title="LOG IN"
+          title={t('button.login')}
           variant="contained"
           type="submit"
           color="#24CCA7"
         />
       </Form>
       <UniversalBtn
-        title="REGISTER"
+        title={t('button.register')}
         variant="outlined"
         mb="0px"
         href={`${BASE_URL_FRONT}/registration`}
