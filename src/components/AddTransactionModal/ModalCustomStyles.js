@@ -1,6 +1,7 @@
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import { Button, Modal, Box,Fab, MenuItem} from '@mui/material';
+import { TextField } from '@mui/material';
 
 export const MyFab = styled(Fab)`
 background-color: #24CCA7;
@@ -192,4 +193,13 @@ export const BtnDiv = styled.div`
 display: flex;
 flex-direction: column;
 padding: 8px;
+`
+export const SelectDiv = styled.div`
+position: relative;
+`
+export const SelectInput = styled(TextField)`
+position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
 `
