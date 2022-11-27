@@ -1,24 +1,24 @@
-import { Modal, ModalContent, Button, Svg, P  } from './ModalStyled';
-// import Icons from '../../images/icons/sprite.svg';
+import { Modal, ModalContent, ButtonClose, ButtonYes, ButtonNo, Svg, P } from './ModalStyled';
 
 const ModalClose = ({ active, setActive }) => {
   return active && (
     <Modal>
       <ModalContent onClick={ e => e.stopPropagation() }>
 
-        <Button onClick={ () => setActive(false)  }>
+        <ButtonClose onClick={() => setActive(false)
+      }>
           <Svg>
-            
-          </Svg>
-        </Button>
-        <P>Вы действительно хотите выйти?</P>
-        <Button onClick={ () => { localStorage.removeItem('token')}}>Да</Button>
-        <Button onClick={ () => setActive(false)  }>Нет</Button>
+      
+            </Svg>
 
+        </ButtonClose>
+        <P>Вы действительно хотите выйти?
+        <ButtonYes onClick={ () => { localStorage.removeItem('token')}}>Да</ButtonYes>
+        <ButtonNo onClick={ () => setActive(false)  }>Нет</ButtonNo>
+        </P>    
       </ModalContent>
     </Modal>
   );
 };
-
 
 export default ModalClose;

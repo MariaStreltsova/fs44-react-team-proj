@@ -21,7 +21,10 @@ export const Modal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-    padding: 20px;
+    padding-top: 40px;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-bottom: 60px;
     border-radius: 12px;
     background-color: white;
     height: 800px;
@@ -33,10 +36,13 @@ export const ModalContent = styled.div`
     }
 `;
 
-export const Button = styled.button`
-    padding: 20px;
+export const ButtonClose = styled.button`
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 120px;
     border-radius: 12px;
-    background-color: white;
+    background-color: ${theme.colors.lightTxtColor};
     height: 100px;
     width: 100px;
     font-family: ${theme.fonts.title};
@@ -51,20 +57,52 @@ export const Button = styled.button`
     }
 `;
 
-export const Svg = styled.svg`
-    padding: 20px;
-    border-radius: 12px;
-    background-color: white; 
-    transform: scale(0.5);
-    transition: 0.4s all;
-    &.active {
-        transform: scale(1);
+export const ButtonYes = styled.button`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: ${theme.colors.incomeColor};
+    color: ${theme.colors.lightTxtColor};
+    width: 300px;
+    height: 70px;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background-color:${theme.colors.accentColor};
     }
+`;
+
+export const ButtonNo = styled.button`
+    border-radius: 20px;
+    background-color: ${theme.colors.incomeColor};
+    color: ${theme.colors.lightTxtColor};
+    width: 300px;
+    height: 70px;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background-color:${theme.colors.accentColor};
+    }
+`;
+
+export const Svg = styled.svg`
+    
+    transition: 0.4s all;
 `;
 
 export const P = styled.p`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 40px;
   font-family: ${theme.fonts.title};
   font-weight: ${theme.fontWeights.normal};
   font-size: ${theme.fontSizes.l};
