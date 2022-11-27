@@ -1,6 +1,7 @@
 import * as api from '../../api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/authApi';
+import { toast } from 'react-toastify';
 
 const register = createAsyncThunk('auth/signup', async data => {
   try {
@@ -9,7 +10,7 @@ const register = createAsyncThunk('auth/signup', async data => {
     token.set(result.token);
     return result;
   } catch (error) {
-    console.log.error(`Sorry, Register failed. Try again.`);
+    toast.error(`Sorry, Register failed. Try again.`);
   }
 });
 
@@ -19,9 +20,7 @@ const logIn = createAsyncThunk('auth/login', async data => {
     token.set(result.token);
     return result;
   } catch (error) {
-    console.log.error(
-      `Sorry, login failed. Check email and password. Try again.`
-    );
+    toast.error(`Sorry, login failed. Check email and password. Try again.`);
   }
 });
 
@@ -47,7 +46,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await api.refreshUser();
       return data;
     } catch (error) {
-      console.log.error('Sorry, your token is dead or time is out ');
+      toast.error('Sorry, your token is dead or time is out ');
     }
   }
 );

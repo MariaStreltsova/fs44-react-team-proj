@@ -4,11 +4,12 @@ import theme from '../../theme';
 export const TransactionsWrap = styled.ul`
   list-style: none;
   padding: 0;
+  height: 60vh;
+  overflow: hidden;
+  overflow-y: scroll;
 `;
 export const TransactionCardWrap = styled.li`
   margin-top: 10px;
-  height: 70vh;
-  // overflow: scroll;
 `;
 export const TransactionCardList = styled.ul`
   list-style: none;

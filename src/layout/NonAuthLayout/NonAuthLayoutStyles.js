@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import formBackground from '../../images/Rectangle.jpg';
 import tableBg from '../../images/Ellipse.svg';
 import { Box } from 'Box';
-// import imageBackground from '';
 
 export const RootWrapper = styled.div`
   @media screen and (min-width: 1280px) {

@@ -1,7 +1,7 @@
 import authApi from './authApi';
 
 export const signup = async data => {
-  const { data: result } = await authApi.post('/api/auth/register', data);
+  const { data: result } = await authApi.post('/api/auth/signup', data);
 
   return result;
 };
