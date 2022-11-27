@@ -3,12 +3,12 @@ import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { ChartLayout, ChartText } from './Chart.styled';
 import CurrencyLoader from 'UI/loaders/CurrencyLoader';
+import numberToMoney from 'util/numberToMoney';
 
 ChartJS.register(ArcElement, Tooltip);
 
 function Chart({ totalExpense, expenses, backgroundColor, isLoading }) {
-  const totalInChart =
-    totalExpense.toLocaleString('ru-RU') + totalExpense.toFixed(2).slice(-3);
+  const totalInChart = numberToMoney(totalExpense);
 
   const data = Object.values(expenses);
   const chartData = {
