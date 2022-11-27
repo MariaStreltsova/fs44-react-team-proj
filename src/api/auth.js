@@ -12,10 +12,14 @@ export const login = async data => {
   return result;
 };
 
-export const logout = async data => {
-  const { data: result } = await authApi.post('/api/auth/logout', data);
+// export const logout = async data => {
+//   const { data: result } = await authApi.post('/api/auth/logout', data);
 
-  return result;
+//   return result;
+// };
+
+export const logout = () => {
+  return authApi.post('/api/auth/logout');
 };
 
 export const refreshUser = () => {
