@@ -11,34 +11,37 @@ export const Modal = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    // opacity: 0;
-    // pointer-events: none;
-    // transition: 0.5s;
-    //     &.active {
-    //     opacity: 1;
-    //     pointer-events: all;
-    // }
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease;
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
 `;
 
 export const ModalContent = styled.div`
     padding: 20px;
     border-radius: 12px;
     background-color: white;
-    height: 800px;
-    width: 800px;
-    transform: scale(0.5);
-    transition: 0.4s all;
-    &.active {
-        transform: scale(1);
+    height: 400px;
+    width: 400px;
+    transform: scale(.9);
+    transition: transform .15s ease;
+    .active & {
+    transform: none;
     }
 `;
 
-export const Button = styled.button`
-    padding: 20px;
+export const ButtonClose = styled.button`
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 30px;
     border-radius: 12px;
-    background-color: white;
-    height: 100px;
-    width: 100px;
+    background-color: ${theme.colors.lightTxtColor};
+    height: 50px;
+    width: 50px;
     font-family: ${theme.fonts.title};
     font-weight: ${theme.fontWeights.normal};
     font-size: ${theme.fontSizes.l};
@@ -46,28 +49,65 @@ export const Button = styled.button`
     color: ${theme.colors.mainTxtColor};
     transform: scale(0.5);
     transition: 0.4s all;
-    &.active {
-        transform: scale(1);
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        border-color: red;
+    }
+`;
+
+export const ButtonYes = styled.button`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: ${theme.colors.incomeColor};
+    color: ${theme.colors.lightTxtColor};
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background-color:${theme.colors.accentColor};
+    }
+`;
+
+export const ButtonNo = styled.button`
+    border-radius: 20px;
+    background-color: ${theme.colors.incomeColor};
+    color: ${theme.colors.lightTxtColor};
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    align-self: center;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        background-color:${theme.colors.accentColor};
     }
 `;
 
 export const Svg = styled.svg`
-    padding: 20px;
+    display: block;
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
-    background-color: white; 
-    transform: scale(0.5);
-    transition: 0.4s all;
-    &.active {
-        transform: scale(1);
-    }
+    background-color: white;
 `;
 
 export const P = styled.p`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+   text-align: center;
   font-family: ${theme.fonts.title};
   font-weight: ${theme.fontWeights.normal};
-  font-size: ${theme.fontSizes.l};
+  font-size: ${theme.fontSizes.m};
   line-height: ${theme.lineHeights.normal};
   color: ${theme.colors.mainTxtColor};
 `;
+
