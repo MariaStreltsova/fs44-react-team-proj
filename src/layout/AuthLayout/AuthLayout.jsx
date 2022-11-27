@@ -6,6 +6,10 @@ import {
   // WrapperChildrens,
 } from './AuthLayout.styles';
 
+// import { Navigation } from '../../components/Navigation/Navigation';
+// import Balance from 'components/Balance';
+// import Currency from 'components/Currency/Currency';
+
 const AuthLayout = ({ children }) => {
   return (
     <RootWrapper>
@@ -14,6 +18,7 @@ const AuthLayout = ({ children }) => {
         {/* <WrapperChildrens> */}
         <Suspense fallback={null}>{children}</Suspense>
         {/* </WrapperChildrens> */}
+        <Suspense fallback={null}>{children}</Suspense>
       </WrapperChildren>
     </RootWrapper>
   );

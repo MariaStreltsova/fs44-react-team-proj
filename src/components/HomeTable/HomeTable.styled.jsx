@@ -55,3 +55,24 @@ export const CardsContainer = styled.div`
   max-width: 420px;
   margin: 0 auto;
 `;
+
+export const TablePlaceholder = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const TitleTablePlaceholder = styled.h3`
+  text-align: center;
+  font-family: ${theme.fonts.title};
+  font-style: normal;
+  font-size: 24px;
+  line-height: 24px;
+`;
+export const PlaceholderContent = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;

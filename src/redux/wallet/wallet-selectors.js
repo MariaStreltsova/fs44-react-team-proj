@@ -1,10 +1,11 @@
 const getTransactions = state => state.wallet.transactions;
-export const getCategoriesList = state => state.wallet.categoriesList;
+export const getCategories = state => state.wallet.transactions;
 export const getIsLoading = state => state.wallet.isLoading;
 
 const walletSelectors = {
   getTransactions,
-  getCategoriesList,
+  getCategories,
+  getIsLoading,
 };
 
 export default walletSelectors;

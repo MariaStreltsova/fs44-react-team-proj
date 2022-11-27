@@ -18,9 +18,9 @@ export const addTransaction = async () => {
   }
 };
 
-export const getTransactionsList = async () => {
+export const getCategories = async () => {
   try {
-    const result = await authApi.get('/transactions');
+    const result = await authApi.get('/api/transactions/categories');
     return result.data;
   } catch (error) {
     throw error;

@@ -23,6 +23,30 @@ const walletSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    [walletOperations.addTransaction.pending](state) {
+      state.isLoading = true;
+    },
+
+    [walletOperations.addTransaction.fulfilled](state, action) {
+      state.transactions = action.payload.data;
+    },
+
+    [walletOperations.addTransaction.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+     [walletOperations.fetchCategories.pending](state) {
+      state.isLoading = true;
+    },
+
+    [walletOperations.fetchCategories.fulfilled](state, action) {
+      state.transactions = action.payload.data;
+    },
+
+    [walletOperations.fetchCategories.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 

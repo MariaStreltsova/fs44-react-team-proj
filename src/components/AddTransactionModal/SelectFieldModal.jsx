@@ -19,7 +19,9 @@ export default function SelectFieldModal({show}) {
               component={CustomizedSelectForFormik} 
 >
               {allCategories.map((category) => (
-                < MyMenuItem value={category.value}  key={category.key}> 
+                < MyMenuItem
+                  value={category.value} key={category.key}
+                > 
             {category.value}
                   </ MyMenuItem>
         ))}
@@ -29,4 +31,3 @@ export default function SelectFieldModal({show}) {
             </>
   );
 }
-
