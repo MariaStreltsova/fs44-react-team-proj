@@ -17,7 +17,7 @@ const Balance = () => {
       <BalanceTitle>{t('balance.title')}</BalanceTitle>
       <BalanceValue>
         <BalanceSymbol>&#8372;</BalanceSymbol>
-        {balance}
+        {balance.toFixed(2)}
       </BalanceValue>
     </BalanceWrapper>
   );
