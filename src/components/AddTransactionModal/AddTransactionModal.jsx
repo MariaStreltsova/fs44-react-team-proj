@@ -22,6 +22,7 @@ import CustomizedSelectForFormik from "./CustomizedSelect";
 import { FormControl, InputLabel } from '@mui/material';
 import { MyMenuItem } from "./ModalCustomStyles";
 // import walletSelectors from "../../redux/wallet/wallet-selectors";
+import { useTranslation } from 'react-i18next';
 
 
 function AddTransactionBtn() {
@@ -29,7 +30,8 @@ function AddTransactionBtn() {
   const [show, setShow] = useState(true);  
   const [isChecked, setIsChecked] = useState(true);
 // const [transaction,setTransaction] = useState({})
-
+  const { t } = useTranslation();
+  
   const DIRECTION = {
     expense: "Expense",
     income: "Income"
@@ -49,7 +51,7 @@ const f = useFormik({
     initialValues: {
     direction: DIRECTION.expense,
     amount: "",
-    transactionDate: new Date().toLocaleDateString("en-gb"),
+    date: new Date().toLocaleDateString("en-gb"),
     comment: "",    
     category: "",
     },
@@ -57,7 +59,7 @@ const f = useFormik({
 
   const validationSchema = object().shape({
       amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
-      transactionDate: string().required("Choose date"),
+     date: string().required("Choose date"),
       direction: string().required(),
       comment: string().max(15, "You can enter only 15 symbols"),
   });
@@ -114,7 +116,7 @@ const f = useFormik({
                 onClick={closeModal} />
             </CloseFab> 
 
-            <ModalHeader> Add transaction </ModalHeader>
+            <ModalHeader>{t("modal.title")}</ModalHeader>
 
              <Formik
               initialValues={f.initialValues}
@@ -122,7 +124,7 @@ const f = useFormik({
               enableReinitialize={true}
               onSubmit={(values, { resetForm }) => {
                 setTimeout(() => {
-                  dispatch(operations.addTransaction());
+                  dispatch(operations.addTransaction(values));
                   // dispatch(authOperations.fetchCurrentUser());
                   console.log(values);
                   resetForm({ values: "" });
@@ -141,10 +143,9 @@ const f = useFormik({
                         <Income
                           className={addClass(!isChecked)}
                           value={DIRECTION.income}
-                          // name="Income"
-                          name={`${DIRECTION.income}`}
+                          name="Income"
                        
-                        >Income</Income> 
+                        >{t("modal.direction.income")}</Income> 
                         <SwitchField checked={isChecked}
                           type="checkbox" name="direction"
                           onChange={handleCheck}
@@ -154,17 +155,16 @@ const f = useFormik({
                         <Expense
                           className={addClass(isChecked)}
                           value={DIRECTION.expense}
-                          // name="Expense"
-                          name={`${DIRECTION.expense}`}
+                          name="Expense"
                         
-                        >Expense</Expense>
+                        >{t("modal.direction.expence")}</Expense>
       </SwitchLabel>
       </BasicFormDiv>
 
                     {show && (
                       <BasicFormDiv item >
                          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label" >Select a category</InputLabel>
+                          <InputLabel id="demo-simple-select-label" >{t("modal.form.categoriesTitle") }</InputLabel>
             <Field
             type="select"
             name="category"
@@ -193,19 +193,19 @@ const f = useFormik({
                     
                   <MiddleWrapper container>
                     <MiddleFormDiv item>
-                      <Field fullWidth name="amount" type="number" placeholder="0.00" label="Amount ($)"  component={TextField} />
+                        <Field fullWidth name="amount" type="number" placeholder="0.00" label={t("modal.form.amountLabel")}  component={TextField} />
                     </MiddleFormDiv>
                     
                       <MiddleFormDiv item>
                       <DataPickerWrapper direction="row">
                           <MyDataPicker
-                          name="transactionDate"
+                          name="date"
                             dateFormat="dd/MM/yyyy"
                             label="Choose Date"
-                            value={values.transactionDate}
-                            onChange={(date) => {
-                            const d = new Date(date).toLocaleDateString("en-gb");
-                              setFieldValue("transactionDate", d, true);
+                            value={values.date}
+                            onChange={(newDate) => {
+                            const d = new Date(newDate).toLocaleDateString("en-gb");
+                              setFieldValue("date", d, true);
                           }}
                         />
                         <CalendarMonthIcon sx={{color: "#24CCA7", "&:hover": {color: "#FF6596"}}} />
@@ -214,7 +214,7 @@ const f = useFormik({
                   </MiddleWrapper>
                     
                     <BasicFormDiv item>
-                      <Field fullWidth name="comment" label="Comment" component={TextField} minRows={1} maxRows={3} />
+                      <Field fullWidth name="comment" label={t("modal.form.comment")} component={TextField} minRows={1} maxRows={3} />
                     </BasicFormDiv>
                   
                   </BasicWrapper>
@@ -223,10 +223,10 @@ const f = useFormik({
                 <ModalBtn disabled={isSubmitting} type="submit" variant="contained" color="success" 
                     startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
                     sx={{ backgroundColor: "#24CCA7", color: "#ffffff",  margin: "20px 0", alignSelf: "center" }}
-                  > {isSubmitting ? "Adding" : "Add"}
+                  > {isSubmitting ? `${t("modal.button.adding")}` : `${t("modal.button.add")}`}
                     </ModalBtn>
                 <ModalBtn  sx={{ border: "2px solid #24CCA7", color: "#24CCA7" }}
-                      onClick={closeModal}>Cancel</ModalBtn>
+                      onClick={closeModal}>{t("modal.button.cancel")}</ModalBtn>
                     </BtnDiv>
                    
                 </Form>

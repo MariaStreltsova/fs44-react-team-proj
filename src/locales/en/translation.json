@@ -26,7 +26,7 @@
       "Statistics": "Statistics"
     },
     "header": {
-"Hi": "Hi"
+      "Hi": "Hi"
     }
   },
   "balance": { "title": "Your balance" },
@@ -40,5 +40,22 @@
   },
   "placeholderHomeTable": {
     "title": " You have no transactions yet"
+  },
+  "modal": {
+    "title": "Add transaction",
+    "direction": {
+      "expence": "Expence",
+      "income": "Income"
+    },
+    "form": {
+      "categoriesTitle": "Select a category",
+      "amountLabel": "Amount ($)",
+      "comment": "Comment"
+    },
+    "button": {
+      "adding": "Adding",
+      "add": "Add",
+      "cancel": "Cancel"
+    }
   }
 }
