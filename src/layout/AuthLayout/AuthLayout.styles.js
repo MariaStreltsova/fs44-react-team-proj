@@ -10,14 +10,24 @@ export const RootWrapper = styled.div`
 `;
 
 export const WrapperChildren = styled.div`
+padding-left:16px;
+padding-right:16px;
 display: block;
 position: relative;
+@media screen and (max-width: 1279px) {
+  padding-left:32px;
+padding-right:32px;
+  }
 ;
 `
 export const WrapperChildrens = styled.div`
 display: block;
 position: absolute;
-top:136px;
-left:555px;
+top:126px;
+right:16px;
+@media screen and (max-width: 1279px) {
+  position: static;
+  margin-top:20px
+  }
 ;
 `
