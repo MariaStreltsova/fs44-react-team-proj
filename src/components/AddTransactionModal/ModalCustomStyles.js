@@ -12,6 +12,10 @@ bottom: 20px;
 right: 20px;
 z-index: 99;
 
+&:hover, &:focus {
+ background-color: #FF6596;
+}
+
 @media screen and (min-width: 768px){
 bottom: 40px;
 right: 40px; 
@@ -24,7 +28,7 @@ display: none;
 }
 
 @media screen and (min-width: 768px){
-display: inline;
+display: inline-block;
 background-color: transparent;
 color: #000000;
 width: 20px;
@@ -33,21 +37,26 @@ position: absolute;
 top: 20px;
 right: 20px;
 z-index: 98;
-border: 0;
+border: none;
 outline: none;
 box-shadow: none;
 
 &:hover, &:focus {
 background-color: transparent;
-
-}
+border: none;
+outline: none;
+box-shadow: none;
+& .MuiSvgIcon-root {
+  color: #FF6596;
+    }
+  }
 }
 `
-
 
 export const MyModal = styled(Modal)`
 outline: none;
 border: none;
+padding: 20px 11px;
 `
 
 export const MyBox = styled(Box)`
@@ -92,22 +101,30 @@ export const MyDataPicker = styled(DatePicker)`
 outline: none;
 border: none;
 width: 100%;
-height: 100%;
 `
 
 export const DataPickerWrapper = styled.label`
 display: flex;
 flex-direction: row;
+height: 57px;
 background-color: #fff;
-height: 100%;
 padding: 18px 20px 18px 10px;
 border: 1px solid #E0E0E0;
 border-radius: 3px;
 
 & .react-datepicker__day--keyboard-selected{
-   background-color: green;
+   background-color: #FF6596;
+}
+& .react-datepicker__day:hover, & .react-datepicker__day:focus, & .react-datepicker__day-active{
+  background-color: #FF6596;
+  color: #ffffff;
+
+  &.MuiSvgIcon-root:hover, &.MuiSvgIcon-root:focus{
+    color: #FF6596;
+  }
 }
 `
+
 export const ModalBtn = styled(Button)`
 border-radius: 20px;
 width: 300px;
@@ -117,8 +134,9 @@ line-height: 1.5;
 text-align: center;
 align-self: center;
 
-&:hover, &:focus{
-background-color: #24CCA7;
+&:hover, &:focus {
+ background-color: #FF6596;
+ color: #ffffff;
 }
 `
 export const ModalHeader = styled.p`
@@ -133,6 +151,10 @@ margin-top: 20px;
 `
 
 export const MyMenuItem = styled(MenuItem)`
+&:hover, &:focus{
+color: #FF6596;
+}
+
 &.Mui-selected, &.Mui-selected:hover, &.Mui-selected:focus, &.Mui-focusVisible, &.Mui-focusVisible:hover, &.Mui-focusVisible:focus{
     color: #FF6596;
     background: rgba(255, 255, 255, 0.7);
@@ -141,32 +163,33 @@ export const MyMenuItem = styled(MenuItem)`
 `
 
 export const MiddleWrapper = styled.div`
-
 @media screen and (min-width: 767px){
-display:flex;
+display: flex;
 justufy-content: space-evenly;
 align-items: center;
-width: 400px;
 }
 
 `
 export const BasicWrapper = styled.div`
 display: flex;
 flex-direction: column;
-
 margin-top: 10px;
 `
 
 export const BasicFormDiv = styled.div`
-// margin-top: 10px;
-// margin-bottom: 10px;
 padding: 8px;
+`
+export const MiddleFormDiv = styled.div`
+width: 100%;
+padding: 10px;
 
+@media screen and (min-width: 767px){
+width: 200px;
+}
 `
 
 export const BtnDiv = styled.div`
 display: flex;
 flex-direction: column;
 padding: 8px;
-
 `

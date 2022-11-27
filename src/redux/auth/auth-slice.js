@@ -28,7 +28,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.fetchCurrentUser.pending](state) {
-      state.isRefreshingUser = true;
+      // state.isRefreshingUser = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload.user;
