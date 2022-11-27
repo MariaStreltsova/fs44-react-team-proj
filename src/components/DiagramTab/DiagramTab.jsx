@@ -4,48 +4,19 @@ import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
 import { getStatisticYear, getStatisticYearMonth } from 'api/wallet';
 import theme from 'theme';
+import chartDataCreating from 'util/chartDataCreating';
+import statTableDataCreating from 'util/statTableDataCreating';
+import CurrencyLoader from 'UI/loaders/CurrencyLoader';
+import periodCreating from 'util/periodCreating';
 
 function DiagramTab() {
   const [statData, setStatData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [date, setDate] = useState({ year: null, month: 0 });
-
-  // функция чтения данных о месяце и годе из локалсториджа при старте
-  async function readLocalStorageDate() {
-    const today = new Date();
-    const localStorageDate = JSON.parse(
-      localStorage.getItem('dateUserSelected')
-    );
-    console.log(localStorageDate);
-    if (localStorageDate && localStorageDate.month && localStorageDate.year) {
-      setDate(localStorageDate);
-    } else {
-      setDate({ month: today.getMonth(), year: today.getFullYear() });
-    }
-  }
-
-  // при старте запускаем чтение начальных данных о месяце-годе из сториджа
-  useEffect(() => {
-    readLocalStorageDate();
-  }, []);
-
-  // реакция на изменение года или месяца для запрос на получение данных
-  useEffect(() => {
-    setIsLoading(true);
-    let data = null;
-
-    if (date.month !== 12) {
-      data = getStatisticYearMonth(date.year, date.month);
-    } else {
-      data = getStatisticYear(date.year);
-    }
-    localStorage.setItem('dateUserSelected', JSON.stringify({ date }));
-    setStatData(data);
-    setIsLoading(false);
-  }, [date]);
+  const [year, setYear] = useState(null);
+  const [month, setMonth] = useState(null);
 
   // заглушка, пока нет ответа с сервера
-  const data = {
+  let data1 = {
     totalIncome: 25000,
     totalExpense: 24000,
     expenses: [
@@ -59,42 +30,80 @@ function DiagramTab() {
       { category_id: 1, category: 'leisure', summary: 1230 },
       { category_id: 1, category: 'other', summary: 610 },
     ],
+    startDate: 1589389537943,
   };
-  const { totalIncome, totalExpense, expenses } = data;
 
-  // создание массива сумм для чарта
-  const expenseSummary = [];
-  expenses.forEach((item, index) => (expenseSummary[index] = item.summary));
+  periodCreating(data1.startDate);
 
-  // создание объекта название-расход-цвет для таблицы
-  const tableData = expenses;
-  tableData.forEach((item, index) => (item.color = theme.chartColors[index]));
+  // функция чтения данных о месяце и годе из локалсториджа при старте
+  async function readLocalStorageDate() {
+    const today = new Date();
+    const localStorageYear = JSON.parse(
+      localStorage.getItem('yearUserSelected')
+    );
+    const localStorageMonth = JSON.parse(
+      localStorage.getItem('monthUserSelected')
+    );
+
+    if (localStorageYear) {
+      setYear(localStorageYear);
+      if (localStorageMonth) {
+        setMonth(localStorageMonth);
+      }
+    } else {
+      setYear(today.getFullYear());
+      setMonth(today.getMonth());
+    }
+  }
+
+  // при старте запускаем чтение начальных данных о месяце-годе из сториджа
+  useEffect(() => {
+    readLocalStorageDate();
+  }, []);
+
+  // реакция на изменение года или месяца для запрос на получение данных
+  useEffect(() => {
+    setIsLoading(true);
+    let data = null;
+
+    if (month !== 'All year') {
+      data = getStatisticYearMonth(year, month);
+    } else {
+      data = getStatisticYear(year);
+    }
+    localStorage.setItem('yearUserSelected', JSON.stringify(year));
+    localStorage.setItem('monthUserSelected', JSON.stringify(month));
+    setStatData(data1); //! убрать единицу, когда заработает сервер!!!!!!!!!!!!!!
+    setIsLoading(false);
+  }, [month, year]);
 
   const onMonthHandle = e => {
-    setDate({ month: e });
+    setMonth(e);
   };
   const onYearHandle = e => {
-    setDate({ year: e });
+    setYear(e);
   };
 
-  return (
+  return isLoading ? (
+    <CurrencyLoader />
+  ) : (
     <DiagramBlock>
       <div>
         <TitleStat>Statistics</TitleStat>
         <Chart
-          totalExpense={totalExpense}
-          expenses={expenseSummary}
+          totalExpense={statData.totalExpense}
+          expenses={chartDataCreating(statData.expenses)}
           backgroundColor={theme.chartColors}
           isLoading={isLoading}
         />
       </div>
       <Table
-        totalIncome={totalIncome}
-        totalExpense={totalExpense}
-        expenses={tableData}
-        isLoading={isLoading}
+        totalIncome={statData.totalIncome}
+        totalExpense={statData.totalExpense}
+        expenses={statTableDataCreating(statData.expenses)}
         onMonthHandle={onMonthHandle}
         onYearHandle={onYearHandle}
+        startDate={statData.startDate}
       />
     </DiagramBlock>
   );
