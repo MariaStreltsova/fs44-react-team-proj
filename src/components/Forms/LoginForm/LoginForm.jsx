@@ -72,7 +72,7 @@ export const LoginForm = () => {
         title={t('button.register')}
         variant="outlined"
         mb="0px"
-        href={`${BASE_URL_FRONT}/registration`}
+        href={`${BASE_URL_FRONT}/signup`}
       />
     </Container>
   );

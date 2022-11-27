@@ -10,7 +10,7 @@ import useAuth from 'hooks/useAuht';
 // import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 import DiagramTab from 'components/DiagramTab/DiagramTab';
-import Currency from 'components/Currency/Currency';
+// import Currency from 'components/Currency/Currency';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -46,7 +46,7 @@ export const App = () => {
         />
 
         <Route
-          path="/registration"
+          path="/signup"
           element={
             <PublicRoute
               component={
