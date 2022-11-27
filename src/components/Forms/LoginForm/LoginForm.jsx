@@ -13,8 +13,8 @@ import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required('email is requred field'),
-  password: Yup.string().required('password is requred field'),
+  email: Yup.string().required('Email is requred field'),
+  password: Yup.string().required('Password is requred field'),
 });
 
 export const LoginForm = () => {
@@ -28,7 +28,6 @@ export const LoginForm = () => {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       dispatch(authOperations.logIn(values));
       resetForm();
     },
@@ -72,7 +71,7 @@ export const LoginForm = () => {
         title={t('button.register')}
         variant="outlined"
         mb="0px"
-        href={`${BASE_URL_FRONT}/registration`}
+        href={`${BASE_URL_FRONT}/signup`}
       />
     </Container>
   );

@@ -16,7 +16,7 @@ const walletSlice = createSlice({
     },
 
     [walletOperations.fetchTransactions.fulfilled](state, action) {
-      state.transactions = action.payload;
+      state.transactions = action.payload.data;
     },
 
     [walletOperations.fetchTransactions.rejected](state, action) {
