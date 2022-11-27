@@ -22,6 +22,7 @@ export const TitleStat = styled.h2`
 
 export const DiagramBlock = styled.div`
   @media (min-width: 768px) {
+    justify-content: space-between;
     display: flex;
     gap: 32px;
   }

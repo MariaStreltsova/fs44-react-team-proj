@@ -18,6 +18,10 @@ position: relative;
   padding-left:32px;
 padding-right:32px;
   }
+  @media screen and (max-width: 767px) {
+  padding-left:20px;
+padding-right:20px;
+  }
 ;
 `
 export const WrapperChildrens = styled.div`
