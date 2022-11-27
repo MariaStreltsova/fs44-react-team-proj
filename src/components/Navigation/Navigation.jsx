@@ -33,7 +33,7 @@ export const Navigation = () => {
       </NavItem>
 
       <NavItemCurrency>
-        <NavigationLink to="/home/currency">
+        <NavigationLink to="/currency">
           {/* dashboard/diagram */}
 
           <Svg>

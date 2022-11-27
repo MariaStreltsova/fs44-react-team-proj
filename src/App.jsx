@@ -9,13 +9,11 @@ import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
 // import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
-import DiagramTab from 'components/DiagramTab/DiagramTab';
-// import Currency from 'components/Currency/Currency';
+import Statistics from 'pages/Statistics/Statistics';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
-// const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -80,7 +78,7 @@ export const App = () => {
             <PrivateRoute
               component={
                 <AuthLayout>
-                  <DiagramTab></DiagramTab>
+                  <Statistics />
                 </AuthLayout>
               }
               redirectTo="/login"
