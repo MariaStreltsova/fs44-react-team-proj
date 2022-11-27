@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import PasswordStrengthBar from 'react-password-strength-bar';
 
 export const Form = styled.form`
   display: flex;
@@ -19,6 +18,13 @@ export const Form = styled.form`
   }
 `;
 
-export const PasswordBar = styled(PasswordStrengthBar)`
+export const PasswordBarStyle = styled.div`
+  background-color: #e5f1ef;
   width: 100%;
+  height: 4px;
+  margin-top: -15px;
 `;
+
+// export const PasswordBar = styled(PasswordStrengthBar)`
+//   width: 100%;
+// `;
