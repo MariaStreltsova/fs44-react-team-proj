@@ -6,7 +6,6 @@ export default function DashBoard() {
   return (
     <>
       <Dashboard>
-        <p>я туут</p>
         <HomeTable />
         <AddTransactionBtn />
       </Dashboard>
