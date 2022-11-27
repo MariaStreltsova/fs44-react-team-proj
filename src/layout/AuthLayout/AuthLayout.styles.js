@@ -24,14 +24,14 @@ position: relative;
   }
 ;
 `
-// export const WrapperChildrens = styled.div`
-// display: block;
-// position: absolute;
-// top:126px;
-// right:16px;
-// @media screen and (max-width: 1279px) {
-//   position: static;
-//   margin-top:20px
-//   }
-// ;
-// `
+export const WrapperChildrens = styled.div`
+display: block;
+position: absolute;
+top:126px;
+right:16px;
+@media screen and (max-width: 1279px) {
+  position: static;
+  margin-top:20px
+  }
+;
+`
