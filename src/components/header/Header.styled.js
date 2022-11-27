@@ -15,8 +15,8 @@ export const Box = styled.header`
   display: flex;
 
   justify-content: space-between;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
   padding-left: 20px;
   /* padding-right: 20px; */
 
