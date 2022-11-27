@@ -9,9 +9,14 @@ import {
   TransactionCardItem,
   ColoredSum,
   CardsContainer,
+  TablePlaceholder,
+  TitleTablePlaceholder,
+  PlaceholderContent,
 } from './HomeTable.styled';
 import operations from '../../redux/wallet/wallet-operations';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
+import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
+import { useTranslation } from 'react-i18next';
 
 const HomeTableMobile = () => {
   const dispatch = useDispatch();
@@ -19,10 +24,11 @@ const HomeTableMobile = () => {
   useEffect(() => {
     dispatch(operations.fetchTransactions());
   }, [dispatch]);
+  const { t } = useTranslation();
   return (
     <CardsContainer>
       <TransactionsWrap>
-        {transactions &&
+        {transactions && transactions.length > 0 ? (
           transactions.map(
             ({
               _id,
@@ -64,7 +70,19 @@ const HomeTableMobile = () => {
                 </TransactionCardList>
               </TransactionCardWrap>
             )
-          )}
+          )
+        ) : (
+          <TablePlaceholder>
+            <PlaceholderContent>
+              <InsightsOutlinedIcon
+                sx={{ fontSize: 36, marginBottom: '16px', color: '#4A56E2' }}
+              />
+              <TitleTablePlaceholder>
+                {t('placeholderHomeTable.title')}
+              </TitleTablePlaceholder>
+            </PlaceholderContent>
+          </TablePlaceholder>
+        )}
       </TransactionsWrap>
     </CardsContainer>
   );

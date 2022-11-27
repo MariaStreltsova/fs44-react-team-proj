@@ -15,6 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { format } from 'fecha';
 import operations from '../../redux/wallet/wallet-operations';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
+import { TablePlaceholder, TitleTablePlaceholder } from './HomeTable.styled';
+import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -146,106 +148,119 @@ const HomeTable = () => {
     );
   };
   return (
-    <Box>
-      <TableContainer>
-        <Table
-          sx={{
-            [`& .${tableCellClasses.root}`]: {
-              borderBottom: 'none',
-              fontFamily: 'Circle',
-              fontWeight: 400,
-              fontSize: '16px',
-              lineHeight: '18px',
-            },
-            [`& .${tableCellClasses.head}`]: {
-              height: '56px',
-              fontWeight: 700,
-              fontSize: '18px',
-              lineHeight: '26px',
-              backgroundColor: '#fff',
-              '&:first-of-type': {
-                borderRadius: '30px 0px 0px 30px',
-              },
-              '&:last-of-type': {
-                borderRadius: '0px 30px 30px 0px',
-              },
-            },
-          }}
-        >
-          <EnhancedTableHead
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-          />
-          <TableBody
-            sx={{
-              [`& .${tableCellClasses.root}`]: {
-                fontFamily: 'Circle',
-                fontWeight: 400,
-                fontSize: '16px',
-                lineHeight: '23.58px',
-              },
-            }}
-          >
-            {transactions &&
-              [...transactions]
-                .sort(getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(
-                  ({
-                    _id,
-                    date,
-                    direction,
-                    category,
-                    comment,
-                    amount,
-                    balanceAfter,
-                  }) => (
-                    <TableRow key={_id}>
-                      <TableCell align="left">
-                        {format(new Date(date), 'dd.MM.YY')}
-                      </TableCell>
-                      <TableCell align="center">
-                        {direction === 'expense' ? '+' : '-'}
-                      </TableCell>
-                      <TableCell align="left">{category}</TableCell>
-                      <TableCell align="left">{comment}</TableCell>
-                      <TableCell
-                        sx={{
-                          color:
-                            direction === 'expense' ? '#FF6596' : '#24CCA7',
-                        }}
-                        align="right"
-                      >
-                        {amount.toFixed(2)}
-                      </TableCell>
-                      <TableCell align="right">
-                        {balanceAfter.toFixed(2)}
-                      </TableCell>
-                    </TableRow>
-                  )
-                )}
-            {emptyRows > 0 && (
-              <TableRow
-                style={{
-                  height: 52 * emptyRows,
+    <>
+      {transactions && transactions.length > 0 ? (
+        <Box>
+          <TableContainer>
+            <Table
+              sx={{
+                [`& .${tableCellClasses.root}`]: {
+                  borderBottom: 'none',
+                  fontFamily: 'Circle',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  lineHeight: '18px',
+                },
+                [`& .${tableCellClasses.head}`]: {
+                  height: '56px',
+                  fontWeight: 700,
+                  fontSize: '18px',
+                  lineHeight: '26px',
+                  backgroundColor: '#fff',
+                  '&:first-of-type': {
+                    borderRadius: '30px 0px 0px 30px',
+                  },
+                  '&:last-of-type': {
+                    borderRadius: '0px 30px 30px 0px',
+                  },
+                },
+              }}
+            >
+              <EnhancedTableHead
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+              />
+              <TableBody
+                sx={{
+                  [`& .${tableCellClasses.root}`]: {
+                    fontFamily: 'Circle',
+                    fontWeight: 400,
+                    fontSize: '16px',
+                    lineHeight: '23.58px',
+                  },
                 }}
               >
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5]}
-        component="div"
-        count={transactions ? transactions.length : 0}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-      />
-    </Box>
+                {transactions &&
+                  [...transactions]
+                    .sort(getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map(
+                      ({
+                        _id,
+                        date,
+                        direction,
+                        category,
+                        comment,
+                        amount,
+                        balanceAfter,
+                      }) => (
+                        <TableRow key={_id}>
+                          <TableCell align="left">
+                            {format(new Date(date), 'dd.MM.YY')}
+                          </TableCell>
+                          <TableCell align="center">
+                            {direction === 'expense' ? '+' : '-'}
+                          </TableCell>
+                          <TableCell align="left">{category}</TableCell>
+                          <TableCell align="left">{comment}</TableCell>
+                          <TableCell
+                            sx={{
+                              color:
+                                direction === 'expense' ? '#FF6596' : '#24CCA7',
+                            }}
+                            align="right"
+                          >
+                            {amount.toFixed(2)}
+                          </TableCell>
+                          <TableCell align="right">
+                            {balanceAfter.toFixed(2)}
+                          </TableCell>
+                        </TableRow>
+                      )
+                    )}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: 52 * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5]}
+            component="div"
+            count={transactions ? transactions.length : 0}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+          />
+        </Box>
+      ) : (
+        <TablePlaceholder>
+          <InsightsOutlinedIcon
+            sx={{ fontSize: 36, marginRight: '16px', color: '#4A56E2' }}
+          />
+          <TitleTablePlaceholder>
+            {t('placeholderHomeTable.title')}
+          </TitleTablePlaceholder>
+        </TablePlaceholder>
+      )}
+    </>
   );
 };
 
