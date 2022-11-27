@@ -13,8 +13,8 @@ import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required('email is requred field'),
-  password: Yup.string().required('password is requred field'),
+  email: Yup.string().required('Email is requred field'),
+  password: Yup.string().required('Password is requred field'),
 });
 
 export const LoginForm = () => {
@@ -28,7 +28,6 @@ export const LoginForm = () => {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       dispatch(authOperations.logIn(values));
       resetForm();
     },
@@ -44,8 +43,10 @@ export const LoginForm = () => {
           mb={30}
           id={'email'}
           value={formik.values.email}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
+          helper={formik.errors.email}
         />
         <SecurInput
           label={t('input.password')}
@@ -53,7 +54,9 @@ export const LoginForm = () => {
           mb={40}
           id={'password'}
           value={formik.values.password}
+          onBlur={formik.handleBlur}
           onChange={formik.handleChange}
+          helper={formik.errors.password}
           error={formik.touched.password && Boolean(formik.errors.password)}
         />
 
@@ -68,7 +71,7 @@ export const LoginForm = () => {
         title={t('button.register')}
         variant="outlined"
         mb="0px"
-        href={`${BASE_URL_FRONT}/registration`}
+        href={`${BASE_URL_FRONT}/signup`}
       />
     </Container>
   );

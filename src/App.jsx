@@ -7,11 +7,15 @@ import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
-import '../node_modules/flag-icons/css/flag-icons.min.css';
+// import { PeoleSvg } from 'images/icons/PeopleSvg';
+import DashBoard from 'pages/DashBoard/DashBoard';
+import DiagramTab from 'components/DiagramTab/DiagramTab';
+// import Currency from 'components/Currency/Currency';
+
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
-const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
+// const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -42,7 +46,7 @@ export const App = () => {
         />
 
         <Route
-          path="/registration"
+          path="/signup"
           element={
             <PublicRoute
               component={
@@ -74,7 +78,11 @@ export const App = () => {
           path="/statistics"
           element={
             <PrivateRoute
-              component={<AuthLayout></AuthLayout>}
+              component={
+                <AuthLayout>
+                  <DiagramTab></DiagramTab>
+                </AuthLayout>
+              }
               redirectTo="/login"
             />
           }

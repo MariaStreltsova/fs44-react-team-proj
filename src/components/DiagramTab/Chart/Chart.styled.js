@@ -5,6 +5,7 @@ export const ChartLayout = styled.h2`
   position: relative;
   width: 280px;
   height: 280px;
+  margin-bottom: 30px;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -16,11 +17,11 @@ export const ChartLayout = styled.h2`
     height: 288px;
   }
 `;
-
 export const ChartText = styled.div`
   position: absolute;
-  top: 130px;
-  left: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 160px;
   height: 24px;
 
@@ -30,14 +31,4 @@ export const ChartText = styled.div`
   text-align: center;
   line-height: ${theme.lineHeights.normal};
   color: ${theme.colors.mainTxtColor};
-
-  @media (min-width: 768px) {
-    top: 155px;
-    left: 86px;
-  }
-
-  @media (min-width: 1280px) {
-    top: 132px;
-    left: 66px;
-  }
 `;

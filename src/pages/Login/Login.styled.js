@@ -10,4 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   background-color: #ffffff;
   border-radius: 20px;
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
 `;

@@ -1,6 +1,6 @@
 import InputAdornment from '@mui/material/InputAdornment';
 import { InputForm, InputLabelForm } from './Input.styles';
-
+import { FormHelperText } from '@mui/material';
 export const Input = ({
   icon = null,
   label = '',
@@ -9,10 +9,11 @@ export const Input = ({
   id = '',
   onChange,
   error,
+  helper
 }) => {
   return (
     <InputForm
-      variant="standard"
+    variant="standard"
       style={{ width: '100%', marginBottom: `${mb}px` }}
     >
       <InputLabelForm
@@ -26,6 +27,7 @@ export const Input = ({
           <InputAdornment position="start">{icon && icon()}</InputAdornment>
         }
       />
+      {error && <FormHelperText name={id} style={{color: "red"}}>{helper}</FormHelperText>}
     </InputForm>
   );
 };
