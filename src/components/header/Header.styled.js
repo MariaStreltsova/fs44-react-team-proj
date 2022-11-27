@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+import { NavLink } from 'react-router-dom';
+
+export const Link = styled(NavLink)`
+  border: ${p => p.theme.borders.none};
+  border-radius: ${p => p.theme.radii.button};
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+`;
+
 export const Box = styled.header`
   display: flex;
 

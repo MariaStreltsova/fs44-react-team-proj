@@ -9,7 +9,8 @@
     "email": "E-mail",
     "password": "Password",
     "confirmPassword": "Confirm password",
-    "firstName": "First name"
+    "firstName": "First name",
+    "exit": "Exit"
   },
   "session": {},
   "alert": {},
@@ -23,6 +24,9 @@
     "navigation": {
       "Home": "Home",
       "Statistics": "Statistics"
+    },
+    "header": {
+"Hi": "Hi"
     }
   },
   "balance": { "title": "Your balance" },

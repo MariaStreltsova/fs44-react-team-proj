@@ -9,7 +9,8 @@
     "email": "Пошта",
     "password": "Пароль",
     "confirmPassword": "Підтведіть пароль",
-    "firstName": "Ім'я"
+    "firstName": "Ім'я",
+    "exit": "Вихід"
   },
   "session": {},
   "alert": {},
@@ -23,6 +24,9 @@
     "navigation": {
       "Home": "Домашня сторінка",
       "Statistics": "Статистика"
+    },
+        "header": {
+"Hi": "Привіт"
     }
   },
   "balance": { "title": "Ваш баланс" },
