@@ -5,21 +5,25 @@ import { Text, Button, Icon, Decor, Exit } from './UserMenu.styled';
 import Modal from '../../Modal/Modal';
 import { useState } from 'react';
 import LanguageFlags from 'locales/LanguageFlags';
+import { useTranslation } from 'react-i18next';
 
 const UserMenu = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [modalActive, setModalActive] = useState(false);
   return (
     <Box
       as="div"
       display="flex"
-      align-items="center"
+      alignItems="center"
       color="secondaryTxtColor"
       fontSize="m"
       lineHeight="normal"
     >
       <LanguageFlags />
-      <Text>Hi, {user?.name}</Text>
+      <Text>
+        {t('title.header.Hi')}, {user?.name}
+      </Text>
       <Decor />
       <Button
         type="button"
@@ -28,7 +32,7 @@ const UserMenu = () => {
         }}
       >
         <Icon src={exit} alt="exit" />
-        <Exit>Exit</Exit>
+        <Exit>{t('input.exit')}</Exit>
       </Button>
       <Modal active={modalActive} setActive={setModalActive} />
     </Box>

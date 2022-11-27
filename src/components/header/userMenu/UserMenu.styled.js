@@ -55,6 +55,7 @@ export const Icon = styled.img`
 export const Decor = styled.div`
   display: none;
   @media screen and (min-width: 768px) {
+    margin: auto;
     display: block;
     width: 1px;
     height: 30px;
