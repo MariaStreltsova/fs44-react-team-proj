@@ -25,8 +25,8 @@
       "Home": "Домашня сторінка",
       "Statistics": "Статистика"
     },
-        "header": {
-"Hi": "Привіт"
+    "header": {
+      "Hi": "Привіт"
     }
   },
   "balance": { "title": "Ваш баланс" },
@@ -40,5 +40,22 @@
   },
   "placeholderHomeTable": {
     "title": " У вас поки що немає транзакцій"
+  },
+  "modal": {
+    "title": "Додати транзакцію",
+    "direction": {
+      "expence": "Витрати",
+      "income": "Доходи"
+    },
+    "form": {
+      "categoriesTitle": "Оберіть категорію",
+      "amountLabel": "Сума ($)",
+      "comment": "Коментар"
+    },
+    "button": {
+      "adding": "Додається",
+      "add": "Додати",
+      "cancel": "Скасувати"
+    }
   }
 }
