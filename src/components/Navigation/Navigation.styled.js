@@ -10,12 +10,17 @@ export const NavigationLink = styled(NavLink)`
 export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
-  margin-top: 120px; //temporary
+  justify-content: center;
+  margin-top: 120px; 
   @media screen and (max-width: 1279px) {
   margin-left:3px;
   }
   @media screen and (min-width: 768px) {
     display: inline-block;
+  }
+  @media screen and (max-width: 767px) {
+    margin-top: 0px; 
+    padding-top: 75px;
   }
 `;
 

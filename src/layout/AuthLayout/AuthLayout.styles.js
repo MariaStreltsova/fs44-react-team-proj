@@ -16,22 +16,22 @@ display: block;
 position: relative;
 @media screen and (max-width: 1279px) {
   padding-left:32px;
-padding-right:32px;
+  padding-right:32px;
   }
   @media screen and (max-width: 767px) {
   padding-left:20px;
-padding-right:20px;
+  padding-right:20px;
   }
 ;
 `
-export const WrapperChildrens = styled.div`
-display: block;
-position: absolute;
-top:126px;
-right:16px;
-@media screen and (max-width: 1279px) {
-  position: static;
-  margin-top:20px
-  }
-;
-`
+// export const WrapperChildrens = styled.div`
+// display: block;
+// position: absolute;
+// top:126px;
+// right:16px;
+// @media screen and (max-width: 1279px) {
+//   position: static;
+//   margin-top:20px
+//   }
+// ;
+// `

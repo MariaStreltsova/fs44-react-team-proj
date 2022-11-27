@@ -10,6 +10,8 @@ import useAuth from 'hooks/useAuht';
 // import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 import Statistics from 'pages/Statistics/Statistics';
+import SizeScreenRoute from 'hocs/Route/SizeScreenRoute';
+import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -83,6 +85,22 @@ export const App = () => {
               }
               redirectTo="/login"
             />
+          }
+        />
+
+        <Route
+          path="/currency"
+          element={
+            <SizeScreenRoute>
+              <PrivateRoute
+                component={
+                  <AuthLayout>
+                    <CurrencyPage />
+                  </AuthLayout>
+                }
+                redirectTo="/login"
+              />
+            </SizeScreenRoute>
           }
         />
 

@@ -13,6 +13,8 @@ async function fetchCurrency() {
         (item.currencyCodeB !== 840)
     );
     localStorage.setItem('currencyData', JSON.stringify(currencyData));
-  } catch (error) {}
+  } catch (error) {
+    throw error
+  }
 }
 export default fetchCurrency;
