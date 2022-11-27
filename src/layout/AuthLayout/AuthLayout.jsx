@@ -6,7 +6,7 @@ import {
   WrapperChildrens,
 } from './AuthLayout.styles';
 import { Navigation } from '../../components/Navigation/Navigation';
-// import Balance from 'components/Balance';
+import Balance from 'components/Balance';
 import Currency from 'components/Currency/Currency';
 
 const AuthLayout = ({ children }) => {
@@ -15,7 +15,7 @@ const AuthLayout = ({ children }) => {
       <Header />
       <WrapperChildren>
         <Navigation />
-        {/* <Balance /> */}
+        <Balance />
         <Currency />
         <WrapperChildrens>
           <Suspense fallback={null}>{children}</Suspense>
