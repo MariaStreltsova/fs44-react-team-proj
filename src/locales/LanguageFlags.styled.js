@@ -4,6 +4,10 @@ export const Flags = styled.div`
   /* position: absolute; */
   /* right: 180px; */
   margin-right: 16px;
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
   @media screen and (max-width: 767px) {
     right: 0;
     top: 0;
