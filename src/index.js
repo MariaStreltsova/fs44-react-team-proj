@@ -9,7 +9,6 @@ import { store, persistor } from './redux/store';
 import theme from './theme';
 import { GlobalStyle } from './GlobalStyle';
 import './locales/i18n';
-import LanguageFlags from 'locales/LanguageFlags';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter basename={BASE_URL_FRONT}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <LanguageFlags />
           <App />
         </ThemeProvider>
       </BrowserRouter>
