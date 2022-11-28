@@ -20,7 +20,10 @@ import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required(t('validation.email')),
-  password: Yup.string().required(t('validation.password')),
+  password: Yup.string()
+    .min(6, 'Minimum password length 6 characters')
+    .max(12, 'Maximum password length 6 characters')
+    .required(t('validation.password')),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password')], t('validation.passwordMatch'))
     .required(t('validation.confirmPassword')),

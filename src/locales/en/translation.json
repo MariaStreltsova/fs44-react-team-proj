@@ -42,7 +42,8 @@
     "password": "Password is requred field",
     "passwordMatch": "Passwords are not the same",
     "confirmPassword": "Confirm Password is requred field",
-    "firstName": "First name is requred field"
+    "firstName": "First name is requred field",
+    "minPasswordLength": "Minimum password length 6 characters"
   },
   "messages": {
     "signupSuccess": "Registration successful, please enter your email and password"
