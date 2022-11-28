@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Flags = styled.div`
 
+
   &:hover,
   &:focus {
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));

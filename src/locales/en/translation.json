@@ -72,5 +72,14 @@
       "add": "Add",
       "cancel": "Cancel"
     }
+  },
+  "modal-close": {
+    "title": {
+      "p": "Do you really want to leave?"
+    },
+    "button": {
+      "button-no": "No",
+      "button-yes": "Yes"
+    }
   }
 }

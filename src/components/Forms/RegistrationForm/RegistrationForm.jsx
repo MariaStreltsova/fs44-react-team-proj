@@ -20,7 +20,7 @@ import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
-    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик ты молодец!')
+    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик, ты молодец!')
     .required(t('validation.email')),
   password: Yup.string()
     .min(6, t('validation.minPasswordLength'))
