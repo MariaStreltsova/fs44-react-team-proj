@@ -11,17 +11,17 @@ export const getTransactions = async () => {
 
 export const addTransaction = async () => {
   try {
-    const result = await authApi.post('/api/transactions');
-    return result.data;
+    const {data: response} = await authApi.post('/api/transactions');
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-export const getTransactionsList = async () => {
+export const getCategories = async () => {
   try {
-    const result = await authApi.get('/transactions');
-    return result.data;
+    const {data: response} = await authApi.get('/api/transactions/categories');
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -29,7 +29,9 @@ export const getTransactionsList = async () => {
 
 export const getStatisticYearMonth = async (year, month) => {
   try {
-    const result = await authApi.get(`transactions/statistic/${year}/${month}`);
+    const result = await authApi.get(
+      `/api/transactions/statistic/${year}/${month}`
+    );
     return result.data;
   } catch (error) {
     throw error;
@@ -37,7 +39,7 @@ export const getStatisticYearMonth = async (year, month) => {
 };
 export const getStatisticYear = async year => {
   try {
-    const result = await authApi.get(`transactions/statistic/${year}`);
+    const result = await authApi.get(`/api/transactions/statistic/${year}`);
     return result.data;
   } catch (error) {
     throw error;

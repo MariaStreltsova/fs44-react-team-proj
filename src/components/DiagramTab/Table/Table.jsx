@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import periodCreating from 'util/periodCreating';
 import {
   ColorDiv,
   Head,
@@ -13,38 +14,40 @@ import {
   SelectorsArea,
 } from './Table.styled';
 import Selector from './Selector/Selector';
+import numberToMoney from 'util/numberToMoney';
 
 function Table({
   totalIncome,
   totalExpense,
   expenses,
-  isLoading,
   onMonthHandle,
   onYearHandle,
+  startDate,
 }) {
-  const dataYear = {
-    2019: [4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
-    2020: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
-    2021: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].reverse(),
-    2022: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].reverse(),
-  };
+  let { period } = periodCreating(startDate);
 
-  const [monthes, setMonthes] = useState(dataYear[2022]);
-  const years = Object.keys(dataYear).reverse();
+  let years = period.map(item => item.year).reverse();
+
+  const [months, setMonths] = useState(
+    period.filter(item => item.year === years[0])[0].months
+  );
+  const onYearClick = e => {
+    const newMonths = period.filter(item => item.year === +e.target.value)[0]
+      .months;
+    setMonths(newMonths);
+    onYearHandle(e.target.value);
+    onMonthHandle(newMonths[0]);
+  };
 
   return (
     <Section>
       <SelectorsArea>
         <Selector
-          options={monthes}
+          options={months}
           id="month"
           onChange={e => onMonthHandle(e.target.value)}
         />
-        <Selector
-          options={years}
-          id="year"
-          onChange={e => onYearHandle(e.target.value)}
-        />
+        <Selector options={years} id="year" onChange={onYearClick} />
       </SelectorsArea>
       <Head>
         <HeadText>Category</HeadText>
@@ -57,18 +60,18 @@ function Table({
               <ColorDiv style={{ background: element.color }}></ColorDiv>
               <span>{element.category}</span>
             </ExpBlock>
-            <span>{element.summary}</span>
+            <span>{numberToMoney(element.summary)}</span>
           </DataRow>{' '}
           <Line></Line>
         </div>
       ))}
       <TotalLine>
         <span>Expenses:</span>
-        <TotalExp>{totalExpense}</TotalExp>
+        <TotalExp>{numberToMoney(totalExpense)}</TotalExp>
       </TotalLine>
       <TotalLine>
         <span>Income:</span>
-        <TotalInc>{totalIncome}</TotalInc>
+        <TotalInc>{numberToMoney(totalIncome)}</TotalInc>
       </TotalLine>
     </Section>
   );

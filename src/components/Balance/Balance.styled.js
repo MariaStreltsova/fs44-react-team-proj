@@ -2,14 +2,19 @@ import styled from 'styled-components';
 import theme from '../../theme';
 
 export const BalanceWrapper = styled.div`
+margin-left:auto;
+margin-right:auto;
   width: 280px;
   height: 80px;
-  padding: 8px 32px;
+  padding: 8px 32px 11px 32px;
   background-color: ${theme.colors.lightBackgroundColor};
   border-radius: 30px;
+  margin-top: 15px;
   @media (min-width: 768px) {
+    margin-left:0;
+margin-right:0;
     width: 336px;
-    padding: 8px 40px;
+    padding: 8px 40px 11px 40px;
     margin-top: 28px;
   }
   @media (min-width: 1280px) {
@@ -35,7 +40,8 @@ export const BalanceValue = styled.p`
   font-size: 30px;
   line-height: 45px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: start;
   color: ${theme.colors.mainTxtColor};
 `;
 

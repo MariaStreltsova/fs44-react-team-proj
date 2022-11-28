@@ -9,7 +9,8 @@
     "email": "Пошта",
     "password": "Пароль",
     "confirmPassword": "Підтведіть пароль",
-    "firstName": "Ім'я"
+    "firstName": "Ім'я",
+    "exit": "Вихід"
   },
   "session": {},
   "alert": {},
@@ -29,6 +30,9 @@
     "navigation": {
       "Home": "Домашня сторінка",
       "Statistics": "Статистика"
+    },
+    "header": {
+      "Hi": "Привіт"
     }
   },
   "balance": { "title": "Ваш баланс" },
@@ -45,5 +49,26 @@
   },
   "messages": {
     "signupSuccess": "Реєстрація успішна, введіть адресу електронної пошти та пароль"
+  },
+
+  "placeholderHomeTable": {
+    "title": " У вас поки що немає транзакцій"
+  },
+  "modal": {
+    "title": "Додати транзакцію",
+    "direction": {
+      "expence": "Витрати",
+      "income": "Доходи"
+    },
+    "form": {
+      "categoriesTitle": "Оберіть категорію",
+      "amountLabel": "Сума ($)",
+      "comment": "Коментар"
+    },
+    "button": {
+      "adding": "Додається",
+      "add": "Додати",
+      "cancel": "Скасувати"
+    }
   }
 }
