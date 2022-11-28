@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const NavigationLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
   &.active {
     font-weight: ${p => p.theme.fontWeights.bold};
     fill: ${p => p.theme.colors.accentColor};
@@ -30,6 +32,7 @@ export const NavigationContainer = styled.ul`
 `;
 
 export const NavItem = styled.li`
+  display: flex;
   align-items: center;
   font-family: ${p => p.theme.fonts.title};
   font-size: ${p => p.theme.fontSizes.m};
@@ -46,6 +49,7 @@ export const NavItem = styled.li`
   }
   @media screen and (max-width: 767px) {
     margin-bottom: 0;
+    align-items: center;
   }
   &:not(:last-child) {
     margin-right: 35px;
@@ -94,6 +98,7 @@ export const NavItemCurrency = styled.li`
   }
   @media screen and (min-width: 768px) {
     display: none;
+    text-align: center;
   }
   @media screen and (max-width: 767px) {
     margin-bottom: 0;
