@@ -27,7 +27,7 @@ position: relative;
 export const WrapperChildrens = styled.div`
 display: block;
 position: absolute;
-top:126px;
+top:46px;
 right:16px;
 @media screen and (max-width: 1279px) {
   position: static;
