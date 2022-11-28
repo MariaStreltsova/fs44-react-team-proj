@@ -15,7 +15,15 @@
   "session": {},
   "alert": {},
   "dialog": {},
-  "validation": {},
+  "validation": {
+    "email": "Поле електронної пошти є обов’язковим",
+    "password": "Поле для введення пароля є обов’язковим",
+    "passwordMatch": "Паролі не однакові",
+    "confirmPassword": "Поле підтвердження пароля є обов’язковим",
+    "firstName": "Ім'я є обов'язковим полем",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
+  },
   "title": {
     "404": {
       "notFound": "Не знайдено!",
@@ -25,8 +33,8 @@
       "Home": "Домашня сторінка",
       "Statistics": "Статистика"
     },
-        "header": {
-"Hi": "Привіт"
+    "header": {
+      "Hi": "Привіт"
     }
   },
   "balance": { "title": "Ваш баланс" },
@@ -38,7 +46,31 @@
     "sum": "Сума",
     "balance": "Баланс"
   },
+  "errors": {
+    "loginError": "Невірні дані, спробуйте ще раз"
+  },
+  "messages": {
+    "signupSuccess": "Реєстрація успішна, введіть адресу електронної пошти та пароль"
+  },
+
   "placeholderHomeTable": {
     "title": " У вас поки що немає транзакцій"
+  },
+  "modal": {
+    "title": "Додати транзакцію",
+    "direction": {
+      "expence": "Витрати",
+      "income": "Доходи"
+    },
+    "form": {
+      "categoriesTitle": "Оберіть категорію",
+      "amountLabel": "Сума ($)",
+      "comment": "Коментар"
+    },
+    "button": {
+      "adding": "Додається",
+      "add": "Додати",
+      "cancel": "Скасувати"
+    }
   }
 }
