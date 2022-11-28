@@ -19,10 +19,12 @@ import PasswordStrenghtMeter from './PasswordStrengthMeter';
 import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required(t('validation.email')),
+  email: Yup.string()
+    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик ты молодец!')
+    .required(t('validation.email')),
   password: Yup.string()
-    .min(6, 'Minimum password length 6 characters')
-    .max(12, 'Maximum password length 6 characters')
+    .min(6, t('validation.minPasswordLength'))
+    .max(12, t('validation.maxPasswordLength'))
     .required(t('validation.password')),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password')], t('validation.passwordMatch'))

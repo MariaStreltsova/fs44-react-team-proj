@@ -14,7 +14,9 @@ import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required(t('validation.email')),
+  email: Yup.string()
+    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик ты молодец!')
+    .required(t('validation.email')),
   password: Yup.string().required(t('validation.password')),
 });
 

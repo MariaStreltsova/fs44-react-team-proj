@@ -20,7 +20,9 @@
     "password": "Поле для введення пароля є обов’язковим",
     "passwordMatch": "Паролі не однакові",
     "confirmPassword": "Поле підтвердження пароля є обов’язковим",
-    "firstName": "Ім'я є обов'язковим полем"
+    "firstName": "Ім'я є обов'язковим полем",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
   },
   "title": {
     "404": {

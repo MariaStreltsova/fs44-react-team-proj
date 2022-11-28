@@ -23,7 +23,6 @@ const PasswordStrenghtMeter = ({ password }) => {
     }
   };
 
-
   const changeStyleProgress = () => ({
     width: '100%',
     height: '5px',

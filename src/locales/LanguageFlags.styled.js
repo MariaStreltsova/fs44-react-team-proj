@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Flags = styled.div`
-  /* position: absolute; */
-  /* right: 180px; */
+  /* position: absolute;
+  right: 180px; */
 
   &:hover,
   &:focus {

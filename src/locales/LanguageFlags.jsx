@@ -12,7 +12,11 @@ import i18next from 'i18next';
 import classNames from 'classnames';
 import { Flags } from './LanguageFlags.styled';
 
-export default function LanguageFlags() {
+export default function LanguageFlags({
+  position = 'static',
+  top = 0,
+  right = 0,
+}) {
   const languages = [
     {
       code: 'en',
@@ -40,7 +44,7 @@ export default function LanguageFlags() {
   };
 
   return (
-    <Flags>
+    <Flags style={{ position, top, right }}>
       <Tooltip title={t('button.language')} arrow>
         <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
           <LanguageIcon style={{ width: '32px', height: '32px' }} />

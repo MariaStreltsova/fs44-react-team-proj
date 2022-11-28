@@ -12,14 +12,17 @@ import {
   TitleApp,
   BoxContainer,
 } from './NonAuthLayoutStyles';
+import LanguageFlags from 'locales/LanguageFlags';
 
 const NonAuthLayout = ({ children }) => {
   const path = window.location.pathname.endsWith('/login');
 
   return (
     <>
-      <RootWrapper>
+      <RootWrapper style={{ position: 'relative' }}>
         <BoxContainer>
+          <LanguageFlags position="absolute" top={40} right={40} />
+
           <ImageContainer>
             {path ? (
               <PeopleImg>{MaleSvg()}</PeopleImg>
