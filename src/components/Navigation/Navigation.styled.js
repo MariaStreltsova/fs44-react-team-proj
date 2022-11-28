@@ -13,18 +13,19 @@ export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 120px; 
-  @media screen and (max-width: 1279px) {
-    margin-left: 3px;
-  }
+  padding-top: 8px;
+
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
   @media screen and (max-width: 767px) {
-    margin-top: 0px; 
-    padding-top: 75px;
+    margin-top: 0px;
+    /* padding-top: 75px; */
     margin-left: auto;
     margin-right: auto;
+  }
+  @media screen and (max-width: 1279px) {
+    margin-left: 3px;
   }
 `;
 
@@ -44,10 +45,9 @@ export const NavItem = styled.li`
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
   @media screen and (max-width: 767px) {
-    margin-bottom:0;
-  
+    margin-bottom: 0;
   }
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-right: 35px;
   }
 `;
@@ -70,7 +70,7 @@ export const Svg = styled.svg`
     height: 18px;
   }
   @media screen and (max-width: 767px) {
-    text-align: center
+    text-align: center;
   }
 `;
 export const TextNav = styled.span`
@@ -96,7 +96,7 @@ export const NavItemCurrency = styled.li`
     display: none;
   }
   @media screen and (max-width: 767px) {
-    margin-bottom:0;
-    text-align: center
+    margin-bottom: 0;
+    text-align: center;
   }
 `;
