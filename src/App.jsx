@@ -12,7 +12,7 @@ import DashBoard from 'pages/DashBoard/DashBoard';
 import Statistics from 'pages/Statistics/Statistics';
 // import SizeScreenRoute from 'hocs/Route/SizeScreenRoute';
 import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
-
+import CircularUnderLoad from 'components/Loader/Loader';
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
@@ -26,9 +26,9 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <h1>Refreshing user...</h1>
+    <CircularUnderLoad />
   ) : (
-    <Suspense fallback={<h1>Loading profile.</h1>}>
+    <Suspense fallback={<CircularUnderLoad />}>
       <Routes>
         <Route
           path="/login"
