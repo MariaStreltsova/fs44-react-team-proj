@@ -7,14 +7,21 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
+import TablePagination, {
+  tablePaginationClasses,
+} from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
+import { format } from 'fecha';
 import operations from '../../redux/wallet/wallet-operations';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
-import { TablePlaceholder, TitleTablePlaceholder } from './HomeTable.styled';
+import {
+  TablePlaceholder,
+  TitleTablePlaceholder,
+  StyledContainer,
+} from './HomeTable.styled';
 import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
 
 const SORT_TYPES = {
@@ -147,15 +154,16 @@ const HomeTable = () => {
     );
   };
   return (
-    <>
+    <StyledContainer>
       {transactions && transactions.length > 0 ? (
         <Box>
           <TableContainer>
             <Table
               sx={{
                 [`& .${tableCellClasses.root}`]: {
-                  borderBottom: 'none',
-                  fontFamily: 'Circle',
+                  height: '52px',
+                  // borderBottom: '1px solid #DCDCDF',
+                  fontFamily: 'Circe',
                   fontWeight: 400,
                   fontSize: '16px',
                   lineHeight: '18px',
@@ -166,6 +174,7 @@ const HomeTable = () => {
                   fontSize: '18px',
                   lineHeight: '26px',
                   backgroundColor: '#fff',
+                  borderBottom: 'none',
                   '&:first-of-type': {
                     borderRadius: '30px 0px 0px 30px',
                   },
@@ -183,7 +192,7 @@ const HomeTable = () => {
               <TableBody
                 sx={{
                   [`& .${tableCellClasses.root}`]: {
-                    fontFamily: 'Circle',
+                    fontFamily: 'Circe',
                     fontWeight: 400,
                     fontSize: '16px',
                     lineHeight: '23.58px',
@@ -206,23 +215,28 @@ const HomeTable = () => {
                       }) => (
                         <TableRow key={_id}>
                           <TableCell align="left">
-                            {new Date(date).toLocaleDateString("en-gb")}
+                            {format(new Date(date), 'DD.MM.YY')}
                           </TableCell>
                           <TableCell align="center">
                             {direction === 'expense' ? '-' : '+'}
                           </TableCell>
-                          <TableCell align="left">{category}</TableCell>
-                          <TableCell align="left">{comment}</TableCell>
+                          <TableCell align="left" style={{ width: '130px' }}>
+                            {category}
+                          </TableCell>
+                          <TableCell align="left" style={{ width: '162px' }}>
+                            {comment}
+                          </TableCell>
                           <TableCell
                             sx={{
                               color:
                                 direction === 'expense' ? '#FF6596' : '#24CCA7',
+                              width: '120px',
                             }}
                             align="right"
                           >
                             {amount.toFixed(2)}
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align="right" style={{ width: '120px' }}>
                             {balanceAfter.toFixed(2)}
                           </TableCell>
                         </TableRow>
@@ -247,6 +261,11 @@ const HomeTable = () => {
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
+            sx={{
+              [`& .${tablePaginationClasses.displayedRows}`]: {
+                fontFamily: 'Circe',
+              },
+            }}
           />
         </Box>
       ) : (
@@ -259,7 +278,7 @@ const HomeTable = () => {
           </TitleTablePlaceholder>
         </TablePlaceholder>
       )}
-    </>
+    </StyledContainer>
   );
 };
 

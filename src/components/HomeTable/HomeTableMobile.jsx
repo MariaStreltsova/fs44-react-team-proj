@@ -43,11 +43,11 @@ const HomeTableMobile = () => {
                 <TransactionCardList type={direction}>
                   <TransactionCardItem>
                     <span>Date</span>
-                    <span>{format(new Date(date), 'dd.MM.YY')}</span>
+                    <span>{format(new Date(date), 'DD.MM.YY')}</span>
                   </TransactionCardItem>
                   <TransactionCardItem>
                     <span>Type</span>
-                    <span> {direction === 'expense' ? '+' : '-'}</span>
+                    <span> {direction === 'expense' ? '-' : '+'}</span>
                   </TransactionCardItem>
                   <TransactionCardItem>
                     <span>Category</span>
