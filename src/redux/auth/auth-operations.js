@@ -2,11 +2,12 @@ import * as api from '../../api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/authApi';
 import { toast } from 'react-toastify';
+import { t } from 'i18next';
 
 const register = createAsyncThunk('auth/signup', async data => {
   try {
     const result = await api.signup(data);
-
+    toast.success(t('messages.signupSuccess'));
     token.set(result.token);
     return result;
   } catch (error) {
@@ -14,15 +15,20 @@ const register = createAsyncThunk('auth/signup', async data => {
   }
 });
 
-const logIn = createAsyncThunk('auth/login', async data => {
-  try {
-    const result = await api.login(data);
-    token.set(result.token);
-    return result;
-  } catch (error) {
-    toast.error(`Sorry, login failed. Check email and password. Try again.`);
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await api.login(data);
+      token.set(result.token);
+      return result;
+    } catch (error) {
+      if (error.response.status === 401) {
+        return rejectWithValue(toast.error(t('errors.loginError')));
+      }
+    }
   }
-});
+);
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {

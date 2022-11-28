@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
 import { PurpurBulbSvg } from 'images/icons/PurpurBulbSvg';
 import { MaleSvg } from 'images/icons/MaleSvg';
 import { GirlSvg } from 'images/icons/GirlSvg';
+import { ToastContainer } from 'react-toastify';
 
 import {
   RootWrapper,
@@ -17,8 +17,8 @@ const NonAuthLayout = ({ children }) => {
   const path = window.location.pathname.endsWith('/login');
 
   return (
-    <RootWrapper>
-      <Suspense fallback={null}>
+    <>
+      <RootWrapper>
         <BoxContainer>
           <ImageContainer>
             {path ? (
@@ -29,12 +29,21 @@ const NonAuthLayout = ({ children }) => {
             <TitleApp>Finance App</TitleApp>
             <BulbImg>{PurpurBulbSvg()}</BulbImg>
           </ImageContainer>
-          <FormContainer>
-            {children}
-          </FormContainer>
+          <FormContainer>{children}</FormContainer>
         </BoxContainer>
-      </Suspense>
-    </RootWrapper>
+      </RootWrapper>
+      <ToastContainer
+        autoClose={2000}
+        position="top-right"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 };
 
