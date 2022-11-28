@@ -21,9 +21,7 @@ const UserMenu = () => {
       lineHeight="normal"
     >
       <LanguageFlags />
-      <Text>
-        {t('title.header.Hi')}, {user?.name}
-      </Text>
+      <Text>{user?.name}</Text>
       <Decor />
       <Button
         type="button"

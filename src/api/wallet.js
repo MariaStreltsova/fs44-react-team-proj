@@ -11,8 +11,8 @@ export const getTransactions = async () => {
 
 export const addTransaction = async () => {
   try {
-    const result = await authApi.post('/api/transactions');
-    return result.data;
+    const {data: response} = await authApi.post('/api/transactions');
+    return response;
   } catch (error) {
     throw error;
   }
@@ -20,8 +20,8 @@ export const addTransaction = async () => {
 
 export const getCategories = async () => {
   try {
-    const result = await authApi.get('/api/transactions/categories');
-    return result.data;
+    const {data: response} = await authApi.get('/api/transactions/categories');
+    return response.data;
   } catch (error) {
     throw error;
   }

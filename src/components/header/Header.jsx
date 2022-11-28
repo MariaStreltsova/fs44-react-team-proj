@@ -1,6 +1,7 @@
 import { FormLogo } from '../Forms/FormsLogo/formLogo';
 import UserMenu from '../header/userMenu/UserMenu';
-import { Box, Container, Link } from './Header.styled';
+
+import { Box, Container, Link, LogoMedia } from './Header.styled';
 
 const Header = () => {
   return (
@@ -8,7 +9,9 @@ const Header = () => {
       <Container>
         <Link to="/home">
           {' '}
-          <FormLogo />
+          <LogoMedia>
+            <FormLogo />
+          </LogoMedia>
         </Link>
 
         <UserMenu />
