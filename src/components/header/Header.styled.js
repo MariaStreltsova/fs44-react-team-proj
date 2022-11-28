@@ -42,7 +42,7 @@ export const Box = styled.header`
 //color: ${p => p.theme.colors.accent};
 export const Container = styled.div`
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* align-items: center; */
   display: flex;
   justify-content: space-between;
