@@ -7,6 +7,7 @@ import {
   TextNav,
   NavItemCurrency,
   NavigationLink,
+  NavItemStatistics,
 } from './Navigation.styled';
 import Sprite from '../../images/icons/symbol-defs.svg';
 
@@ -23,14 +24,14 @@ export const Navigation = () => {
           <TextNav>{t('title.navigation.Home')}</TextNav>
         </NavigationLink>
       </NavItem>
-      <NavItem>
+      <NavItemStatistics>
         <NavigationLink to="/statistics">
           <Svg>
             <use href={`${Sprite}#icon-stat`}></use>
           </Svg>
           <TextNav>{t('title.navigation.Statistics')}</TextNav>
         </NavigationLink>
-      </NavItem>
+      </NavItemStatistics>
 
       <NavItemCurrency>
         <NavigationLink to="/currency">

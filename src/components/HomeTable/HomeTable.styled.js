@@ -40,7 +40,7 @@ span:first-of-type {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    line-height: 1.25;
+    line-height: 24px;
     padding: 10px 0 10px 0;
   }:not(:last-of-type) {
     border-bottom: 1px solid #dcdcdf;`;
@@ -54,6 +54,7 @@ export const ColoredSum = styled.span`
 export const CardsContainer = styled.div`
   max-width: 420px;
   margin: 0 auto;
+  margin-top: 32px;
 `;
 
 export const TablePlaceholder = styled.div`
@@ -75,4 +76,12 @@ export const PlaceholderContent = styled.span`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+`;
+export const StyledContainer = styled.div`
+  @media (min-width: 768px) {
+    width: 704px;
+  }
+  @media (min-width: 1280px) {
+    width: 715px;
+  }
 `;

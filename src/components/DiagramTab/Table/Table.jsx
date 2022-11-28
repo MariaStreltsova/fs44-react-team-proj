@@ -27,16 +27,15 @@ function Table({
   let { period } = periodCreating(startDate);
 
   let years = period.map(item => item.year).reverse();
-
-  const [months, setMonths] = useState(
-    period.filter(item => item.year === years[0])[0].months
-  );
+  const initialMonths = period
+    .filter(item => item.year === years[0])[0]
+    .months.reverse();
+  const [months, setMonths] = useState(initialMonths);
   const onYearClick = e => {
     const newMonths = period.filter(item => item.year === +e.target.value)[0]
       .months;
     setMonths(newMonths);
     onYearHandle(e.target.value);
-    onMonthHandle(newMonths[0]);
   };
 
   return (
@@ -58,9 +57,9 @@ function Table({
           <DataRow>
             <ExpBlock>
               <ColorDiv style={{ background: element.color }}></ColorDiv>
-              <span>{element.category}</span>
+              <span>{element.categoryName}</span>
             </ExpBlock>
-            <span>{numberToMoney(element.summary)}</span>
+            <span>{numberToMoney(element.totalSum)}</span>
           </DataRow>{' '}
           <Line></Line>
         </div>

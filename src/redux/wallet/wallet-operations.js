@@ -1,7 +1,6 @@
 // import * as api from '../../api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/wallet';
-import { toast } from 'react-toastify';
 
 const fetchTransactions = createAsyncThunk(
   'wallet/getTransactions',
@@ -20,10 +19,8 @@ export const addTransaction = createAsyncThunk(
   async (transaction, thunkAPI) => {
     try {
       const { data: response } = await api.addTransaction(transaction);
-      toast.success('Your transaction was successful');
       return response.data;
     } catch (error) {
-      // toast.error("Something went wrong");
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -36,7 +33,6 @@ export const fetchCategories = createAsyncThunk(
       const { data: response } = await api.getCategories();
       return response.data;
     } catch (error) {
-      // toast.error("Something went wrong")
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }

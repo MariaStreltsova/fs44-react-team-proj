@@ -9,10 +9,10 @@ export const getTransactions = async () => {
   }
 };
 
-export const addTransaction = async () => {
+export const addTransaction = async (transaction) => {
   try {
-    const {data: response} = await authApi.post('/api/transactions');
-    return response;
+    const {data: response} = await authApi.post('/api/transactions', transaction);
+    return response.data;
   } catch (error) {
     throw error;
   }

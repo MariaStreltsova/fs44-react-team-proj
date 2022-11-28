@@ -24,7 +24,7 @@ export const CurrencyBlock = styled.div`
 
   @media (min-width: 768px) {
     position: absolute;
-    top :112px; 
+    top :32px; 
     right: 32px;
 
     width: 336px;
