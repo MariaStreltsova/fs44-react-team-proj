@@ -51,10 +51,14 @@ export const ButtonClose = styled.button`
   transform: scale(0.5);
   transition: 0.4s all;
   cursor: pointer;
-  &:hover,
+  /* &:hover,
   &:focus {
     border-color: red;
-  }
+  } */
+  &:hover,
+  &:focus {
+      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    }
 `;
 
 export const ButtonYes = styled.button`
@@ -70,10 +74,14 @@ export const ButtonYes = styled.button`
   text-align: center;
   align-self: center;
   cursor: pointer;
-  &:hover,
+  /* &:hover,
   &:focus {
     background-color: ${theme.colors.accentColor};
-  }
+  } */
+  &:hover,
+  &:focus {
+      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    }
 `;
 
 export const ButtonNo = styled.button`
@@ -87,10 +95,14 @@ export const ButtonNo = styled.button`
   text-align: center;
   align-self: center;
   cursor: pointer;
-  &:hover,
+  /* &:hover,
   &:focus {
     background-color: ${theme.colors.accentColor};
-  }
+  } */
+  &:hover,
+  &:focus {
+      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    }
 `;
 
 export const Svg = styled.svg`

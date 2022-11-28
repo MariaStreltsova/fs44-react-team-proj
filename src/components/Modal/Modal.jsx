@@ -11,8 +11,10 @@ import Icons from '../../images/icons/sprite.svg';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { useTranslation } from 'react-i18next';
 
 const ModalClose = ({ active, setActive }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,16 +40,17 @@ const ModalClose = ({ active, setActive }) => {
             <use href={`${Icons}#icon-close-cross`} />
           </Svg>
         </ButtonClose>
-        <P>
-          Вы действительно хотите выйти?
+        <P>{t('modal-close.title.p')} 
           <ButtonYes
             onClick={() => {
               dispatch(authOperations.logOut());
             }}
           >
-            Да
+            {t('modal-close.button.button-yes')}
           </ButtonYes>
-          <ButtonNo onClick={() => setActive(false)}>Нет</ButtonNo>
+          <ButtonNo onClick={() => setActive(false)}>
+            {t('modal-close.button.button-no')}
+          </ButtonNo>
         </P>
       </ModalContent>
     </Modal>
