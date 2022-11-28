@@ -65,6 +65,7 @@ export const ButtonYes = styled.button`
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 20px;
+  border: none;
   background-color: ${theme.colors.incomeColor};
   color: ${theme.colors.lightTxtColor};
   width: 300px;
@@ -86,8 +87,8 @@ export const ButtonYes = styled.button`
 
 export const ButtonNo = styled.button`
   border-radius: 20px;
-  background-color: ${theme.colors.incomeColor};
-  color: ${theme.colors.lightTxtColor};
+  background-color: ${theme.colors.lightTxtColor};
+  color: ${theme.colors.mainTxtColor};
   width: 300px;
   height: 50px;
   font-size: 18px;

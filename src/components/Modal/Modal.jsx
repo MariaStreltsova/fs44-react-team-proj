@@ -53,6 +53,7 @@ const ModalClose = ({ active, setActive }) => {
           </ButtonNo>
         </P>
       </ModalContent>
+      
     </Modal>
   );
 };
