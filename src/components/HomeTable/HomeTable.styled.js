@@ -28,9 +28,9 @@ export const TransactionCardList = styled.ul`
     top: 0;
     left: 0;
     background-color: ${props =>
-      props.type === 'expense'
-        ? props.theme.colors.expenseColor
-        : props.theme.colors.incomeColor};
+    props.type === 'expense'
+      ? props.theme.colors.expenseColor
+      : props.theme.colors.incomeColor};
   }
 `;
 export const TransactionCardItem = styled.li`
@@ -54,6 +54,7 @@ export const ColoredSum = styled.span`
 export const CardsContainer = styled.div`
   max-width: 420px;
   margin: 0 auto;
+  margin-top: 32px;
 `;
 
 export const TablePlaceholder = styled.div`

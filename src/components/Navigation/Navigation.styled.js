@@ -15,13 +15,13 @@ export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 8px;
+  margin-top: 40px;
 
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
   @media screen and (max-width: 767px) {
-    margin-top: 0px;
+    margin-top: 15px;
     /* padding-top: 75px; */
     margin-left: auto;
     margin-right: auto;
@@ -39,6 +39,30 @@ export const NavItem = styled.li`
   line-height: ${p => p.theme.lineHeights.normal};
   color: ${p => p.theme.colors.mainTxtColor};
   margin-bottom: calc(${p => p.theme.space[1]}px * 5);
+  transition: font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    /* font-weight: ${p => p.theme.fontWeights.bold}; */
+    /* fill: ${p => p.theme.colors.accentColor}; */
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 0;
+    align-items: center;
+  }
+  &:not(:last-child) {
+    margin-right: 35px;
+  }
+`;
+
+export const NavItemStatistics = styled.li`
+  display: flex;
+  align-items: center;
+  font-family: ${p => p.theme.fonts.title};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.normal};
+  color: ${p => p.theme.colors.mainTxtColor};
   transition: font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
