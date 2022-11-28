@@ -9,7 +9,6 @@ ChartJS.register(ArcElement, Tooltip);
 
 function Chart({ totalExpense, expenses, backgroundColor, isLoading }) {
   const totalInChart = numberToMoney(totalExpense);
-
   const data = Object.values(expenses);
   const chartData = {
     datasets: [
@@ -29,7 +28,6 @@ function Chart({ totalExpense, expenses, backgroundColor, isLoading }) {
         <CurrencyLoader />
       ) : (
         <>
-          {' '}
           <Doughnut data={chartData} />
           <ChartText>₴ {totalInChart}</ChartText>
         </>

@@ -1,3 +1,5 @@
+import monthsNames from './monthNames';
+
 function periodCreating(date) {
   // получаем текущий месяц и год
   const currentDate = new Date();
@@ -8,20 +10,7 @@ function periodCreating(date) {
   date = new Date(date);
   const startMonth = date.getMonth();
   const startYear = date.getFullYear();
-  const monthsNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+
   const period = [];
 
   for (let year = startYear; year <= currentYear; year++) {
