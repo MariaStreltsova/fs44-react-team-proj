@@ -28,9 +28,9 @@ const ModalClose = ({ active, setActive }) => {
     }
 
     return () => {
-      window.removeEventListener('keydown', onKeydownEsc);
+    window.removeEventListener('keydown', onKeydownEsc);
     };
-  }, [active, setActive]);
+  },  [active, setActive]);
 
   return (
     <Modal className={active && 'active'}>
