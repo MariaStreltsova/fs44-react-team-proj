@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 export const Text = styled.span`
-  margin: 0 12px 0 0;
+  margin: 0 7px 0 0;
   display: flex;
   align-items: center;
   color: ${p => p.theme.colors.secondaryTxtColor};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.normal};
+
+  @media screen and (min-width: 768px) {
+    margin: 0 12px 0 0;
+  }
 `;
 
 // export const Button = styled.button`

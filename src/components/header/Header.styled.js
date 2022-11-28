@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 export const Link = styled(NavLink)`
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.button};
+  margin: o auto;
   &:hover,
   &:focus {
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
@@ -13,14 +14,14 @@ export const Link = styled(NavLink)`
 
 export const Box = styled.header`
   display: flex;
-
+  align-items: center;
   justify-content: space-between;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
   /* padding-right: 20px; */
 
-  position: fixed;
+  /* position: fixed; */
   z-index: 2;
 
   width: 100%;
@@ -42,7 +43,19 @@ export const Box = styled.header`
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
+  /* align-items: center; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const LogoMedia = styled.div`
+  width: 120px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    height: 40px;
+  }
 `;
