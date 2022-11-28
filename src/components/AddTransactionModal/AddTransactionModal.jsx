@@ -33,34 +33,34 @@ function AddTransactionBtn() {
   const { t } = useTranslation();
   
   const DIRECTION = {
-    expense: "Expense",
-    income: "Income"
+    expense: "expense",
+    income: "income"
   }
 
   const dispatch = useDispatch();
   const categories = useSelector(walletSelectors.getCategories);
 
   useEffect(() => {
-  
-      dispatch(operations.fetchCategories());
-    
+   dispatch(operations.fetchCategories());
   }, [dispatch, categories]);
 
 const f = useFormik({
     initialValues: {
     direction: DIRECTION.expense,
     amount: "",
-    date: new Date().toLocaleDateString("en-gb"),
+    date: new Date().getTime(),
+      // new Date().toLocaleDateString("en-gb"), //number
     comment: "",    
-    category: "",
+    category: DIRECTION.income,
     },
 });
 
   const validationSchema = object().shape({
       amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
-      date: string().required("Choose date"),
+      date: number().required("Choose date"),
       direction: string().required(),
-      comment: string().max(15, "You can enter only 15 symbols"),
+    comment: string().max(15, "You can enter only 15 symbols"),
+    category: string(),
   });
   
   const openModal = () => {
@@ -97,6 +97,7 @@ const f = useFormik({
                   dispatch(authOperations.fetchCurrentUser());
                   console.log(values);
                   resetForm({ values: "" });
+                  closeModal();
                 }, 1000);
               }
  
@@ -176,12 +177,13 @@ const f = useFormik({
                       <MiddleFormDiv item>
                       <DataPickerWrapper direction="row">
                           <MyDataPicker
-                          name="date"
+                            name="date"
+                            selected={new Date()}
                             dateFormat="dd/MM/yyyy"
                             label="Choose Date"
                             value={values.date}
                             onChange={(newDate) => {
-                            const d = new Date(newDate).toLocaleDateString("en-gb");
+                            const d = new Date(newDate).getTime();
                               setFieldValue("date", d, true);
                           }}
                         />
