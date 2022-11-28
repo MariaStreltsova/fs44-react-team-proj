@@ -28,9 +28,9 @@ export const TransactionCardList = styled.ul`
     top: 0;
     left: 0;
     background-color: ${props =>
-    props.type === 'expense'
-      ? props.theme.colors.expenseColor
-      : props.theme.colors.incomeColor};
+      props.type === 'expense'
+        ? props.theme.colors.expenseColor
+        : props.theme.colors.incomeColor};
   }
 `;
 export const TransactionCardItem = styled.li`
@@ -40,7 +40,7 @@ span:first-of-type {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    line-height: 1.25;
+    line-height: 24px;
     padding: 10px 0 10px 0;
   }:not(:last-of-type) {
     border-bottom: 1px solid #dcdcdf;`;
@@ -76,4 +76,12 @@ export const PlaceholderContent = styled.span`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+`;
+export const StyledContainer = styled.div`
+  @media (min-width: 768px) {
+    width: 704px;
+  }
+  @media (min-width: 1280px) {
+    width: 715px;
+  }
 `;
