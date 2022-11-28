@@ -10,6 +10,7 @@ import theme from './theme';
 import { GlobalStyle } from './GlobalStyle';
 import './locales/i18n';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

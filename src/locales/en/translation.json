@@ -15,7 +15,7 @@
   "session": {},
   "alert": {},
   "dialog": {},
-  "validation": {},
+
   "title": {
     "404": {
       "notFound": "Not found!",
@@ -37,6 +37,21 @@
     "comment": "Comment",
     "sum": "Sum",
     "balance": "Balance"
+  },
+  "errors": {
+    "loginError": "Invalid data, please try again"
+  },
+  "validation": {
+    "email": "Email is requred field",
+    "password": "Password is requred field",
+    "passwordMatch": "Passwords are not the same",
+    "confirmPassword": "Confirm Password is requred field",
+    "firstName": "First name is requred field",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
+  },
+  "messages": {
+    "signupSuccess": "Registration successful, please enter your email and password"
   },
   "placeholderHomeTable": {
     "title": " You have no transactions yet"

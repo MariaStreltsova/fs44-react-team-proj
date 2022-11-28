@@ -13,7 +13,6 @@ const UserMenu = () => {
   const [modalActive, setModalActive] = useState(false);
   return (
     <Box
-      as="div"
       display="flex"
       alignItems="center"
       color="secondaryTxtColor"
@@ -21,9 +20,7 @@ const UserMenu = () => {
       lineHeight="normal"
     >
       <LanguageFlags />
-      <Text>
-        {t('title.header.Hi')}, {user?.name}
-      </Text>
+      <Text>{user?.name}</Text>
       <Decor />
       <Button
         type="button"

@@ -7,7 +7,7 @@ import { SecurInput } from '../inputs/SecurInput/SecurInput';
 import { Input } from '../inputs/Input/Input';
 import { UniversalBtn } from 'components/Buttons/AuthButtons/loginBtn/UniversalBtn';
 import { useNavigate } from 'react-router-dom';
-import { Form, PasswordBar } from './RegistrationForm.styles';
+import { Form } from './RegistrationForm.styles';
 
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -16,14 +16,20 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import PasswordStrenghtMeter from './PasswordStrengthMeter';
+import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required('email is requred field'),
-  password: Yup.string().required('password is requred field'),
+  email: Yup.string()
+    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик, ты молодец!')
+    .required(t('validation.email')),
+  password: Yup.string()
+    .min(6, t('validation.minPasswordLength'))
+    .max(12, t('validation.maxPasswordLength'))
+    .required(t('validation.password')),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords are not the same')
-    .required('confirmPassword is requred field'),
-  name: Yup.string().required('firstName is requred field'),
+    .oneOf([Yup.ref('password')], t('validation.passwordMatch'))
+    .required(t('validation.confirmPassword')),
+  name: Yup.string().required(t('validation.firstName')),
 });
 
 export const RegistrationForm = () => {

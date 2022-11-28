@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const NavigationLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
   &.active {
     font-weight: ${p => p.theme.fontWeights.bold};
     fill: ${p => p.theme.colors.accentColor};
@@ -13,22 +15,24 @@ export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 120px; 
-  @media screen and (max-width: 1279px) {
-    margin-left: 3px;
-  }
+  padding-top: 8px;
+
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
   @media screen and (max-width: 767px) {
-    margin-top: 0px; 
-    padding-top: 75px;
+    margin-top: 0px;
+    /* padding-top: 75px; */
     margin-left: auto;
     margin-right: auto;
+  }
+  @media screen and (max-width: 1279px) {
+    margin-left: 3px;
   }
 `;
 
 export const NavItem = styled.li`
+  display: flex;
   align-items: center;
   font-family: ${p => p.theme.fonts.title};
   font-size: ${p => p.theme.fontSizes.m};
@@ -44,10 +48,10 @@ export const NavItem = styled.li`
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
   @media screen and (max-width: 767px) {
-    margin-bottom:0;
-  
+    margin-bottom: 0;
+    align-items: center;
   }
-  &:not(:last-child){
+  &:not(:last-child) {
     margin-right: 35px;
   }
 `;
@@ -70,7 +74,7 @@ export const Svg = styled.svg`
     height: 18px;
   }
   @media screen and (max-width: 767px) {
-    text-align: center
+    text-align: center;
   }
 `;
 export const TextNav = styled.span`
@@ -94,9 +98,10 @@ export const NavItemCurrency = styled.li`
   }
   @media screen and (min-width: 768px) {
     display: none;
+    text-align: center;
   }
   @media screen and (max-width: 767px) {
-    margin-bottom:0;
-    text-align: center
+    margin-bottom: 0;
+    text-align: center;
   }
 `;
