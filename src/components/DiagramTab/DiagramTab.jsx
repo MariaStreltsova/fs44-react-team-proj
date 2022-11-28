@@ -35,19 +35,20 @@ function DiagramTab() {
   const [year, setYear] = useState(today.getFullYear());
 
   async function fetchData() {
-    let data = null;
+    // let data = null;
     const list = await getCategories();
-    if (month !== 12) {
-      data = await getStatisticYearMonth(year, month);
-    } else {
-      data = await getStatisticYear(year);
-    }
+    // if (month !== 12) {
+    const data = await getStatisticYearMonth(year, month);
+    // } else {
+    // data = await getStatisticYear(year);
+    // }
     setCategoryList(list);
     setStatData(data.data);
   }
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

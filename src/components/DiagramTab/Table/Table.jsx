@@ -31,16 +31,12 @@ function Table({
     .filter(item => item.year === years[0])[0]
     .months.reverse();
   const [months, setMonths] = useState(initialMonths);
-  console.log(months);
   const onYearClick = e => {
     const newMonths = period.filter(item => item.year === +e.target.value)[0]
       .months;
     setMonths(newMonths);
     onYearHandle(e.target.value);
-    onMonthHandle(newMonths[0]);
   };
-
-  console.log(expenses);
 
   return (
     <Section>
