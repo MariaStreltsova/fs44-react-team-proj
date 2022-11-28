@@ -12,7 +12,6 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { useTranslation } from 'react-i18next';
-import { format } from 'fecha';
 import operations from '../../redux/wallet/wallet-operations';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
 import { TablePlaceholder, TitleTablePlaceholder } from './HomeTable.styled';
@@ -207,10 +206,10 @@ const HomeTable = () => {
                       }) => (
                         <TableRow key={_id}>
                           <TableCell align="left">
-                            {format(new Date(date), 'dd.MM.YY')}
+                            {new Date(date).toLocaleDateString("en-gb")}
                           </TableCell>
                           <TableCell align="center">
-                            {direction === 'expense' ? '+' : '-'}
+                            {direction === 'expense' ? '-' : '+'}
                           </TableCell>
                           <TableCell align="left">{category}</TableCell>
                           <TableCell align="left">{comment}</TableCell>
