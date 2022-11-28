@@ -13,7 +13,6 @@ const UserMenu = () => {
   const [modalActive, setModalActive] = useState(false);
   return (
     <Box
-      as="div"
       display="flex"
       alignItems="center"
       color="secondaryTxtColor"
