@@ -44,7 +44,7 @@
   "modal": {
     "title": "Add transaction",
     "direction": {
-      "expence": "Expence",
+      "expence": "Expense",
       "income": "Income"
     },
     "form": {
