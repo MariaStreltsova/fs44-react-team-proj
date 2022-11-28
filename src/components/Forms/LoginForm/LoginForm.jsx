@@ -11,10 +11,13 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import { BASE_URL_FRONT } from 'baseUrl/baseUrl';
 import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Email is requred field'),
-  password: Yup.string().required('Password is requred field'),
+  email: Yup.string()
+    .matches(/\b[\w.-]+@[\w.-]+\.\w{2,4}\b/, 'Тестировщик ты молодец!')
+    .required(t('validation.email')),
+  password: Yup.string().required(t('validation.password')),
 });
 
 export const LoginForm = () => {

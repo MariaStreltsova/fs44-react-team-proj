@@ -15,7 +15,15 @@
   "session": {},
   "alert": {},
   "dialog": {},
-  "validation": {},
+  "validation": {
+    "email": "Поле електронної пошти є обов’язковим",
+    "password": "Поле для введення пароля є обов’язковим",
+    "passwordMatch": "Паролі не однакові",
+    "confirmPassword": "Поле підтвердження пароля є обов’язковим",
+    "firstName": "Ім'я є обов'язковим полем",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
+  },
   "title": {
     "404": {
       "notFound": "Не знайдено!",
@@ -38,6 +46,13 @@
     "sum": "Сума",
     "balance": "Баланс"
   },
+  "errors": {
+    "loginError": "Невірні дані, спробуйте ще раз"
+  },
+  "messages": {
+    "signupSuccess": "Реєстрація успішна, введіть адресу електронної пошти та пароль"
+  },
+
   "placeholderHomeTable": {
     "title": " У вас поки що немає транзакцій"
   },
