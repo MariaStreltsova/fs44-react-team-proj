@@ -1,11 +1,11 @@
-import React, { useState, useCallback} from "react";
+import React, { useState, useCallback, useEffect} from "react";
 import { CircularProgress } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
 import { object, number, string} from "yup";
 import operations from '../../redux/wallet/wallet-operations';
-// import { authOperations } from "redux/auth";
+import { authOperations } from "redux/auth";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, MiddleWrapper, MiddleFormDiv,
@@ -16,12 +16,12 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { allCategories } from './allCategories';
 import CustomizedSelectForFormik from "./CustomizedSelect";
 import { FormControl, InputLabel } from '@mui/material';
 import { MyMenuItem } from "./ModalCustomStyles";
-// import walletSelectors from "../../redux/wallet/wallet-selectors";
+import walletSelectors from "../../redux/wallet/wallet-selectors";
 import { useTranslation } from 'react-i18next';
 
 
@@ -29,7 +29,7 @@ function AddTransactionBtn() {
   const [open, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);  
   const [isChecked, setIsChecked] = useState(true);
-// const [transaction,setTransaction] = useState({})
+ 
   const { t } = useTranslation();
   
   const DIRECTION = {
@@ -38,15 +38,14 @@ function AddTransactionBtn() {
   }
 
   const dispatch = useDispatch();
-  // const categories = useSelector(walletSelectors.getCategories);
+  const categories = useSelector(walletSelectors.getCategories);
 
-  // useEffect(() => {
+  useEffect(() => {
   
-  //     dispatch(operations.fetchCategories());
+      dispatch(operations.fetchCategories());
     
-  // }, [dispatch, categories]);
+  }, [dispatch, categories]);
 
-// const transaction = useSelector(walletSelectors.addTransaction)
 const f = useFormik({
     initialValues: {
     direction: DIRECTION.expense,
@@ -55,15 +54,14 @@ const f = useFormik({
     comment: "",    
     category: "",
     },
-  });
+});
 
   const validationSchema = object().shape({
       amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
-     date: string().required("Choose date"),
+      date: string().required("Choose date"),
       direction: string().required(),
       comment: string().max(15, "You can enter only 15 symbols"),
   });
-
   
   const openModal = () => {
     setIsOpen(true);
@@ -80,24 +78,29 @@ const f = useFormik({
           return "disabled";
     }
   }
-
-  const handleCheck = (e) => {
+ const handleDirection = () => {
+    if (isChecked) {
+      f.values.direction = DIRECTION.income;
+    } else {
+      f.values.direction = DIRECTION.expense;
+  }
+}
+  const handleCheck = () => {
     setIsChecked(!isChecked);
-    // const { value } = e.target.value;
-    // f.setFieldValue("direction", value.value)
     handleToggle();
     handleDirection();
-  } 
-
-  const handleDirection = () => {
-    if (addClass(isChecked)) {
-      f.setFieldValue("direction", DIRECTION.income)
-    };
-    if (addClass(!isChecked)) {
-      f.setFieldValue('direction', DIRECTION.expense)
-    }
   }
-  
+
+  const sendTransaction = (values, { resetForm }) => {
+                setTimeout(() => {
+                  dispatch(operations.addTransaction(values));
+                  dispatch(authOperations.fetchCurrentUser());
+                  console.log(values);
+                  resetForm({ values: "" });
+                }, 1000);
+              }
+ 
+
     return (
       <StyledEngineProvider injectFirst>
         <MyFab onClick={openModal} aria-label="add">
@@ -122,14 +125,7 @@ const f = useFormik({
               initialValues={f.initialValues}
               validationSchema={validationSchema}
               enableReinitialize={true}
-              onSubmit={(values, { resetForm }) => {
-                setTimeout(() => {
-                  dispatch(operations.addTransaction(values));
-                  // dispatch(authOperations.fetchCurrentUser());
-                  console.log(values);
-                  resetForm({ values: "" });
-                }, 1000);
-              }}
+              onSubmit={sendTransaction}
             >
               {({ values, isSubmitting, setFieldValue, handleSubmit}) => (
                 <Form autoComplete="off" onSubmit={(e) => {
@@ -140,24 +136,10 @@ const f = useFormik({
                     
       <BasicFormDiv >
       <SwitchLabel>
-                        <Income
-                          className={addClass(!isChecked)}
-                          value={DIRECTION.income}
-                          name="Income"
-                       
-                        >{t("modal.direction.income")}</Income> 
-                        <SwitchField checked={isChecked}
-                          type="checkbox" name="direction"
-                          onChange={handleCheck}
-                        
-                        />
+                        <Income  className={addClass(!isChecked)} name="Income" >{t("modal.direction.income")}</Income> 
+                        <SwitchField checked={isChecked} type="checkbox" name="direction" onChange={handleCheck} />
                     <Slider />
-                        <Expense
-                          className={addClass(isChecked)}
-                          value={DIRECTION.expense}
-                          name="Expense"
-                        
-                        >{t("modal.direction.expence")}</Expense>
+                        <Expense className={addClass(isChecked)}  name="Expense" >{t("modal.direction.expence")}</Expense>
       </SwitchLabel>
       </BasicFormDiv>
 
@@ -165,12 +147,7 @@ const f = useFormik({
                       <BasicFormDiv item >
                          <FormControl fullWidth>
                           <InputLabel id="demo-simple-select-label" >{t("modal.form.categoriesTitle") }</InputLabel>
-            <Field
-            type="select"
-            name="category"
-            label="Select a category"
-              component={CustomizedSelectForFormik} 
->
+            <Field type="select"  name="category" label={`${t("modal.form.categoriesTitle") }`} component={CustomizedSelectForFormik}  >
               {allCategories.map((category) => (
                 < MyMenuItem
                  value={category.value} key={category.key}
@@ -208,7 +185,7 @@ const f = useFormik({
                               setFieldValue("date", d, true);
                           }}
                         />
-                        <CalendarMonthIcon sx={{color: "#24CCA7", "&:hover": {color: "#FF6596"}}} />
+                        <CalendarMonthIcon sx={{color: "#24CCA7", "&:hover": {color: "#FF6596", cursor: "pointer"}}} />
                       </DataPickerWrapper>
                     </MiddleFormDiv>
                   </MiddleWrapper>
