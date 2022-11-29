@@ -15,6 +15,7 @@ import {
 } from './Table.styled';
 import Selector from './Selector/Selector';
 import numberToMoney from 'util/numberToMoney';
+import { useTranslation } from 'react-i18next';
 
 function Table({
   totalIncome,
@@ -22,15 +23,16 @@ function Table({
   expenses,
   onMonthHandle,
   onYearHandle,
-  startDate,
+  startDate = 0,
 }) {
-  let { period } = periodCreating(startDate);
-
-  let years = period.map(item => item.year).reverse();
+  const { t } = useTranslation();
+  const { period } = periodCreating(startDate);
+  const years = period.map(item => item.year).reverse();
   const initialMonths = period
     .filter(item => item.year === years[0])[0]
     .months.reverse();
   const [months, setMonths] = useState(initialMonths);
+
   const onYearClick = e => {
     const newMonths = period.filter(item => item.year === +e.target.value)[0]
       .months;
@@ -49,15 +51,15 @@ function Table({
         <Selector options={years} id="year" onChange={onYearClick} />
       </SelectorsArea>
       <Head>
-        <HeadText>Category</HeadText>
-        <HeadText>Sum</HeadText>
+        <HeadText>{t('table.category')}</HeadText>
+        <HeadText>{t('table.sum')}</HeadText>
       </Head>
       {expenses.map(element => (
-        <div key={element.category}>
+        <div key={element.category.category_id}>
           <DataRow>
             <ExpBlock>
               <ColorDiv style={{ background: element.color }}></ColorDiv>
-              <span>{element.categoryName}</span>
+              <span>{element.category.name}</span>
             </ExpBlock>
             <span>{numberToMoney(element.totalSum)}</span>
           </DataRow>{' '}
@@ -65,11 +67,11 @@ function Table({
         </div>
       ))}
       <TotalLine>
-        <span>Expenses:</span>
+        <span>{t('table.expenses')}:</span>
         <TotalExp>{numberToMoney(totalExpense)}</TotalExp>
       </TotalLine>
       <TotalLine>
-        <span>Income:</span>
+        <span>{t('table.income')}:</span>
         <TotalInc>{numberToMoney(totalIncome)}</TotalInc>
       </TotalLine>
     </Section>

@@ -8,8 +8,8 @@ export const CurrencyBlock = styled.div`
   height: 174px;
   border-radius: 30px;
   overflow: hidden;
-  margin-top:0px;
-  margin-left:0px;
+  margin-top: 0px;
+  margin-left: 0px;
 
   color: ${theme.colors.lightTxtColor};
   font-size: ${theme.fontSizes.s};
@@ -23,18 +23,18 @@ export const CurrencyBlock = styled.div`
   background-size: 100%;
 
   @media (min-width: 768px) {
-    position: absolute;
-    top :32px; 
-    right: 32px;
+    /* position: relative; */ //! не трогать - сбиваетя лоадер
+    /* top: 32px;
+    right: 32px; */
 
     width: 336px;
     height: 182px;
   }
 
-  @media (min-width: 1280px) {
-    margin-top:32px;
-    position:static;
-    margin-left:2px;
+  @media (min-width: 1279px) {
+    margin-top: 32px;
+    /* position: static; */ //! не трогать - сбиваетя лоадер
+    margin-left: 2px;
     width: 393px;
     height: 347px;
   }
@@ -70,3 +70,17 @@ export const BodyCell = styled.td`
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeights.normal};
 `;
+
+export const Wrapper = styled.div`
+ position: relative;
+ top: 0px;
+    right: 0px;
+  @media (min-width: 768px) {
+    position: absolute; //! не трогать - сбиваетя лоадер
+    top: 32px;
+    right: 32px;
+
+    @media (min-width: 1279px) {
+      position: relative;
+      top: 0px;
+    right: 0px;}`
