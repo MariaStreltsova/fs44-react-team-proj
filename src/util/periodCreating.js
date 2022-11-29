@@ -1,5 +1,6 @@
 import monthsNames from './monthNames';
 
+// получение массива год - количество месяцев, начиная с даты регистрации по текущий месяц
 function periodCreating(date) {
   // получаем текущий месяц и год
   const currentDate = new Date();

@@ -78,8 +78,8 @@
       "p": "Ви дійсно бажаете вийти?"
     },
     "button": {
-      "button-no": "Ні",
-      "button-yes": "Так"
+      "button-no": "НІ",
+      "button-yes": "ТАК"
     }
   }
 }

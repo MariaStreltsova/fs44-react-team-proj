@@ -2,11 +2,9 @@ import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
-import {
-  getCategories,
-  getStatisticYear,
-  getStatisticYearMonth,
-} from 'api/wallet';
+
+import { getStatisticYearMonth } from 'api/wallet';
+
 import theme from 'theme';
 import chartDataCreating from 'util/chartDataCreating';
 import statTableDataCreating from 'util/statTableDataCreating';
@@ -29,66 +27,65 @@ function DiagramTab() {
   ];
   const [statData, setStatData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryList, setCategoryList] = useState([]);
-  const today = new Date();
-  const [month, setMonth] = useState(today.getMonth());
-  const [year, setYear] = useState(today.getFullYear());
+  const [date, setDate] = useState({ year: null, month: null });
 
-  async function fetchData() {
-    // let data = null;
-    const list = await getCategories();
-    // if (month !== 12) {
-    const data = await getStatisticYearMonth(year, month);
-    // } else {
-    // data = await getStatisticYear(year);
-    // }
-    setCategoryList(list);
-    setStatData(data.data);
-  }
-
+  // при первом рендере заполняем дату текущим годом и месяцем
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const today = new Date();
+    setDate({ year: today.getFullYear(), month: today.getMonth() });
   }, []);
 
+  // при получении данных с сервера запускаем рендер данных
   useEffect(() => {
-    if (Object.keys(statData).length > 0 && categoryList.length > 0) {
+    if (statData && Object.keys(statData).length > 0) {
       setIsLoading(false);
     }
-  }, [statData, categoryList]);
+  }, [statData]);
 
+  // при выборе месяца вносим в стейт номер месяца
   const onMonthHandle = e => {
-    setMonth(monthsNames.indexOf(e));
+    setDate({ ...date, month: monthsNames.indexOf(e) });
   };
+
+  // при выборе года вносим его в стейт
   const onYearHandle = e => {
-    setYear(e);
+    setDate({ ...date, year: e });
   };
 
+  // при изменении года-месяца делаем запрос на сервер, ответ вносим в стейт
   useEffect(() => {
-    fetchData();
-  }, [year, month]);
+    if (date.month !== null && date.year !== null) {
+      getStatisticYearMonth(date.year, date.month).then(data =>
+        setStatData(data.data)
+      );
+    }
+  }, [date]);
 
-  return isLoading ? (
-    <CurrencyLoader />
-  ) : (
+  return (
     <DiagramBlock>
-      <div>
-        <TitleStat>Statistics</TitleStat>
-        <Chart
-          totalExpense={statData.totalExpense}
-          expenses={chartDataCreating(statData.expenses)}
-          backgroundColor={theme.chartColors}
-          isLoading={isLoading}
-        />
-      </div>
-      <Table
-        totalIncome={statData.totalIncome}
-        totalExpense={statData.totalExpense}
-        expenses={statTableDataCreating(statData.expenses, categoryList)}
-        onMonthHandle={onMonthHandle}
-        onYearHandle={onYearHandle}
-        startDate={1400839527000}
-      />
+      {isLoading ? (
+        <CurrencyLoader />
+      ) : (
+        <>
+          <div>
+            <TitleStat>Statistics</TitleStat>
+            <Chart
+              totalExpense={statData.totalExpense}
+              expenses={chartDataCreating(statData.expenses)}
+              backgroundColor={theme.chartColors}
+              isLoading={isLoading}
+            />
+          </div>
+          <Table
+            totalIncome={statData.totalIncome}
+            totalExpense={statData.totalExpense}
+            expenses={statTableDataCreating(statData.expenses)}
+            onMonthHandle={onMonthHandle}
+            onYearHandle={onYearHandle}
+            startDate={statData.firstTransactionDate}
+          />
+        </>
+      )}
     </DiagramBlock>
   );
 }
