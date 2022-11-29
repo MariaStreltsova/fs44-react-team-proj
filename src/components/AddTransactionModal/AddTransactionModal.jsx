@@ -1,11 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Select,  FormControl, InputLabel} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import CloseIcon from '@mui/icons-material/Close';
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import { Form, Formik, Field, useFormik } from 'formik';
 import { TextField } from 'formik-mui';
 import { object, number, string } from 'yup';
 import operations from '../../redux/wallet/wallet-operations';
 import { authOperations } from 'redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import walletSelectors from '../../redux/wallet/wallet-selectors';
 import 'react-datepicker/dist/react-datepicker.css';
 import {
   MyFab,
@@ -21,26 +26,17 @@ import {
   BasicFormDiv,
   BasicWrapper,
   BtnDiv,
-} from './ModalCustomStyles';
-import {
+  MyMenuItem,
   SwitchLabel,
   Income,
   Expense,
   SwitchField,
   Slider,
-} from './ToggleSwitch.styled';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import StyledEngineProvider from '@mui/material/StyledEngineProvider';
-import CloseIcon from '@mui/icons-material/Close';
+} from './addTransactionModal.styled';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { FormControl, InputLabel } from '@mui/material';
-import { MyMenuItem } from './ModalCustomStyles';
-import walletSelectors from '../../redux/wallet/wallet-selectors';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Select from '@mui/material/Select';
 
 const MenuProps = {
   PaperProps: {
@@ -83,10 +79,7 @@ function AddTransactionBtn() {
   });
 
   const validationSchema = object().shape({
-    amount: number()
-      .required('Provide an amount')
-      .min(1, 'Your sum must be at least 1')
-      .max(100000, 'Maximum sum if 100000'),
+    amount: number().min(1, 'Your sum must be at least 1').max(100000, 'Maximum sum is 100000').required('Provide an amount'),
     date: number().required('Choose date'),
     direction: string().required(),
     comment: string().max(15, 'You can enter only 15 symbols'),
@@ -133,6 +126,7 @@ function AddTransactionBtn() {
       resetForm({ values: '' });
       closeModal();
     }, 1000);
+    toast.success(t("messages.transactionSuccess"));
   };
 
   return (
