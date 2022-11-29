@@ -3,7 +3,7 @@ import authBackgroundImage from '../../images/authBg.jpg';
 
 export const RootWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,12 +21,12 @@ export const WrapperChildren = styled.div`
   @media screen and (max-width: 1279px) {
     padding-left: 32px;
     padding-right: 32px;
-    max-width:768px
+    max-width: 768px;
   }
   @media screen and (max-width: 767px) {
     padding-left: 20px;
     padding-right: 20px;
-    max-width:380px;
+    max-width: 380px;
   } ;
 `;
 export const WrapperChildrens = styled.div`
