@@ -9,8 +9,10 @@ import {
 import { useState, useEffect } from 'react';
 import CurrencyLoader from 'UI/loaders/CurrencyLoader';
 import fetchCurrency from 'api/currency';
+import { useTranslation } from 'react-i18next';
 
 function Currency() {
+  const { t } = useTranslation();
   const [currencyData, setCurrencyData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -55,9 +57,9 @@ function Currency() {
       <HeadTable>
         <tbody>
           <tr>
-            <HeadCell>Currency</HeadCell>
-            <HeadCell>Purchase</HeadCell>
-            <HeadCell>Sale</HeadCell>
+            <HeadCell>{t('currency.currency')}</HeadCell>
+            <HeadCell>{t('currency.purchase')}</HeadCell>
+            <HeadCell>{t('currency.sale')}</HeadCell>
           </tr>
         </tbody>
       </HeadTable>
