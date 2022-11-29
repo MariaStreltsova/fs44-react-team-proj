@@ -81,5 +81,16 @@
       "button-no": "НІ",
       "button-yes": "ТАК"
     }
+  },
+  "currency": {
+    "currency": "Валюта",
+    "purchase": "Продаж",
+    "sale": "Купівля"
+  },
+  "table": {
+    "category": "Категорія",
+    "sum": "Сума",
+    "expenses": "Всього витрат",
+    "income": "Всього доходу"
   }
 }

@@ -81,5 +81,16 @@
       "button-no": "NO",
       "button-yes": "YES"
     }
+  },
+  "currency": {
+    "currency": "Currency",
+    "purchase": "Purchase",
+    "sale": "Sale"
+  },
+  "table": {
+    "category": "Category",
+    "sum": "Sum",
+    "expenses": "Expenses",
+    "income": "Income"
   }
 }

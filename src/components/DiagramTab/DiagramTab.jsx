@@ -2,15 +2,15 @@ import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
-
+import { useTranslation } from 'react-i18next';
 import { getStatisticYearMonth } from 'api/wallet';
-
 import theme from 'theme';
 import chartDataCreating from 'util/chartDataCreating';
 import statTableDataCreating from 'util/statTableDataCreating';
 import CurrencyLoader from 'UI/loaders/CurrencyLoader';
 
 function DiagramTab() {
+  const { t } = useTranslation();
   const monthsNames = [
     'January',
     'February',
@@ -68,7 +68,7 @@ function DiagramTab() {
       ) : (
         <>
           <div>
-            <TitleStat>Statistics</TitleStat>
+            <TitleStat>{t('title.navigation.Statistics')}</TitleStat>
             <Chart
               totalExpense={statData.totalExpense}
               expenses={chartDataCreating(statData.expenses)}
