@@ -31,7 +31,6 @@ function DiagramTab() {
   const [month, setMonth] = useState(today.getMonth());
   const [year, setYear] = useState(today.getFullYear());
 
-
   async function fetchData() {
     // let data = null;
     // if (month !== 12) {
@@ -47,7 +46,6 @@ function DiagramTab() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   useEffect(() => {
     if (Object.keys(statData).length > 0) {
       setIsLoading(false);
@@ -61,21 +59,21 @@ function DiagramTab() {
     setYear(e);
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      // let data = null;
-      const list = await getCategories();
-      // if (month !== 12) {
-      const data = await getStatisticYearMonth(year, month);
-      // } else {
-      // data = await getStatisticYear(year);
-      // }
-      setCategoryList(list);
-      setStatData(data.data);
-    }
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year, month]);
+  // useEffect(() => {
+  //   // async function fetchData() {
+  //   //   // let data = null;
+  //   //   const list = await getCategories();
+  //   //   // if (month !== 12) {
+  //   //   const data = await getStatisticYearMonth(year, month);
+  //   //   // } else {
+  //   //   // data = await getStatisticYear(year);
+  //   //   // }
+  //   //   setCategoryList(list);
+  //   //   setStatData(data.data);
+  //   // }
+  //   fetchData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [year, month]);
 
   return isLoading ? (
     <CurrencyLoader />
