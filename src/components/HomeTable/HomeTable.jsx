@@ -205,7 +205,7 @@ const HomeTable = () => {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map(
                       ({
-                        _id,
+                        id,
                         date,
                         direction,
                         category,
@@ -213,7 +213,7 @@ const HomeTable = () => {
                         amount,
                         balanceAfter,
                       }) => (
-                        <TableRow key={_id}>
+                        <TableRow key={id}>
                           <TableCell align="left">
                             {format(new Date(date), 'DD.MM.YY')}
                           </TableCell>

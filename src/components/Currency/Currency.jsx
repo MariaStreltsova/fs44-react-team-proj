@@ -10,8 +10,10 @@ import {
 import { useState, useEffect } from 'react';
 import CurrencyLoader from 'UI/loaders/CurrencyLoader';
 import fetchCurrency from 'api/currency';
+import { useTranslation } from 'react-i18next';
 
 function Currency() {
+  const { t } = useTranslation();
   const [currencyData, setCurrencyData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

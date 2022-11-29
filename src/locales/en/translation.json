@@ -51,7 +51,11 @@
     "maxPasswordLength": "Maximum password length 12 characters"
   },
   "messages": {
-    "signupSuccess": "Registration successful, please enter your email and password"
+    "signupSuccess": "Registration successful, please enter your email and password",
+    "signupError": "Sorry, Register failed. Try again.",
+    "refreshError": "Sorry, your token is dead or time is out",
+    "transactionSuccess": "Your transaction was successful",
+    "transactionError": "Something went wrong"
   },
   "placeholderHomeTable": {
     "title": " You have no transactions yet"
@@ -81,5 +85,16 @@
       "button-no": "NO",
       "button-yes": "YES"
     }
+  },
+  "currency": {
+    "currency": "Currency",
+    "purchase": "Purchase",
+    "sale": "Sale"
+  },
+  "table": {
+    "category": "Category",
+    "sum": "Sum",
+    "expenses": "Expenses",
+    "income": "Income"
   }
 }

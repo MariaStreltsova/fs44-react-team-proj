@@ -11,7 +11,7 @@ const register = createAsyncThunk('auth/signup', async data => {
     token.set(result.token);
     return result;
   } catch (error) {
-    toast.error(`Sorry, Register failed. Try again.`);
+    toast.error(t("messages.signupError"));
   }
 });
 
@@ -52,7 +52,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await api.refreshUser();
       return data;
     } catch (error) {
-      toast.error('Sorry, your token is dead or time is out ');
+      toast.error(t("messages.refreshError"));
     }
   }
 );
