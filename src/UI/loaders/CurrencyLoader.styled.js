@@ -8,8 +8,8 @@ export const DivLoader = styled.div`
   display: flex;
   justify-content: center;
   /* width: 100%;
-  height: 100%; */
-  /* padding-top: 30px; */
+  height: 100%;
+  padding-top: 60px; */
 `;
 
 export const ImgLoader = styled.img`

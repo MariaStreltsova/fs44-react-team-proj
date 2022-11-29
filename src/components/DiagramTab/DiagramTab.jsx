@@ -2,11 +2,9 @@ import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
-import {
-  getCategories,
-  // getStatisticYear,
-  getStatisticYearMonth,
-} from 'api/wallet';
+
+import { getStatisticYearMonth } from 'api/wallet';
+
 import theme from 'theme';
 import chartDataCreating from 'util/chartDataCreating';
 import statTableDataCreating from 'util/statTableDataCreating';
@@ -29,16 +27,32 @@ function DiagramTab() {
   ];
   const [statData, setStatData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryList, setCategoryList] = useState([]);
   const today = new Date();
   const [month, setMonth] = useState(today.getMonth());
   const [year, setYear] = useState(today.getFullYear());
 
+
+  async function fetchData() {
+    // let data = null;
+    // if (month !== 12) {
+    const data = await getStatisticYearMonth(year, month);
+    // } else {
+    // data = await getStatisticYear(year);
+    // }
+    setStatData(data.data);
+  }
+
   useEffect(() => {
-    if (Object.keys(statData).length > 0 && categoryList.length > 0) {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+  useEffect(() => {
+    if (Object.keys(statData).length > 0) {
       setIsLoading(false);
     }
-  }, [statData, categoryList]);
+  }, [statData]);
 
   const onMonthHandle = e => {
     setMonth(monthsNames.indexOf(e));
@@ -60,6 +74,7 @@ function DiagramTab() {
       setStatData(data.data);
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, month]);
 
   return isLoading ? (
@@ -78,10 +93,10 @@ function DiagramTab() {
       <Table
         totalIncome={statData.totalIncome}
         totalExpense={statData.totalExpense}
-        expenses={statTableDataCreating(statData.expenses, categoryList)}
+        expenses={statTableDataCreating(statData.expenses)}
         onMonthHandle={onMonthHandle}
         onYearHandle={onYearHandle}
-        startDate={1400839527000}
+        startDate={statData.firstTransactionDate}
       />
     </DiagramBlock>
   );

@@ -10,6 +10,7 @@ ChartJS.register(ArcElement, Tooltip);
 function Chart({ totalExpense, expenses, backgroundColor, isLoading }) {
   const totalInChart = numberToMoney(totalExpense);
   const data = Object.values(expenses);
+
   const chartData = {
     datasets: [
       {
