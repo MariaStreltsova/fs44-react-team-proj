@@ -2,7 +2,9 @@ import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
+
 import { getStatisticYearMonth } from 'api/wallet';
+
 import theme from 'theme';
 import chartDataCreating from 'util/chartDataCreating';
 import statTableDataCreating from 'util/statTableDataCreating';
@@ -29,6 +31,7 @@ function DiagramTab() {
   const [month, setMonth] = useState(today.getMonth());
   const [year, setYear] = useState(today.getFullYear());
 
+
   async function fetchData() {
     // let data = null;
     // if (month !== 12) {
@@ -44,6 +47,7 @@ function DiagramTab() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
   useEffect(() => {
     if (Object.keys(statData).length > 0) {
       setIsLoading(false);
@@ -58,6 +62,17 @@ function DiagramTab() {
   };
 
   useEffect(() => {
+    async function fetchData() {
+      // let data = null;
+      const list = await getCategories();
+      // if (month !== 12) {
+      const data = await getStatisticYearMonth(year, month);
+      // } else {
+      // data = await getStatisticYear(year);
+      // }
+      setCategoryList(list);
+      setStatData(data.data);
+    }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year, month]);

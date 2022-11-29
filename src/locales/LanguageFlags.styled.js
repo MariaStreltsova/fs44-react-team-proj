@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Flags = styled.div`
-
+  z-index: 10;
 
   &:hover,
   &:focus {
