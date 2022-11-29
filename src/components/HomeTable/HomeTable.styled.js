@@ -52,7 +52,7 @@ export const ColoredSum = styled.span`
 `;
 
 export const CardsContainer = styled.div`
-  max-width: 420px;
+  max-width: 300px;
   margin: 0 auto;
   margin-top: 32px;
 `;
