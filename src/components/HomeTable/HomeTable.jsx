@@ -71,7 +71,7 @@ const HomeTable = () => {
   ];
   const dispatch = useDispatch();
   const transactions = useSelector(walletSelectors.getTransactions);
-  const [order, setOrder] = useState(SORT_TYPES.asc);
+  const [order, setOrder] = useState(SORT_TYPES.desc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
