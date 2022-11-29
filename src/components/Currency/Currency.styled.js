@@ -24,14 +24,14 @@ export const CurrencyBlock = styled.div`
 
   @media (min-width: 768px) {
     /* position: relative; */ //! не трогать - сбиваетя лоадер
-    top: 32px;
-    right: 32px;
+    /* top: 32px;
+    right: 32px; */
 
     width: 336px;
     height: 182px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1279px) {
     margin-top: 32px;
     /* position: static; */ //! не трогать - сбиваетя лоадер
     margin-left: 2px;
@@ -70,3 +70,17 @@ export const BodyCell = styled.td`
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeights.normal};
 `;
+
+export const Wrapper = styled.div`
+ position: relative;
+ top: 0px;
+    right: 0px;
+  @media (min-width: 768px) {
+    position: absolute; //! не трогать - сбиваетя лоадер
+    top: 32px;
+    right: 32px;
+
+    @media (min-width: 1279px) {
+      position: relative;
+      top: 0px;
+    right: 0px;}`

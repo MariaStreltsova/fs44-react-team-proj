@@ -5,6 +5,7 @@ import {
   HeadCell,
   CurrencyBlock,
   BodyCell,
+  Wrapper,
 } from './Currency.styled';
 import { useState, useEffect } from 'react';
 import CurrencyLoader from 'UI/loaders/CurrencyLoader';
@@ -53,41 +54,43 @@ function Currency() {
   }, [currencyData]);
 
   return (
-    <CurrencyBlock>
-      <HeadTable>
-        <tbody>
-          <tr>
-            <HeadCell>{t('currency.currency')}</HeadCell>
-            <HeadCell>{t('currency.purchase')}</HeadCell>
-            <HeadCell>{t('currency.sale')}</HeadCell>
-          </tr>
-        </tbody>
-      </HeadTable>
-      {isLoading ? (
-        <CurrencyLoader />
-      ) : (
-        <DataTable>
+    <Wrapper>
+      <CurrencyBlock>
+        <HeadTable>
           <tbody>
             <tr>
-              <BodyCell>USD</BodyCell>
-              <BodyCell>{currencyData[0].rateBuy.toFixed(2)}</BodyCell>
-              <BodyCell>{currencyData[0].rateSell.toFixed(2)}</BodyCell>
-            </tr>
-            <tr>
-              <BodyCell>EUR</BodyCell>
-              <BodyCell>{currencyData[1].rateBuy.toFixed(2)}</BodyCell>
-              <BodyCell>{currencyData[1].rateSell.toFixed(2)}</BodyCell>
-            </tr>
-            <tr>
-              <BodyCell>MXN</BodyCell>
-              <BodyCell colSpan="2">
-                {currencyData[2].rateCross.toFixed(2)}
-              </BodyCell>
+              <HeadCell>Currency</HeadCell>
+              <HeadCell>Purchase</HeadCell>
+              <HeadCell>Sale</HeadCell>
             </tr>
           </tbody>
-        </DataTable>
-      )}
-    </CurrencyBlock>
+        </HeadTable>
+        {isLoading ? (
+          <CurrencyLoader />
+        ) : (
+          <DataTable>
+            <tbody>
+              <tr>
+                <BodyCell>USD</BodyCell>
+                <BodyCell>{currencyData[0].rateBuy.toFixed(2)}</BodyCell>
+                <BodyCell>{currencyData[0].rateSell.toFixed(2)}</BodyCell>
+              </tr>
+              <tr>
+                <BodyCell>EUR</BodyCell>
+                <BodyCell>{currencyData[1].rateBuy.toFixed(2)}</BodyCell>
+                <BodyCell>{currencyData[1].rateSell.toFixed(2)}</BodyCell>
+              </tr>
+              <tr>
+                <BodyCell>MXN</BodyCell>
+                <BodyCell colSpan="2">
+                  {currencyData[2].rateCross.toFixed(2)}
+                </BodyCell>
+              </tr>
+            </tbody>
+          </DataTable>
+        )}
+      </CurrencyBlock>
+    </Wrapper>
   );
 }
 
