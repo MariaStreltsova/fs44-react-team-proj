@@ -1,19 +1,29 @@
-import AddTransactionBtn from 'components/AddTransactionModal/AddTransactionModal';
 import Header from 'components/header/Header';
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import { RootWrapper } from './AuthLayout.styles';
-import { Navigation } from '../../components/Navigation/Navigation';
+import {
+  RootWrapper,
+  WrapperChildren,
+  WrapperChildrens,
+} from './AuthLayout.styles';
 
-const AuthLayout = () => {
+import { Navigation } from '../../components/Navigation/Navigation';
+import Balance from 'components/Balance';
+import Currency from 'components/Currency/Currency';
+import useSizeScreen from 'hooks/useSizeScreen';
+
+const AuthLayout = ({ children }) => {
+  const sizeScreen = useSizeScreen();
   return (
     <RootWrapper>
       <Header />
-      <Navigation />
-      <Suspense fallback={null}>
-        <AddTransactionBtn />
-        <Outlet />
-      </Suspense>
+      <WrapperChildren>
+        <Navigation />
+        {sizeScreen > 767 && <Balance />}
+        {sizeScreen > 767 && <Currency />}
+        <WrapperChildrens>
+          <Suspense fallback={null}>{children}</Suspense>
+        </WrapperChildrens>
+      </WrapperChildren>
     </RootWrapper>
   );
 };

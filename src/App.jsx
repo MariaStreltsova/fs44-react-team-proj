@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import '../node_modules/flag-icons/css/flag-icons.min.css';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
@@ -7,11 +8,15 @@ import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
-import '../node_modules/flag-icons/css/flag-icons.min.css';
+// import { PeoleSvg } from 'images/icons/PeopleSvg';
+import DashBoard from 'pages/DashBoard/DashBoard';
+import Statistics from 'pages/Statistics/Statistics';
+// import SizeScreenRoute from 'hocs/Route/SizeScreenRoute';
+import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
+import CircularUnderLoad from 'components/Loader/Loader';
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
-const DashBoard = lazy(() => import('./pages/DashBoard/DashBoard'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,9 +27,9 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <h1>Refreshing user...</h1>
+    <CircularUnderLoad />
   ) : (
-    <Suspense fallback={<h1>Loading profile.</h1>}>
+    <Suspense fallback={<CircularUnderLoad />}>
       <Routes>
         <Route
           path="/login"
@@ -36,13 +41,13 @@ export const App = () => {
                 </NonAuthLayout>
               }
               restricted
-              redirectTo="/dashboard"
+              redirectTo="/home"
             />
           }
         />
 
         <Route
-          path="/registration"
+          path="/signup"
           element={
             <PublicRoute
               component={
@@ -51,18 +56,46 @@ export const App = () => {
                 </NonAuthLayout>
               }
               restricted
-              redirectTo="/dashboard"
+              redirectTo="/home"
             />
           }
         />
 
         <Route
-          path="/dashboard"
+          path="/home"
           element={
             <PrivateRoute
               component={
                 <AuthLayout>
                   <DashBoard />
+                </AuthLayout>
+              }
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route
+          path="/statistics"
+          element={
+            <PrivateRoute
+              component={
+                <AuthLayout>
+                  <Statistics />
+                </AuthLayout>
+              }
+              redirectTo="/login"
+            />
+          }
+        />
+
+        <Route
+          path="/currency"
+          element={
+            <PrivateRoute
+              component={
+                <AuthLayout>
+                  <CurrencyPage />
                 </AuthLayout>
               }
               redirectTo="/login"

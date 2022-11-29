@@ -1,27 +1,45 @@
 import authApi from './authApi';
 
-export const getUserBalance = async () => {
+export const getTransactions = async () => {
   try {
-    const result = await authApi.get('/user/balance');
-
+    const result = await authApi.get('/api/transactions');
     return result.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const addTransaction = async () => {
+export const addTransaction = async (transaction) => {
   try {
-    const result = await authApi.post('/transactions');
-    return result.data;
+    const {data: response} = await authApi.post('/api/transactions', transaction);
+    return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getTransactionsList = async () => {
+export const getCategories = async () => {
   try {
-    const result = await authApi.get('/transactions');
+    const {data: response} = await authApi.get('/api/transactions/categories');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getStatisticYearMonth = async (year, month) => {
+  try {
+    const result = await authApi.get(
+      `/api/transactions/statistic/${year}/${month}`
+    );
+    return result.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getStatisticYear = async year => {
+  try {
+    const result = await authApi.get(`/api/transactions/statistic/${year}`);
     return result.data;
   } catch (error) {
     throw error;

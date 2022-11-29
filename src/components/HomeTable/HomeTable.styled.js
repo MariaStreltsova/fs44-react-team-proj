@@ -1,39 +1,15 @@
 import styled from 'styled-components';
 import theme from '../../theme';
-import { makeStyles } from '@mui/styles';
-
-export const useTableStyles = makeStyles({
-  table: {
-    fontFamily: 'Circle',
-    '& @media screen and (min-width: 768px)': {
-      width: '704px',
-    },
-    '& @media screen and (min-width: 1280px)': {
-      width: '715px',
-    },
-  },
-
-  tableHeadRow: {
-    backgroundColor: '#fff',
-    '& th:first-of-type': {
-      borderRadius: '30px 0px 0px 30px',
-    },
-    '& th:last-of-type': {
-      borderRadius: '0px 30px 30px 0px',
-    },
-  },
-});
-
-// ===================================================
 
 export const TransactionsWrap = styled.ul`
   list-style: none;
   padding: 0;
+  height: 60vh;
+  overflow: hidden;
+  overflow-y: scroll;
 `;
 export const TransactionCardWrap = styled.li`
   margin-top: 10px;
-  height: 70vh;
-  // overflow: scroll;
 `;
 export const TransactionCardList = styled.ul`
   list-style: none;
@@ -64,7 +40,7 @@ span:first-of-type {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    line-height: 1.25;
+    line-height: 24px;
     padding: 10px 0 10px 0;
   }:not(:last-of-type) {
     border-bottom: 1px solid #dcdcdf;`;
@@ -78,4 +54,34 @@ export const ColoredSum = styled.span`
 export const CardsContainer = styled.div`
   max-width: 420px;
   margin: 0 auto;
+  margin-top: 32px;
+`;
+
+export const TablePlaceholder = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const TitleTablePlaceholder = styled.h3`
+  text-align: center;
+  font-family: ${theme.fonts.title};
+  font-style: normal;
+  font-size: 24px;
+  line-height: 24px;
+`;
+export const PlaceholderContent = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+export const StyledContainer = styled.div`
+  @media (min-width: 768px) {
+    width: 704px;
+  }
+  @media (min-width: 1280px) {
+    width: 715px;
+  }
 `;

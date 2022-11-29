@@ -1,17 +1,85 @@
 {
   "button": {
     "language": "Language",
-    "goHome": "To main"
+    "goHome": "To main",
+    "login": "LOG IN",
+    "register": "REGISTER"
   },
-  "input": {},
+  "input": {
+    "email": "E-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "exit": "Exit"
+  },
   "session": {},
   "alert": {},
   "dialog": {},
-  "validation": {},
+
   "title": {
     "404": {
       "notFound": "Not found!",
       "notExist": "This page does not exist"
+    },
+    "navigation": {
+      "Home": "Home",
+      "Statistics": "Statistics"
+    },
+    "header": {
+      "Hi": "Hi"
+    }
+  },
+  "balance": { "title": "Your balance" },
+  "homeTable": {
+    "date": "Date",
+    "type": "Type",
+    "category": "Category",
+    "comment": "Comment",
+    "sum": "Sum",
+    "balance": "Balance"
+  },
+  "errors": {
+    "loginError": "Invalid data, please try again"
+  },
+  "validation": {
+    "email": "Email is requred field",
+    "password": "Password is requred field",
+    "passwordMatch": "Passwords are not the same",
+    "confirmPassword": "Confirm Password is requred field",
+    "firstName": "First name is requred field",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
+  },
+  "messages": {
+    "signupSuccess": "Registration successful, please enter your email and password"
+  },
+  "placeholderHomeTable": {
+    "title": " You have no transactions yet"
+  },
+  "modal": {
+    "title": "Add transaction",
+    "direction": {
+      "expence": "Expense",
+      "income": "Income"
+    },
+    "form": {
+      "categoriesTitle": "Select a category",
+      "amountLabel": "Amount ($)",
+      "comment": "Comment"
+    },
+    "button": {
+      "adding": "Adding",
+      "add": "Add",
+      "cancel": "Cancel"
+    }
+  },
+  "modal-close": {
+    "title": {
+      "p": "Do you really want to leave?"
+    },
+    "button": {
+      "button-no": "NO",
+      "button-yes": "YES"
     }
   }
 }

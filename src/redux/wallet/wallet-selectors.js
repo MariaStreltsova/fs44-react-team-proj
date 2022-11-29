@@ -1,9 +1,11 @@
-const getUserBalance = state => state.wallet.balance;
-export const getCategoriesList = state => state.wallet.categoriesList;
+const getTransactions = state => state.wallet.transactions;
+const getCategories = state => state.wallet.transactions;
+export const getIsLoading = state => state.wallet.isLoading;
 
 const walletSelectors = {
-  getUserBalance,
-  getCategoriesList,
+  getTransactions,
+  getCategories,
+  getIsLoading,
 };
 
 export default walletSelectors;

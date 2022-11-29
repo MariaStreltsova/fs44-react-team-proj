@@ -1,48 +1,89 @@
-import React from 'react';
+import Table from './Table/Table';
+import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
-import { H2Stat } from './DiagramTab.styled';
+import { TitleStat, DiagramBlock } from './DiagramTab.styled';
+import {
+  getCategories,
+  // getStatisticYear,
+  getStatisticYearMonth,
+} from 'api/wallet';
+import theme from 'theme';
+import chartDataCreating from 'util/chartDataCreating';
+import statTableDataCreating from 'util/statTableDataCreating';
+import CurrencyLoader from 'UI/loaders/CurrencyLoader';
 
 function DiagramTab() {
-  const data = {
-    income: 25000,
-    expenses: 24000,
-    details: {
-      basic: 8700,
-      products: 3800.74,
-      car: 1500,
-      selfCare: 800,
-      child: 2208.5,
-      household: 300,
-      education: 3400,
-      leisure: 1230,
-      other: 610,
-    },
+  const monthsNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const [statData, setStatData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [categoryList, setCategoryList] = useState([]);
+  const today = new Date();
+  const [month, setMonth] = useState(today.getMonth());
+  const [year, setYear] = useState(today.getFullYear());
+
+  useEffect(() => {
+    if (Object.keys(statData).length > 0 && categoryList.length > 0) {
+      setIsLoading(false);
+    }
+  }, [statData, categoryList]);
+
+  const onMonthHandle = e => {
+    setMonth(monthsNames.indexOf(e));
+  };
+  const onYearHandle = e => {
+    setYear(e);
   };
 
-  const backgroundColor = [
-    'rgba(254, 208, 87, 1)',
-    'rgba(255, 216, 208, 1)',
-    'rgba(253, 148, 152, 1)',
-    'rgba(197, 186, 255, 1)',
-    'rgba(110, 120, 232, 1)',
-    'rgba(74, 86, 226, 1)',
-    'rgba(129, 225, 255, 1)',
-    'rgba(36, 204, 167, 1)',
-    'rgba(0, 173, 132, 1)',
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      // let data = null;
+      const list = await getCategories();
+      // if (month !== 12) {
+      const data = await getStatisticYearMonth(year, month);
+      // } else {
+      // data = await getStatisticYear(year);
+      // }
+      setCategoryList(list);
+      setStatData(data.data);
+    }
+    fetchData();
+  }, [year, month]);
 
-  const { expenses, details } = data;
-
-  return (
-    <div>
-      <H2Stat>Statistics</H2Stat>
-      <Chart
-        expenses={expenses}
-        details={details}
-        backgroundColor={backgroundColor}
+  return isLoading ? (
+    <CurrencyLoader />
+  ) : (
+    <DiagramBlock>
+      <div>
+        <TitleStat>Statistics</TitleStat>
+        <Chart
+          totalExpense={statData.totalExpense}
+          expenses={chartDataCreating(statData.expenses)}
+          backgroundColor={theme.chartColors}
+          isLoading={isLoading}
+        />
+      </div>
+      <Table
+        totalIncome={statData.totalIncome}
+        totalExpense={statData.totalExpense}
+        expenses={statTableDataCreating(statData.expenses, categoryList)}
+        onMonthHandle={onMonthHandle}
+        onYearHandle={onYearHandle}
+        startDate={1400839527000}
       />
-      <div>Table</div>
-    </div>
+    </DiagramBlock>
   );
 }
 

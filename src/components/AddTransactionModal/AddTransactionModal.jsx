@@ -1,196 +1,229 @@
-import React, { useState, useCallback } from "react";
-import { Modal, Box, Typography, Stack, Fab, Button, CircularProgress, Grid, } from "@mui/material";
+import React, { useState, useCallback, useEffect} from "react";
+import { CircularProgress } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Form, Formik, Field, useFormik} from 'formik';
 import { TextField} from "formik-mui";
-import { object, number, string, boolean} from "yup";
-import SelectFieldModal from "./SelectFieldModal";
-import ToggleSwitch from "./ToggleSwitch";
-// import DatePicker from "react-datepicker";
+import { object, number, string} from "yup";
+import operations from '../../redux/wallet/wallet-operations';
+import { authOperations } from "redux/auth";
 import "react-datepicker/dist/react-datepicker.css";
-import {DataPickerWrapper, MyDataPicker } from "./CustomizedDataPicker";
+import {
+  MyFab, MyBox, MyModal, DataPickerWrapper, MyDataPicker, ModalBtn, ModalHeader, MiddleWrapper, MiddleFormDiv,
+  CloseFab, BasicFormDiv, BasicWrapper, BtnDiv, 
+} from "./ModalCustomStyles";
+import {  SwitchLabel, Income, Expense, SwitchField, Slider } from "./ToggleSwitch.styled";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
+import CloseIcon from '@mui/icons-material/Close';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { allCategories } from './allCategories';
+import { FormControl, InputLabel } from '@mui/material';
+import { MyMenuItem } from "./ModalCustomStyles";
+import walletSelectors from "../../redux/wallet/wallet-selectors";
+import { useTranslation } from 'react-i18next';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Select from '@mui/material/Select';
 
-// import {
-//     addTransaction,
-//     getTransactionsList,
-// } from '../../redux/wallet/wallet-operations';
-// import { useDispatch} from 'react-redux'
-// import { getCategoriesList } from '../../redux/wallet/wallet-selectors';
-
-const style = {
-  position: "absolute",
-    top: 0,
-  left: 0,
-  rigth: 0,
-    bottom: 0,
-    width: '100vw',
-    height: '100vh',
-  overflowY: "scroll",
-    overflowX: "scroll",
-    scrollbarWidth: "hidden",
-    border: "none",
-   backgroundColor: "#ffffff",
-    display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "0",
-  zIdex: 10,
+const MenuProps = {
+  PaperProps: {
+    style: {
+      background: "rgba(255, 255, 255, 0.7)",
+boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.1)",
+backdropFilter: "blur(25px)",
+borderRadius: "20px",
+    },
+  },
 };
 
-function AddTransactionBtn(){
+
+function AddTransactionBtn() {
   const [open, setIsOpen] = useState(false);
-  const [transaction, setTransaction] = useState("");
+  const [show, setShow] = useState(true);  
+  const [isChecked, setIsChecked] = useState(true);
+ 
+  const { t } = useTranslation();
+  
+  const DIRECTION = {
+    expense: "expense",
+    income: "income"
+  }
+
+  const dispatch = useDispatch();
+  const categories = useSelector(walletSelectors.getCategories);
+
+  useEffect(() => {
+   dispatch(operations.fetchCategories());
+  }, [dispatch, categories]);
+
+const f = useFormik({
+    initialValues: {
+    direction: DIRECTION.expense,
+    amount: "",
+    date: new Date().getTime(),
+    comment: " ",    
+    category: "Income",
+    },
+});
+
+  const validationSchema = object().shape({
+    amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
+    date: number().required("Choose date"),
+    direction: string().required(),
+    comment: string().max(15, "You can enter only 15 symbols"),
+    category: string(),
+  });
   
   const openModal = () => {
     setIsOpen(true);
   };
 
   const closeModal = () => {
-    setTransaction("");
     setIsOpen(false);
   };
 
-const handleInputChange = (event) => {
-    const name = event.target.name
-    const value =
-      event.target.type === 'checkbox'
-        ? event.target.checked
-        : event.target.value
-    updateTransaction(name, value)
-    if (event.target.type === 'checkbox') {
-      updateTransaction('category', '')
+ 
+  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []); 
+  const addClass = (checked) => {
+    if (!checked) {
+          return "disabled";
     }
   }
-const updateTransaction = (name, value) => {
-    setTransaction((prev) => ({ ...prev, [name]: value }))
+ const handleDirection = () => {
+    if (isChecked) {
+      f.values.direction = DIRECTION.income;
+    } else {
+      f.values.direction = DIRECTION.expense;
+  }
+}
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
+    handleToggle();
+    handleDirection();
   }
 
-  const [show, setShow ] = useState(true);
-  const handleToggle = useCallback(() => setShow(prevShow => !prevShow), []);
 
-
-  const f = useFormik({
-    initialValues: {
-    type: false,
-    addAmount: "",
-    transactionDate: new Date().toLocaleDateString("en-gb"),
-    comment: "",    
-    categories: "",
-    },
-  });
-
-    const validationSchema = object().shape({
-        addAmount: number().required("Provide an amount").min(1, "Your sum must be at least 1"),
-      transactionDate: string().required("Choose date"),
-      type: boolean().required(),
-        comment: string().max(15, "You can enter only 15 symbols"),
-    });
-
-  // const onSubmit = async (values, { resetForm }) => {
-  //   console.log(values);
-  //   return new Promise(res => setTimeout(res, 1500));
-  //   resetForm({ values: "" });
-  // };
-
+  const sendTransaction = (values, { resetForm }) => {
+                setTimeout(() => {
+                  dispatch(operations.addTransaction(values));
+                  dispatch(authOperations.fetchCurrentUser());
+                  console.log(values);
+                  resetForm({ values: "" });
+                  closeModal();
+                }, 1000);
+              }
+ 
 
     return (
-      <>
-        <Fab onClick={openModal} aria-label="add" sx={{
-                backgroundColor: "#24CCA7",
-                width: "44px", height: "44px",
-                borderRadius: "50px", position: "fixed", bottom: "20px", right: "20px", zIndex: 99,
-            }}>
+      <StyledEngineProvider injectFirst>
+        <MyFab onClick={openModal} aria-label="add">
             <AddIcon sx={{ color: "#ffffff"}}/>
-        </Fab>
+        </MyFab>
           
-        <Modal open={open}
+        <MyModal open={open}
         onClose={closeModal}
         aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          sx={{  padding:"20px 11px"}}
        >
-                      
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2"
-              sx={{ fontSize: "24px", lineHeight: "36px", textAlign: "center", marginBottom: "40px", marginTop: "20px" }}
-            >
-           Add transaction 
-            </Typography>
+                     
+          <MyBox >
+            <CloseFab onClick={closeModal} aria-label="add">
+              <CloseIcon className="fabIcon" sx={{ color: "#000000", backgroundColor: "transparent", width: "16px", height: "16px" }}
+                onClick={closeModal} />
+            </CloseFab> 
 
-                <Stack direction="row" spacing={1} alignItems="center">
-              <Typography sx={{ marginRight: "10px" }} className={
-                !transaction.type ? 'active-green' : ''}>
-                Income</Typography>
-              <ToggleSwitch onChange={handleInputChange} onToggle={handleToggle}
-              checked={transaction.type}/>     
-              <Typography sx={{ marginLeft: "10px" }} default="checked" value={f.values.type} className={transaction.type ? 'active-pink' : ''}
-              >Expense</Typography>
-            </Stack>
+            <ModalHeader>{t("modal.title")}</ModalHeader>
 
-             
              <Formik
               initialValues={f.initialValues}
               validationSchema={validationSchema}
-              sx={{ marginTop: "20px" }}
               enableReinitialize={true}
-              onSubmit={(values, { resetForm }) => {
-                console.log(values);
-                resetForm({ values: "" });
-              }}
+              onSubmit={sendTransaction}
             >
-              {({ values, errors, isSubmitting, setFieldValue, handleSubmit, resetForm}) => (
-                <Form autoComplete="off" onSubmit={handleSubmit}>
-                  <Grid container direction="column" spacing={5}>
+              {({ values, isSubmitting, setFieldValue, handleSubmit}) => (
+                <Form autoComplete="off" onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}>
+                  <BasicWrapper>
                     
-                    <Grid item>
-                      <SelectFieldModal show={show} value={values.categories} />
-                    </Grid>
+      <BasicFormDiv >
+      <SwitchLabel>
+                        <Income  className={addClass(!isChecked)} name="Income" >{t("modal.direction.income")}</Income> 
+                        <SwitchField checked={isChecked} type="checkbox" name="direction" onChange={handleCheck} />
+                    <Slider />
+                        <Expense className={addClass(isChecked)}  name="Expense" >{t("modal.direction.expence")}</Expense>
+      </SwitchLabel>
+      </BasicFormDiv>
 
-                    <Grid item>
-                      <Field fullWidth name="addAmount" type="number" placeholder="0.00" label="Amount ($)" component={TextField} />
-                    </Grid>
-
-                    <Grid item >
-        <DataPickerWrapper >
-         <MyDataPicker
-         name="transactionDate"
-         dateFormat="dd/MM/yyyy"              
-         value={values.transactionDate}
-        className="MyDataPicker"     
-        onChange={(date) => {
-          const d = new Date(date).toLocaleDateString("en-gb");
-          setFieldValue("transactionDate", d, true);
-        }}
+                    {show && (
+                      <BasicFormDiv item >
+                         <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label" >{t("modal.form.categoriesTitle") }</InputLabel>
+                            
+                            <Select type="select" value={f.category} name="category" label={`${t("modal.form.categoriesTitle")}`} MenuProps={MenuProps} fullWidth>
+                               {allCategories.map((data) => (<MyMenuItem value={data.value} key={data.key}>
+                                 {data.value}
+                              </MyMenuItem>
+                            ))}
+                            </Select>
+                         </FormControl>
+                    </BasicFormDiv>
+                  )}
+                    
+                  <MiddleWrapper container>
+                    <MiddleFormDiv item>
+                        <Field fullWidth name="amount" type="number" placeholder="0.00" label={t("modal.form.amountLabel")} component={TextField} />
+                    </MiddleFormDiv>
+                    
+                      <MiddleFormDiv item>
+                      <DataPickerWrapper direction="row">
+                          <MyDataPicker
+                            name="date"
+                            selected={new Date()}
+                            dateFormat="dd/MM/yyyy"
+                            label="Choose Date"
+                            value={values.date}
+                            onChange={(newDate) => {
+                            const d = new Date(newDate).getTime();
+                              setFieldValue("date", d, true);
+                          }}
                         />
-                
-                </DataPickerWrapper>
-                    </Grid>
+                        <CalendarMonthIcon sx={{color: "#24CCA7", "&:hover": {color: "#FF6596", cursor: "pointer"}}} />
+                      </DataPickerWrapper>
+                    </MiddleFormDiv>
+                  </MiddleWrapper>
                     
-                    <Grid item>
-                      <Field fullWidth name="comment" label="Comment" component={TextField} />
-                    </Grid>
+                    <BasicFormDiv item>
+                      <Field fullWidth name="comment" label={t("modal.form.comment")} placeholder="Comment" component={TextField} minRows={1} maxRows={3} />
+                    </BasicFormDiv>
                   
-                  </Grid>
-
-                  <Button disabled={isSubmitting} type="submit" variant="contained" color="success" spacing={3}
+                  </BasicWrapper>
+                        
+                  <BtnDiv>
+                <ModalBtn disabled={isSubmitting} type="submit" variant="contained" color="success" 
                     startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                      sx={{
-                        backgroundColor: "#24CCA7", color: "#ffffff",
-                        marginBottom: "20px", borderRadius: "10px", width: "300px", height: "50px"
-                    }}
-                  > {isSubmitting ? "Adding" : "Add"}
-                    </Button>
-                
+                    sx={{ backgroundColor: "#24CCA7", color: "#ffffff",  margin: "20px 0", alignSelf: "center" }}
+                  > {isSubmitting ? `${t("modal.button.adding")}` : `${t("modal.button.add")}`}
+                    </ModalBtn>
+                <ModalBtn  sx={{ border: "2px solid #24CCA7", color: "#24CCA7" }}
+                      onClick={closeModal}>{t("modal.button.cancel")}</ModalBtn>
+                    </BtnDiv>
+                   
                 </Form>
+                
               )}
             </Formik>
-            
-                    <Button  sx={{ border: "2px solid #4A56E2", borderRadius: "10px", width: "300px", height: "50px" }}
-                                 onClick={closeModal}>Cancel</Button>
-     </Box>
- </Modal>
-</>
+          <ToastContainer />
+     </MyBox>
+ </MyModal>
+</StyledEngineProvider>
     )
 }
 
 export default AddTransactionBtn;
+
+AddTransactionBtn.propTypes = {
+  f: PropTypes.object,
+};

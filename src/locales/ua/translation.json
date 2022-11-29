@@ -1,17 +1,85 @@
 {
   "button": {
     "language": "Мова",
-    "goHome": "На головну"
+    "goHome": "На головну",
+    "login": "УВІЙТИ",
+    "register": "ЗАРЕЄСТРУВАТИСЯ"
   },
-  "input": {},
+  "input": {
+    "email": "Пошта",
+    "password": "Пароль",
+    "confirmPassword": "Підтведіть пароль",
+    "firstName": "Ім'я",
+    "exit": "Вихід"
+  },
   "session": {},
   "alert": {},
   "dialog": {},
-  "validation": {},
+  "validation": {
+    "email": "Поле електронної пошти є обов’язковим",
+    "password": "Поле для введення пароля є обов’язковим",
+    "passwordMatch": "Паролі не однакові",
+    "confirmPassword": "Поле підтвердження пароля є обов’язковим",
+    "firstName": "Ім'я є обов'язковим полем",
+    "minPasswordLength": "Minimum password length 6 characters",
+    "maxPasswordLength": "Maximum password length 12 characters"
+  },
   "title": {
     "404": {
       "notFound": "Не знайдено!",
       "notExist": "Ця сторінка не існує"
+    },
+    "navigation": {
+      "Home": "Домашня сторінка",
+      "Statistics": "Статистика"
+    },
+    "header": {
+      "Hi": "Привіт"
+    }
+  },
+  "balance": { "title": "Ваш баланс" },
+  "homeTable": {
+    "date": "Дата",
+    "type": "Тип",
+    "category": "Категорія",
+    "comment": "Коментар",
+    "sum": "Сума",
+    "balance": "Баланс"
+  },
+  "errors": {
+    "loginError": "Невірні дані, спробуйте ще раз"
+  },
+  "messages": {
+    "signupSuccess": "Реєстрація успішна, введіть адресу електронної пошти та пароль"
+  },
+
+  "placeholderHomeTable": {
+    "title": " У вас поки що немає транзакцій"
+  },
+  "modal": {
+    "title": "Додати транзакцію",
+    "direction": {
+      "expence": "Витрати",
+      "income": "Доходи"
+    },
+    "form": {
+      "categoriesTitle": "Оберіть категорію",
+      "amountLabel": "Сума ($)",
+      "comment": "Коментар"
+    },
+    "button": {
+      "adding": "Додається",
+      "add": "Додати",
+      "cancel": "Скасувати"
+    }
+  },
+  "modal-close": {
+    "title": {
+      "p": "Ви дійсно бажаете вийти?"
+    },
+    "button": {
+      "button-no": "НІ",
+      "button-yes": "ТАК"
     }
   }
 }

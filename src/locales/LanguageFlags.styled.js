@@ -1,8 +1,14 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const Flags = styled.div`
-    position: absolute;
+  z-index: 10;
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+  }
+  @media screen and (max-width: 767px) {
     right: 0;
-    padding-right: 20px;
-    padding-top: 20px;`
+    top: 0;
+  }
+`;

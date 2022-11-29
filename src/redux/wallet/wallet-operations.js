@@ -2,25 +2,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/wallet';
 
-const fetchUserBalance = createAsyncThunk(
-  'wallet/getUserBalance',
+const fetchTransactions = createAsyncThunk(
+  'wallet/getTransactions',
   async (_, thunkAPI) => {
     try {
-      // const result = await api.getUserBalance();
-      // return result;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-const addTransaction = createAsyncThunk(
-  "wallet/addTransaction",
-  async (transactionBody, thunkAPI) => {
-    try {
-      const result = await api.addTransaction(
-        transactionBody
-      );
+      const result = await api.getTransactions();
       return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -28,22 +14,34 @@ const addTransaction = createAsyncThunk(
   }
 );
 
-export const getTransactionsList = createAsyncThunk(
-  "wallet/getTransactionsList",
-  async (_, thunkAPI) => {
+export const addTransaction = createAsyncThunk(
+  'wallet/addTransaction',
+  async (transaction, thunkAPI) => {
     try {
-      const result = await api.getTransactionsList();
-      return result;
+      const { data: response } = await api.addTransaction(transaction);
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
+export const fetchCategories = createAsyncThunk(
+  'wallet/getCategories',
+  async (_, thunkAPI) => {
+    try {
+      const { data: response } = await api.getCategories();
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const operations = {
-  fetchUserBalance,
+  fetchTransactions,
   addTransaction,
-  getTransactionsList,
+  fetchCategories,
 };
+
 export default operations;
