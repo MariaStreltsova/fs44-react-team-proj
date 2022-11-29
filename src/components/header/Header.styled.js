@@ -14,16 +14,10 @@ export const Link = styled(NavLink)`
 
 export const Box = styled.header`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
-  /* padding-right: 20px; */
-
-  /* position: fixed; */
-  z-index: 2;
-
   width: 100%;
   background-color: #fff;
 
@@ -41,12 +35,13 @@ export const Box = styled.header`
 `;
 //color: ${p => p.theme.colors.accent};
 export const Container = styled.div`
-  width: 100%;
-  /* margin: 0 auto; */
-  /* align-items: center; */
+  width: 1248px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1279px) {
+    width: 704px;
+  }
 `;
 
 export const LogoMedia = styled.div`

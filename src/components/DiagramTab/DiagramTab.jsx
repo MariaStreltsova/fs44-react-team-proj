@@ -2,7 +2,9 @@ import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
 import Chart from './Chart/Chart';
 import { TitleStat, DiagramBlock } from './DiagramTab.styled';
+
 import { getStatisticYearMonth } from 'api/wallet';
+
 import theme from 'theme';
 import chartDataCreating from 'util/chartDataCreating';
 import statTableDataCreating from 'util/statTableDataCreating';

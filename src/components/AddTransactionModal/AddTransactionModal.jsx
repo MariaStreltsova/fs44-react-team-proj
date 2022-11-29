@@ -18,11 +18,24 @@ import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { allCategories } from './allCategories';
-import CustomizedSelectForFormik from "./CustomizedSelect";
 import { FormControl, InputLabel } from '@mui/material';
 import { MyMenuItem } from "./ModalCustomStyles";
 import walletSelectors from "../../redux/wallet/wallet-selectors";
 import { useTranslation } from 'react-i18next';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Select from '@mui/material/Select';
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      background: "rgba(255, 255, 255, 0.7)",
+boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.1)",
+backdropFilter: "blur(25px)",
+borderRadius: "20px",
+    },
+  },
+};
 
 
 function AddTransactionBtn() {
@@ -49,16 +62,15 @@ const f = useFormik({
     direction: DIRECTION.expense,
     amount: "",
     date: new Date().getTime(),
-      // new Date().toLocaleDateString("en-gb"), //number
-    comment: "",    
-    category: DIRECTION.income,
+    comment: " ",    
+    category: "Income",
     },
 });
 
   const validationSchema = object().shape({
-      amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
-      date: number().required("Choose date"),
-      direction: string().required(),
+    amount: number().required("Provide an amount").min(1, "Your sum must be at least 1").max(100000, "Maximum sum if 100000"),
+    date: number().required("Choose date"),
+    direction: string().required(),
     comment: string().max(15, "You can enter only 15 symbols"),
     category: string(),
   });
@@ -90,6 +102,7 @@ const f = useFormik({
     handleToggle();
     handleDirection();
   }
+
 
   const sendTransaction = (values, { resetForm }) => {
                 setTimeout(() => {
@@ -148,30 +161,20 @@ const f = useFormik({
                       <BasicFormDiv item >
                          <FormControl fullWidth>
                           <InputLabel id="demo-simple-select-label" >{t("modal.form.categoriesTitle") }</InputLabel>
-            <Field type="select"  name="category" label={`${t("modal.form.categoriesTitle") }`} component={CustomizedSelectForFormik}  >
-              {allCategories.map((category) => (
-                < MyMenuItem
-                 value={category.value} key={category.key}
-                >
-                  {category.value}
-                  </ MyMenuItem>
-        ))}
                             
-                            {/* {operations.fetchCategories.map((category) => (
-                < MyMenuItem
-                 key={category.category_id}  value={category.value}
-                >
-                  {category.value}
-                  </ MyMenuItem>
-        ))} */}
-            </Field>
-            </FormControl>
+                            <Select type="select" value={f.category} name="category" label={`${t("modal.form.categoriesTitle")}`} MenuProps={MenuProps} fullWidth>
+                               {allCategories.map((data) => (<MyMenuItem value={data.value} key={data.key}>
+                                 {data.value}
+                              </MyMenuItem>
+                            ))}
+                            </Select>
+                         </FormControl>
                     </BasicFormDiv>
                   )}
                     
                   <MiddleWrapper container>
                     <MiddleFormDiv item>
-                        <Field fullWidth name="amount" type="number" placeholder="0.00" label={t("modal.form.amountLabel")}  component={TextField} />
+                        <Field fullWidth name="amount" type="number" placeholder="0.00" label={t("modal.form.amountLabel")} component={TextField} />
                     </MiddleFormDiv>
                     
                       <MiddleFormDiv item>
@@ -193,7 +196,7 @@ const f = useFormik({
                   </MiddleWrapper>
                     
                     <BasicFormDiv item>
-                      <Field fullWidth name="comment" label={t("modal.form.comment")} component={TextField} minRows={1} maxRows={3} />
+                      <Field fullWidth name="comment" label={t("modal.form.comment")} placeholder="Comment" component={TextField} minRows={1} maxRows={3} />
                     </BasicFormDiv>
                   
                   </BasicWrapper>
@@ -212,7 +215,7 @@ const f = useFormik({
                 
               )}
             </Formik>
-                    
+          <ToastContainer />
      </MyBox>
  </MyModal>
 </StyledEngineProvider>

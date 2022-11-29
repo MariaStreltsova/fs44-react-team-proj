@@ -78,8 +78,8 @@
       "p": "Do you really want to leave?"
     },
     "button": {
-      "button-no": "No",
-      "button-yes": "Yes"
+      "button-no": "NO",
+      "button-yes": "YES"
     }
   }
 }

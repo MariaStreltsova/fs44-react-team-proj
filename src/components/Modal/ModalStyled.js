@@ -39,7 +39,8 @@ export const ButtonClose = styled.button`
   margin-left: auto;
   margin-right: 0;
   margin-bottom: 30px;
-  border-radius: 12px;
+  border:none;
+  fill: ${theme.colors.mainTxtColor};
   background-color: ${theme.colors.lightTxtColor};
   height: 50px;
   width: 50px;
@@ -51,20 +52,17 @@ export const ButtonClose = styled.button`
   transform: scale(0.5);
   transition: 0.4s all;
   cursor: pointer;
-  /* &:hover,
-  &:focus {
-    border-color: red;
-  } */
   &:hover,
   &:focus {
-      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    }
+  fill: ${theme.colors.expenseColor};
+  }
 `;
 
 export const ButtonYes = styled.button`
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 20px;
+  border: none;
   background-color: ${theme.colors.incomeColor};
   color: ${theme.colors.lightTxtColor};
   width: 300px;
@@ -74,20 +72,17 @@ export const ButtonYes = styled.button`
   text-align: center;
   align-self: center;
   cursor: pointer;
-  /* &:hover,
-  &:focus {
-    background-color: ${theme.colors.accentColor};
-  } */
   &:hover,
   &:focus {
-      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    }
+    background-color: ${theme.colors.expenseColor};
+  }
 `;
 
 export const ButtonNo = styled.button`
   border-radius: 20px;
-  background-color: ${theme.colors.incomeColor};
-  color: ${theme.colors.lightTxtColor};
+  border: solid 2px ${theme.colors.incomeColor};
+  border-color: ${theme.colors.incomeColor};
+  background-color: ${theme.colors.lightTxtColor};
   width: 300px;
   height: 50px;
   font-size: 18px;
@@ -95,20 +90,17 @@ export const ButtonNo = styled.button`
   text-align: center;
   align-self: center;
   cursor: pointer;
-  /* &:hover,
-  &:focus {
-    background-color: ${theme.colors.accentColor};
-  } */
   &:hover,
   &:focus {
-      filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
-    }
+    background-color: ${theme.colors.expenseColor};
+    color: ${theme.colors.lightTxtColor};
+  }
 `;
 
 export const Svg = styled.svg`
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 12px;
   background-color: white;
 `;
