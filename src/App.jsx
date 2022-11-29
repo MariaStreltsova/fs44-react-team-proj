@@ -8,12 +8,10 @@ import PrivateRoute from 'hocs/Route/PrivateRoute';
 import NonAuthLayout from 'layout/NonAuthLayout/NonAuthLayout';
 import AuthLayout from 'layout/AuthLayout/AuthLayout';
 import useAuth from 'hooks/useAuht';
-// import { PeoleSvg } from 'images/icons/PeopleSvg';
 import DashBoard from 'pages/DashBoard/DashBoard';
 import Statistics from 'pages/Statistics/Statistics';
-// import SizeScreenRoute from 'hocs/Route/SizeScreenRoute';
 import CurrencyPage from 'pages/CurrencyPage/CurrencyPage';
-import CircularUnderLoad from 'components/Loader/Loader';
+import Spinner from 'components/Spinner/Spinner';
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
@@ -27,9 +25,9 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <CircularUnderLoad />
+    <Spinner />
   ) : (
-    <Suspense fallback={<CircularUnderLoad />}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route
           path="/login"
