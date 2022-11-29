@@ -59,9 +59,9 @@ function Currency() {
         <HeadTable>
           <tbody>
             <tr>
-              <HeadCell>Currency</HeadCell>
-              <HeadCell>Purchase</HeadCell>
-              <HeadCell>Sale</HeadCell>
+              <HeadCell>{t('currency.currency')}</HeadCell>
+              <HeadCell>{t('currency.purchase')}</HeadCell>
+              <HeadCell>{t('currency.sale')}</HeadCell>
             </tr>
           </tbody>
         </HeadTable>
