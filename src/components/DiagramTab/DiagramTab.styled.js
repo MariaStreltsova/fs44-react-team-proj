@@ -21,14 +21,18 @@ export const TitleStat = styled.h2`
 `;
 
 export const DiagramBlock = styled.div`
+  position: relative;
+  height: 340px;
   @media (min-width: 768px) {
+    width: 704px;
+    height: 360px;
     justify-content: space-between;
     display: flex;
     gap: 32px;
   }
 
   @media (min-width: 1280px) {
-    /* padding-top: 32px;
-    padding-left: 84px; */
+    width: 715px;
+    height: 350px;
   }
 `;
