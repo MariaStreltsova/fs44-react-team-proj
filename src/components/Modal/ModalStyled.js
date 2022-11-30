@@ -26,7 +26,8 @@ export const ModalContent = styled.div`
   border-radius: 12px;
   background-color: white;
   height: 400px;
-  width: 400px;
+  width: 100vw;
+  max-width: 400px;
   transform: scale(0.9);
   transition: transform 0.15s ease;
   .active & {
