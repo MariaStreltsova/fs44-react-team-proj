@@ -31,7 +31,7 @@ const HomeTableMobile = () => {
         {transactions && transactions.length > 0 ? (
           transactions.map(
             ({
-              _id,
+              id,
               date,
               direction,
               category,
@@ -39,7 +39,7 @@ const HomeTableMobile = () => {
               amount,
               balanceAfter,
             }) => (
-              <TransactionCardWrap key={_id}>
+              <TransactionCardWrap key={id}>
                 <TransactionCardList type={direction}>
                   <TransactionCardItem>
                     <span>Date</span>

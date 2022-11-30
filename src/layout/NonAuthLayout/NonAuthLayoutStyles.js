@@ -6,7 +6,7 @@ import { Box } from 'Box';
 export const RootWrapper = styled.div`
   @media screen and (min-width: 1280px) {
     width: 100vw;
-    height: 100%;
+    min-height: 100vh;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: relative;

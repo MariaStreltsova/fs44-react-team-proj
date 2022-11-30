@@ -71,7 +71,7 @@ const HomeTable = () => {
   ];
   const dispatch = useDispatch();
   const transactions = useSelector(walletSelectors.getTransactions);
-  const [order, setOrder] = useState(SORT_TYPES.asc);
+  const [order, setOrder] = useState(SORT_TYPES.desc);
   const [orderBy, setOrderBy] = useState(headCells[0].id);
   const [page, setPage] = useState(0);
   const rowsPerPage = 5;
@@ -205,7 +205,7 @@ const HomeTable = () => {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map(
                       ({
-                        _id,
+                        id,
                         date,
                         direction,
                         category,
@@ -213,7 +213,7 @@ const HomeTable = () => {
                         amount,
                         balanceAfter,
                       }) => (
-                        <TableRow key={_id}>
+                        <TableRow key={id}>
                           <TableCell align="left">
                             {format(new Date(date), 'DD.MM.YY')}
                           </TableCell>
