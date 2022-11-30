@@ -37,7 +37,7 @@ import {
   Expense,
   SwitchField,
   Slider,
-} from './AddTransactionModal.styled';
+} from './addTransactionModal.styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
@@ -85,7 +85,6 @@ function AddTransactionBtn() {
   });
 
   const validationSchema = object().shape({
-
     amount: number()
       .min(1, 'Your sum must be at least 1')
       .max(100000, 'Maximum sum is 100000')
@@ -139,8 +138,7 @@ function AddTransactionBtn() {
       closeModal();
     }, 0);
     toast.success(t('messages.transactionSuccess'));
-
-
+  };
   return (
     <StyledEngineProvider injectFirst>
       <MyFab onClick={openModal} aria-label="add">
@@ -256,13 +254,19 @@ function AddTransactionBtn() {
                           value={values.date}
                           onChange={newDate => {
                             setMyDate(newDate);
-                            values.date = setFieldValue("date", newDate.getTime());
+                            values.date = setFieldValue(
+                              'date',
+                              newDate.getTime()
+                            );
                           }}
                         />
                         <CalendarMonthIcon
                           sx={{
                             color: '#24CCA7',
-                            '&:hover': { color: '#FF6596', cursor: 'pointer' },
+                            '&:hover': {
+                              color: '#FF6596',
+                              cursor: 'pointer',
+                            },
                           }}
                         />
                       </DataPickerWrapper>
