@@ -33,8 +33,8 @@ const ModalClose = ({ active, setActive }) => {
   }, [active, setActive]);
 
   return (
-    <Modal className={active && 'active'}>
-      <ModalContent>
+    <Modal className={active && 'active'} onClick={() => setActive(false) } >
+      <ModalContent onClick={(event) => event.stopPropagation()}>
         <ButtonClose onClick={() => setActive(false)}>
           <Svg>
             <use href={`${Icons}#icon-close-cross`} />
