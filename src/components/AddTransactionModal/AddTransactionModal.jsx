@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { CircularProgress, Select,  FormControl, InputLabel} from '@mui/material';
+import {
+  CircularProgress,
+  Select,
+  FormControl,
+  InputLabel,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CloseIcon from '@mui/icons-material/Close';
@@ -79,7 +84,10 @@ function AddTransactionBtn() {
   });
 
   const validationSchema = object().shape({
-    amount: number().min(1, 'Your sum must be at least 1').max(100000, 'Maximum sum is 100000').required('Provide an amount'),
+    amount: number()
+      .min(1, 'Your sum must be at least 1')
+      .max(100000, 'Maximum sum is 100000')
+      .required('Provide an amount'),
     date: number().required('Choose date'),
     direction: string().required(),
     comment: string().max(15, 'You can enter only 15 symbols'),
@@ -119,14 +127,14 @@ function AddTransactionBtn() {
       category: categories.find(item => item.name === values.category)
         .category_id,
     };
+    dispatch(operations.addTransaction(serialized));
     setTimeout(() => {
-      dispatch(operations.addTransaction(serialized));
       dispatch(operations.fetchTransactions());
       dispatch(authOperations.fetchCurrentUser());
       resetForm({ values: '' });
       closeModal();
-    }, 1000);
-    toast.success(t("messages.transactionSuccess"));
+    }, 0);
+    toast.success(t('messages.transactionSuccess'));
   };
 
   return (
