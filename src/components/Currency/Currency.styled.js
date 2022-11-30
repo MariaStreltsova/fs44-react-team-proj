@@ -31,7 +31,7 @@ export const CurrencyBlock = styled.div`
     height: 182px;
   }
 
-  @media (min-width: 1279px) {
+  @media (min-width: 1280px) {
     margin-top: 32px;
     /* position: static; */ //! не трогать - сбиваетя лоадер
     margin-left: 2px;
@@ -80,7 +80,7 @@ export const Wrapper = styled.div`
     top: 32px;
     right: 32px;
 
-    @media (min-width: 1279px) {
+    @media (min-width: 1280px) {
       position: relative;
       top: 0px;
     right: 0px;}`

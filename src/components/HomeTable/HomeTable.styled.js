@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import theme from '../../theme';
+import TableRow from '@mui/material/TableContainer';
+import Box from '@mui/material/Box';
 
 export const TransactionsWrap = styled.ul`
   list-style: none;
@@ -40,7 +42,6 @@ span:first-of-type {
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    line-height: 24px;
     padding: 10px 0 10px 0;
   }:not(:last-of-type) {
     border-bottom: 1px solid #dcdcdf;`;
@@ -69,7 +70,6 @@ export const TitleTablePlaceholder = styled.h3`
   font-family: ${theme.fonts.title};
   font-style: normal;
   font-size: 24px;
-  line-height: 24px;
 `;
 export const PlaceholderContent = styled.span`
   display: flex;
@@ -77,11 +77,42 @@ export const PlaceholderContent = styled.span`
   justify-content: center;
   flex-wrap: wrap;
 `;
+
+export const MyBox = styled(Box)`
+max-width: 704px;
+overflow: hidden;
+
+& .MuiTableContainer-root{
+  overflow: hidden;
+}
+
+`
 export const StyledContainer = styled.div`
+
   @media (min-width: 768px) {
     width: 704px;
   }
   @media (min-width: 1280px) {
     width: 715px;
   }
+
+  & .MuiTableCell-root{
+font-family: 'Circe';
+font-weight: 400;
+font-size: 16px;
+text-align: center;
+  }
+
+  & .MuiTable-root{
+    padding-left: 0;
+  }
 `;
+
+
+export const MyTableRow = styled(TableRow)`
+display: flex;
+height: 50px;
+padding: 0;
+
+`
+

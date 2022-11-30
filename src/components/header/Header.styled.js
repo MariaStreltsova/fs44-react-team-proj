@@ -39,7 +39,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: 1280px) {
     width: 704px;
   }
 `;

@@ -40,7 +40,7 @@ export const TitleStat = styled.h2`
 
 export const DiagramBlock = styled.div`
   position: relative;
-  // height: 340px;
+  
   @media (min-width: 768px) {
     width: 704px;
 
@@ -51,6 +51,5 @@ export const DiagramBlock = styled.div`
 
   @media (min-width: 1280px) {
     width: 715px;
-    height: 350px;
   }
 `;

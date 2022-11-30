@@ -5,7 +5,10 @@ export const StatisticsWrapper = styled.div`
   justify-content: center;
   display: flex;
   }
+@media screen and (min-width: 768px){
+  overflow-y: scroll;
 display: block;
+}
 
 `;
 

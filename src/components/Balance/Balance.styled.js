@@ -37,8 +37,9 @@ export const BalanceTitle = styled.p`
 export const BalanceValue = styled.p`
   font-family: ${theme.fonts.title};
   font-style: normal;
+  font-weight: 900;
   font-size: 30px;
-  line-height: 45px;
+  line-height: 1.5;
   display: flex;
   align-items: baseline;
   justify-content: start;

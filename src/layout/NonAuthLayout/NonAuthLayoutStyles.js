@@ -4,11 +4,10 @@ import tableBg from '../../images/Ellipse.svg';
 import { Box } from 'Box';
 
 export const RootWrapper = styled.div`
-  @media screen and (min-width: 1280px) {
-    max-width: 100vw;
-    height: 100vh;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+  background-image: none;
+  background-color: #fff;
+  
+@media screen and (min-width: 768px) and (max-width: 1279px) {
     position: relative;
     background-color: rgba(231, 234, 242, 1);
     background-repeat: no-repeat;
@@ -26,10 +25,11 @@ export const RootWrapper = styled.div`
       right: 0;
     }
   }
-  @media screen and (max-width: 767px) {
-    background-image: none;
-    background-color: #fff;
+  @media screen and (min-width: 1280px) {
+    max-width: 100vw;
+    height: 100vh;
   }
+  
 `;
 
 export const BoxContainer = styled(Box)`

@@ -20,6 +20,9 @@ z-index: 99;
 
 @media screen and (min-width: 768px){
 bottom: 40px;
+right: 10px; 
+}
+@media screen and (min-width: 1280px){
 right: 40px; 
 }
 `
@@ -69,7 +72,7 @@ right: 0;
 bottom: 0;
 width: 100vw;
 height: 100vh;
-overflow: nonel;
+overflow: hidden;
 scrollbar-width: hidden;
 border: none;
 background-color: #ffffff;
@@ -92,8 +95,8 @@ z-index: 1;
 }
 
 @media screen and (min-width: 1280px){
-    max-height: 80vh;
-    max-height: 90vh;
+    max-height: 508px;
+    max-height: 540px;
 }
 
 `
