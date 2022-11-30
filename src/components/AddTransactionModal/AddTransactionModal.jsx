@@ -80,7 +80,7 @@ function AddTransactionBtn() {
       amount: '',
       date: myDate,
       comment: ' ',
-      category: 'Other income',
+      category: '',
     },
   });
 
@@ -127,17 +127,27 @@ function AddTransactionBtn() {
     const serialized = {
       ...values,
       category: categories.find(item => item.name === values.category)
-        .category_id,
+        ?.category_id,
     };
 
-    dispatch(operations.addTransaction(serialized));
-    setTimeout(() => {
-      dispatch(operations.fetchTransactions());
-      dispatch(authOperations.fetchCurrentUser());
-      resetForm({ values: '' });
-      closeModal();
-    }, 0);
+    dispatch(operations.addTransaction(serialized))
+      .then(() => dispatch(operations.fetchTransactions()))
+      .then(() => dispatch(authOperations.fetchCurrentUser()))
+      .catch(error => {
+        toast.error(t('messages.transactionError'));
+        console.log(error);
+      });
+
+    resetForm({ values: '' });
     toast.success(t('messages.transactionSuccess'));
+    closeModal();
+    // setTimeout(() => {
+    //   dispatch(operations.addTransaction(serialized));
+    //   dispatch(operations.fetchTransactions());
+    //   dispatch(authOperations.fetchCurrentUser());
+    //   resetForm({ values: '' });
+    //   closeModal();
+    // }, 0);
   };
   return (
     <StyledEngineProvider injectFirst>

@@ -15,24 +15,23 @@ export const RootWrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 `;
 
 export const WrapperChildren = styled.div`
- padding: 0 20px;
+  padding: 0 20px;
   display: block;
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: none;
-  scrollbar: none;
+  // scrollbar: none;
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  // scrollbar-width: none;
   &::-webkit-scrollbar {
-  display: none;
-}
-
+    display: none;
+  }
 
   @media screen and (min-width: 768px) {
     padding-left: 32px;
