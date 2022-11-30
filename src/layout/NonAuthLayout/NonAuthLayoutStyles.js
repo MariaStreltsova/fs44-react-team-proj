@@ -5,8 +5,8 @@ import { Box } from 'Box';
 
 export const RootWrapper = styled.div`
   @media screen and (min-width: 1280px) {
-    width: 100vw;
-    min-height: 100vh;
+    max-width: 100vw;
+    height: 100vh;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: relative;
@@ -50,6 +50,7 @@ export const FormContainer = styled.div`
     height: 100vh;
     background-image: url(${formBackground});
     background-size: cover;
+    background-repeat: no-repeat;
   }
   @media screen and (max-width: 1279px) {
     position: relative;

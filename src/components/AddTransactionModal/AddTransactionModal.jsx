@@ -37,7 +37,7 @@ import {
   Expense,
   SwitchField,
   Slider,
-} from './addTransactionModal.styled';
+} from './AddTransactionModal.styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
@@ -58,6 +58,7 @@ function AddTransactionBtn() {
   const [open, setIsOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [isChecked, setIsChecked] = useState(true);
+  const [myDate, setMyDate] = useState(new Date().getTime());
 
   const { t } = useTranslation();
 
@@ -77,20 +78,22 @@ function AddTransactionBtn() {
     initialValues: {
       direction: DIRECTION.expense,
       amount: '',
-      date: new Date().getTime(),
+      date: myDate,
       comment: ' ',
       category: 'Other income',
     },
   });
 
   const validationSchema = object().shape({
+
     amount: number()
       .min(1, 'Your sum must be at least 1')
       .max(100000, 'Maximum sum is 100000')
       .required('Provide an amount'),
+
     date: number().required('Choose date'),
     direction: string().required(),
-    comment: string().max(15, 'You can enter only 15 symbols'),
+    comment: string().max(150, 'You can enter only 150 symbols'),
     category: string(),
   });
 
@@ -127,6 +130,7 @@ function AddTransactionBtn() {
       category: categories.find(item => item.name === values.category)
         .category_id,
     };
+
     dispatch(operations.addTransaction(serialized));
     setTimeout(() => {
       dispatch(operations.fetchTransactions());
@@ -135,7 +139,7 @@ function AddTransactionBtn() {
       closeModal();
     }, 0);
     toast.success(t('messages.transactionSuccess'));
-  };
+
 
   return (
     <StyledEngineProvider injectFirst>
@@ -246,13 +250,13 @@ function AddTransactionBtn() {
                       <DataPickerWrapper direction="row">
                         <MyDataPicker
                           name="date"
-                          selected={new Date()}
+                          selected={myDate}
                           dateFormat="dd/MM/yyyy"
                           label="Choose Date"
                           value={values.date}
                           onChange={newDate => {
-                            const d = new Date(newDate).getTime();
-                            setFieldValue('date', d, true);
+                            setMyDate(newDate);
+                            values.date = setFieldValue("date", newDate.getTime());
                           }}
                         />
                         <CalendarMonthIcon
