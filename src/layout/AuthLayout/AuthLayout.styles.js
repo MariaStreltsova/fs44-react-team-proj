@@ -11,7 +11,7 @@ export const RootWrapper = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   overflow: none;
-  scrollbar: none;
+  /* scrollbar: none; */
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
