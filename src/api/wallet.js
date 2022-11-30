@@ -9,9 +9,12 @@ export const getTransactions = async () => {
   }
 };
 
-export const addTransaction = async (transaction) => {
+export const addTransaction = async transaction => {
   try {
-    const {data: response} = await authApi.post('/api/transactions', transaction);
+    const { data: response } = await authApi.post(
+      '/api/transactions',
+      transaction
+    );
     return response.data;
   } catch (error) {
     throw error;
@@ -20,7 +23,9 @@ export const addTransaction = async (transaction) => {
 
 export const getCategories = async () => {
   try {
-    const {data: response} = await authApi.get('/api/transactions/categories');
+    const { data: response } = await authApi.get(
+      '/api/transactions/categories'
+    );
     return response.data;
   } catch (error) {
     throw error;
@@ -30,7 +35,7 @@ export const getCategories = async () => {
 export const getStatisticYearMonth = async (year, month) => {
   try {
     const result = await authApi.get(
-      `/api/transactions/statistic/${year}/${month}`
+      `/api/transactions/statistic/${year}/${month + 1}`
     );
     return result.data;
   } catch (error) {
