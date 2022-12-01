@@ -41,10 +41,10 @@ export const CurrencyBlock = styled.div`
 `;
 
 export const Wrapper = styled.div`
-// position: relative;
-top: 0px;
-right: 0px;
-margin-top: 28px;
+  // position: relative;
+  top: 0px;
+  right: 0px;
+  margin-top: 28px;
 
   @media (min-width: 768px) {
     // position: absolute; //! не трогать - сбиваетя лоадер
@@ -54,7 +54,10 @@ margin-top: 28px;
     @media (min-width: 1280px) {
       position: relative;
       top: 0px;
-    right: 0px;}`
+      right: 0px;
+    }
+  }
+`;
 
 export const HeadTable = styled.table`
   table-layout: fixed;
