@@ -26,6 +26,11 @@ export default function LanguageFlags({
       country_code: 'ua',
       name: 'Ukraine',
     },
+    {
+      code: 'fr',
+      country_code: 'fr',
+      name: 'France',
+    },
   ];
 
   const { t } = useTranslation();
