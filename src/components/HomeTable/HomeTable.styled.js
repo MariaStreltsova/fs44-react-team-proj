@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 export const TransactionsWrap = styled.ul`
   list-style: none;
   padding: 0;
-  height: 60vh;
   overflow: hidden;
   overflow-y: scroll;
 `;
@@ -91,9 +90,11 @@ export const StyledContainer = styled.div`
 
   @media (min-width: 768px) {
     width: 704px;
+    margin-top: 20px;
   }
   @media (min-width: 1280px) {
     width: 715px;
+    margin-top: 0;
   }
 
   & .MuiTableCell-root{

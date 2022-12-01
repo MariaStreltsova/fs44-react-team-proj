@@ -10,6 +10,7 @@ margin-right:auto;
   background-color: ${theme.colors.lightBackgroundColor};
   border-radius: 30px;
   margin-top: 15px;
+      padding-bottom: 12px;
   @media (min-width: 768px) {
     margin-left:0;
 margin-right:0;
@@ -29,6 +30,7 @@ export const BalanceTitle = styled.p`
   line-height: 18px;
   text-transform: uppercase;
   color: #a6a6a6;
+
   @media (min-width: 1280px) {
     margin-bottom: 12px;
   }

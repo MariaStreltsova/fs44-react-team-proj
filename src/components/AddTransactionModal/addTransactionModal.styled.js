@@ -167,7 +167,7 @@ color: #FF6596;
 `
 
 export const MiddleWrapper = styled.div`
-@media screen and (min-width: 767px){
+@media screen and (min-width: 768px){
 display: flex;
 justufy-content: space-evenly;
 align-items: center;
@@ -187,7 +187,7 @@ export const MiddleFormDiv = styled.div`
 width: 100%;
 padding: 10px;
 
-@media screen and (min-width: 767px){
+@media screen and (min-width: 768px){
 width: 200px;
 }
 `

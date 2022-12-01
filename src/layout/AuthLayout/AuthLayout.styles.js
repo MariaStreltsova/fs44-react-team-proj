@@ -6,7 +6,7 @@ export const RootWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   background-image: url(${authBackgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,11 +19,7 @@ export const RootWrapper = styled.div`
 `;
 
 export const WrapperChildren = styled.div`
-//  padding: 0 20px;
-  display: block;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -31,23 +27,49 @@ export const WrapperChildren = styled.div`
   display: none;
 }
 
-
   @media screen and (min-width: 768px) {
     padding-left: 32px;
     padding-right: 32px;
   }
   @media screen and (min-width: 1280px) {
-    padding-left: 20px;
-    padding-right: 20px;
+    display: flex;
+    overflow-y: hidden;
+    justify-content: space-between;
   } ;
 `;
 export const WrapperChildrens = styled.div`
-  display: block;
-  position: absolute;
-  top: 46px;
-  right: 50px;
+
   @media screen and (max-width: 1280px) {
-    position: static;
-    margin-top: 20px;
-  } ;
+    display: flex;
+justify-content: center;
+
+  }
+  @media screen and (min-width: 1280px){
+    margin-top: 40px;
+  }
 `;
+export const Line = styled.div`
+@media screen and (min-width: 1280px){
+
+height: 100vh;
+
+background: #BDBDBD;
+
+
+border: 1px solid #E7E5F2;
+box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05), 1px 0px 0px rgba(255, 255, 255, 0.6);
+}
+`
+
+export const BalCurSide = styled.div`
+@media screen and (min-width: 768px) and (max-width: 1280px){
+display: flex;
+justify-content: space-between;
+} 
+`
+
+export const NavBal = styled.div`
+@media screen and (min-width: 1280px){
+  margin-top: 40px;
+}
+`

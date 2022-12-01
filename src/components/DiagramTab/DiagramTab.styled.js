@@ -1,10 +1,18 @@
 import theme from '../../theme';
 import styled from 'styled-components';
+import Chart from './Chart/Chart';
 
 export const StatisticsBox = styled.div`
 width: 100vw;
 heigth: 100vh;
 padding: 0 20px 48px 20px;
+
+font-family: 'Circe';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.5;
+color: #000000;
 
 @media (min-width: 768px) {
     display: flex;
@@ -13,11 +21,6 @@ padding: 0 20px 48px 20px;
   }
 `
 
-export const TitleChart = styled.div`
-// width: 100vw;
-// heigth: 100vh;
-// padding: 0 20px;
-`
 export const TitleStat = styled.h2`
   padding-left: 20px;
   padding-bottom: 8px;
@@ -43,7 +46,6 @@ export const DiagramBlock = styled.div`
   
   @media (min-width: 768px) {
     width: 704px;
-
     justify-content: space-between;
     display: flex;
     gap: 32px;
@@ -53,3 +55,17 @@ export const DiagramBlock = styled.div`
     width: 715px;
   }
 `;
+
+export const MyChart = styled(Chart)`
+width: 280px;
+height: 280px;
+@media (min-width: 768px){
+width: 336x;
+height: 336px;
+}
+
+@media (min-width: 1280px) {
+    width: 288px;
+    height: 288px;
+  }
+`

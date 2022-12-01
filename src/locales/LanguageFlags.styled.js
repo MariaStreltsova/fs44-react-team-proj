@@ -7,7 +7,7 @@ export const Flags = styled.div`
   &:focus {
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     right: 0;
     top: 0;
   }

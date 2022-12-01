@@ -23,9 +23,9 @@ export const CurrencyBlock = styled.div`
   background-size: 100%;
 
   @media (min-width: 768px) {
-    /* position: relative; */ //! не трогать - сбиваетя лоадер
-    /* top: 32px;
-    right: 32px; */
+    // /* position: relative; */ //! не трогать - сбиваетя лоадер
+    // /* top: 32px;
+    // right: 32px; */
 
     width: 336px;
     height: 182px;
@@ -33,12 +33,28 @@ export const CurrencyBlock = styled.div`
 
   @media (min-width: 1280px) {
     margin-top: 32px;
-    /* position: static; */ //! не трогать - сбиваетя лоадер
+    // /* position: static; */ //! не трогать - сбиваетя лоадер
     margin-left: 2px;
     width: 393px;
     height: 347px;
   }
 `;
+
+export const Wrapper = styled.div`
+// position: relative;
+top: 0px;
+right: 0px;
+margin-top: 28px;
+
+  @media (min-width: 768px) {
+    // position: absolute; //! не трогать - сбиваетя лоадер
+    // top: 110px;
+    // right: 32px;
+
+    @media (min-width: 1280px) {
+      position: relative;
+      top: 0px;
+    right: 0px;}`
 
 export const HeadTable = styled.table`
   table-layout: fixed;
@@ -70,17 +86,3 @@ export const BodyCell = styled.td`
   font-size: ${theme.fontSizes.s};
   font-weight: ${theme.fontWeights.normal};
 `;
-
-export const Wrapper = styled.div`
- position: relative;
- top: 0px;
-    right: 0px;
-  @media (min-width: 768px) {
-    position: absolute; //! не трогать - сбиваетя лоадер
-    top: 32px;
-    right: 32px;
-
-    @media (min-width: 1280px) {
-      position: relative;
-      top: 0px;
-    right: 0px;}`

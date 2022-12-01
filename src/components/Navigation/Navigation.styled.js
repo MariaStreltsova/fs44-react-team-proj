@@ -17,17 +17,19 @@ export const NavigationContainer = styled.ul`
   justify-content: center;
   margin-top: 40px;
 
-  @media screen and (min-width: 768px) {
-    display: inline-block;
-  }
-  @media screen and (max-width: 767px) {
+   @media screen and (max-width: 768px) {
     margin-top: 15px;
-    /* padding-top: 75px; */
     margin-left: auto;
     margin-right: auto;
   }
-  @media screen and (max-width: 1279px) {
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
     margin-left: 3px;
+  }
+ 
+  @media screen and (min-width: 1280px) {
+      margin-top: 0;
   }
 `;
 
@@ -47,7 +49,7 @@ export const NavItem = styled.li`
     /* fill: ${p => p.theme.colors.accentColor}; */
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     margin-bottom: 0;
     align-items: center;
   }
@@ -71,7 +73,7 @@ export const NavItemStatistics = styled.li`
     /* fill: ${p => p.theme.colors.accentColor}; */
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     margin-bottom: 0;
     align-items: center;
   }
@@ -91,15 +93,15 @@ export const Svg = styled.svg`
     fill: ${p => p.theme.colors.accentColor};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-
+@media screen and (max-width: 768px) {
+    text-align: center;
+  }
   @media screen and (min-width: 768px) {
     margin-right: 23px;
     width: 18px;
     height: 18px;
   }
-  @media screen and (max-width: 767px) {
-    text-align: center;
-  }
+  
 `;
 export const TextNav = styled.span`
   display: none;
@@ -120,12 +122,12 @@ export const NavItemCurrency = styled.li`
   &:focus {
     font-weight: ${p => p.theme.fontWeights.bold};
   }
-  @media screen and (min-width: 768px) {
-    display: none;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0;
     text-align: center;
   }
-  @media screen and (max-width: 767px) {
-    margin-bottom: 0;
+  @media screen and (min-width: 768px) {
+    display: none;
     text-align: center;
   }
 `;
