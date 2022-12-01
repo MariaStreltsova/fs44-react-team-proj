@@ -19,6 +19,7 @@ export const Box = styled.header`
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
+  padding-right: 5px;
   width: 100%;
   background-color: #fff;
 
@@ -30,8 +31,8 @@ export const Box = styled.header`
   }
 
   @media screen and (min-width: 1280px) {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 //color: ${p => p.theme.colors.accent};
