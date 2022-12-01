@@ -3,7 +3,6 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import cookies from 'js-cookie';
 import LanguageIcon from '@mui/icons-material/Language';
 
 import { useTranslation } from 'react-i18next';
@@ -31,8 +30,6 @@ export default function LanguageFlags({
 
   const { t } = useTranslation();
 
-  const currentLanguageCode = cookies.get('i18next') || 'en';
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -41,6 +38,7 @@ export default function LanguageFlags({
   const handleClose = () => {
     setAnchorEl(null);
   };
+  let codeLng = localStorage.getItem('i18nextLng') || 'en';
 
   return (
     <Flags style={{ position, top, right }}>
@@ -90,12 +88,8 @@ export default function LanguageFlags({
             <MenuItem
               key={code}
               style={{
-                backgroundColor:
-                  currentLanguageCode === code ? '#D8D8D8' : '#F8F8F8',
-                border:
-                  currentLanguageCode === code
-                    ? '1px solid #989898'
-                    : '#F8F8F8',
+                backgroundColor: codeLng === code ? '#D8D8D8' : '#F8F8F8',
+                border: codeLng === code ? '1px solid #989898' : '#F8F8F8',
               }}
             >
               <IconButton
@@ -107,7 +101,7 @@ export default function LanguageFlags({
                 <div
                   className={`fi fi-${country_code}`}
                   style={{
-                    opacity: currentLanguageCode === code ? 1 : 0.3,
+                    opacity: codeLng === code ? 1 : 0.3,
                     width: '3rem',
                     height: '2rem',
                   }}
