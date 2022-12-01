@@ -130,8 +130,9 @@ function AddTransactionBtn() {
         ?.category_id,
     };
 
+    //  .then(() => dispatch(operations.fetchTransactions()))
+
     dispatch(operations.addTransaction(serialized))
-      .then(() => dispatch(operations.fetchTransactions()))
       .then(() => dispatch(authOperations.fetchCurrentUser()))
       .catch(error => {
         toast.error(t('messages.transactionError'));
@@ -141,14 +142,7 @@ function AddTransactionBtn() {
     resetForm({ values: '' });
     toast.success(t('messages.transactionSuccess'));
     closeModal();
-    // setTimeout(() => {
-    //   dispatch(operations.addTransaction(serialized));
-    //   dispatch(operations.fetchTransactions());
-    //   dispatch(authOperations.fetchCurrentUser());
-    //   resetForm({ values: '' });
-    //   closeModal();
-    // }, 0);
-  };
+     };
   return (
     <StyledEngineProvider injectFirst>
       <MyFab onClick={openModal} aria-label="add">
