@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { CircularProgress, Select,  FormControl, InputLabel} from '@mui/material';
+import {
+  CircularProgress,
+  Select,
+  FormControl,
+  InputLabel,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CloseIcon from '@mui/icons-material/Close';
@@ -32,7 +37,7 @@ import {
   Expense,
   SwitchField,
   Slider,
-} from './AddTransactionModal.styled';
+} from './addTransactionModal.styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
@@ -75,12 +80,16 @@ function AddTransactionBtn() {
       amount: '',
       date: myDate,
       comment: ' ',
-      category: 'Other income',
+      category: '',
     },
   });
 
   const validationSchema = object().shape({
-    amount: number().min(1, 'Your sum must be at least 1').max(100000, 'Maximum sum is 100 000').required('Provide an amount'),
+    amount: number()
+      .min(1, 'Your sum must be at least 1')
+      .max(100000, 'Maximum sum is 100000')
+      .required('Provide an amount'),
+
     date: number().required('Choose date'),
     direction: string().required(),
     comment: string().max(150, 'You can enter only 150 symbols'),
@@ -118,20 +127,28 @@ function AddTransactionBtn() {
     const serialized = {
       ...values,
       category: categories.find(item => item.name === values.category)
-        .category_id,
+        ?.category_id,
     };
 
-    // setTimeout(() => {
-      dispatch(operations.addTransaction(serialized));
-      console.log(values);
-      dispatch(operations.fetchTransactions());
-      dispatch(authOperations.fetchCurrentUser());
-      resetForm({ values: '' });
-      closeModal();
-    // }, 1000);
-    toast.success(t("messages.transactionSuccess"));
-  };
+    dispatch(operations.addTransaction(serialized))
+      .then(() => dispatch(operations.fetchTransactions()))
+      .then(() => dispatch(authOperations.fetchCurrentUser()))
+      .catch(error => {
+        toast.error(t('messages.transactionError'));
+        console.log(error);
+      });
 
+    resetForm({ values: '' });
+    toast.success(t('messages.transactionSuccess'));
+    closeModal();
+    // setTimeout(() => {
+    //   dispatch(operations.addTransaction(serialized));
+    //   dispatch(operations.fetchTransactions());
+    //   dispatch(authOperations.fetchCurrentUser());
+    //   resetForm({ values: '' });
+    //   closeModal();
+    // }, 0);
+  };
   return (
     <StyledEngineProvider injectFirst>
       <MyFab onClick={openModal} aria-label="add">
@@ -247,13 +264,19 @@ function AddTransactionBtn() {
                           value={values.date}
                           onChange={newDate => {
                             setMyDate(newDate);
-                            values.date = setFieldValue("date", newDate.getTime());
+                            values.date = setFieldValue(
+                              'date',
+                              newDate.getTime()
+                            );
                           }}
                         />
                         <CalendarMonthIcon
                           sx={{
                             color: '#24CCA7',
-                            '&:hover': { color: '#FF6596', cursor: 'pointer' },
+                            '&:hover': {
+                              color: '#FF6596',
+                              cursor: 'pointer',
+                            },
                           }}
                         />
                       </DataPickerWrapper>

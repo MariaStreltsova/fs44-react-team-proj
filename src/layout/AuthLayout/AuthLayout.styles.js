@@ -6,7 +6,6 @@ export const RootWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  // align-items: center;
   background-image: url(${authBackgroundImage});
   background-size: cover;
   background-repeat: no-repeat;
@@ -14,15 +13,14 @@ export const RootWrapper = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
-  display: none;
-}
+    display: none;
+  }
 `;
 
 export const WrapperChildren = styled.div`
 
   overflow-y: scroll;
   -ms-overflow-style: none;
-  scrollbar-width: none;
   &::-webkit-scrollbar {
   display: none;
 }
@@ -45,17 +43,13 @@ justify-content: center;
 
   }
   @media screen and (min-width: 1280px){
-    margin-top: 40px;
+    margin-top: 20px;
   }
 `;
 export const Line = styled.div`
 @media screen and (min-width: 1280px){
-
 height: 100vh;
-
 background: #BDBDBD;
-
-
 border: 1px solid #E7E5F2;
 box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05), 1px 0px 0px rgba(255, 255, 255, 0.6);
 }
