@@ -37,7 +37,7 @@ import {
   Expense,
   SwitchField,
   Slider,
-} from './addTransactionModal.styled';
+} from './AddTransactionModal.styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';

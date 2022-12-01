@@ -13,7 +13,7 @@ margin-top: 20px;
 }
 @media screen and (min-width: 1280px){
 display: flex;
-margin-top: 0;
+margin-top:0;
 }
 `;
 

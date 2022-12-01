@@ -81,7 +81,7 @@ function DiagramTab() {
             expenses={statTableDataCreating(statData.expenses)}
             onMonthHandle={onMonthHandle}
             onYearHandle={onYearHandle}
-            startDate={statData.firstTransactionDate}
+              startDate={statData.firstTransactionDate}
           />
         </StatisticsBox>
       )}

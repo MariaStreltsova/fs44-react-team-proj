@@ -7,13 +7,6 @@ width: 100vw;
 heigth: 100vh;
 padding: 0 20px 48px 20px;
 
-font-family: 'Circe';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 1.5;
-color: #000000;
-
 @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -38,6 +31,7 @@ export const TitleStat = styled.h2`
 
   @media (min-width: 1280px) {
     padding-left: 15px;
+    font-size:30px;
   }
 `;
 
