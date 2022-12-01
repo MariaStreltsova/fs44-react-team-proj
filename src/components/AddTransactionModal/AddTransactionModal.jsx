@@ -124,25 +124,20 @@ function AddTransactionBtn() {
   };
 
   const sendTransaction = (values, { resetForm }) => {
-    const serialized = {
+    const categoriesFilter = {
       ...values,
       category: categories.find(item => item.name === values.category)
         ?.category_id,
     };
 
-    //  .then(() => dispatch(operations.fetchTransactions()))
-
-    dispatch(operations.addTransaction(serialized))
-      .then(() => dispatch(authOperations.fetchCurrentUser()))
-      .catch(error => {
-        toast.error(t('messages.transactionError'));
-        console.log(error);
-      });
+    dispatch(operations.addTransaction(categoriesFilter)).catch(error => {
+      toast.error(t('messages.transactionError'));
+    });
 
     resetForm({ values: '' });
     toast.success(t('messages.transactionSuccess'));
     closeModal();
-     };
+  };
   return (
     <StyledEngineProvider injectFirst>
       <MyFab onClick={openModal} aria-label="add">
