@@ -17,7 +17,7 @@ export const NavigationContainer = styled.ul`
   justify-content: center;
   margin-top: 40px;
 
-   @media screen and (max-width: 768px) {
+   @media screen and (max-width: 767px) {
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -49,7 +49,7 @@ export const NavItem = styled.li`
     /* fill: ${p => p.theme.colors.accentColor}; */
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     margin-bottom: 0;
     align-items: center;
   }
@@ -73,7 +73,7 @@ export const NavItemStatistics = styled.li`
     /* fill: ${p => p.theme.colors.accentColor}; */
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     margin-bottom: 0;
     align-items: center;
   }
@@ -93,7 +93,7 @@ export const Svg = styled.svg`
     fill: ${p => p.theme.colors.accentColor};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     text-align: center;
   }
   @media screen and (min-width: 768px) {
@@ -122,7 +122,7 @@ export const NavItemCurrency = styled.li`
   &:focus {
     font-weight: ${p => p.theme.fontWeights.bold};
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     margin-bottom: 0;
     text-align: center;
   }

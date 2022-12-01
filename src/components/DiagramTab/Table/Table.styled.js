@@ -10,7 +10,7 @@ export const Section = styled.div`
   }
 
   @media (min-width: 1280px) {
-    margin-top: 70px;
+    margin-top: 20px;
     width: 395px;
   }
 `;
@@ -53,10 +53,7 @@ export const DataRow = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 25px;
-  padding: 0;
-  // padding-left: 20px;
-  // padding-right: 20px;
-  // padding-top: 20px;
+  padding: 20px 20px 0 20px;
 `;
 
 export const ColorDiv = styled.div`

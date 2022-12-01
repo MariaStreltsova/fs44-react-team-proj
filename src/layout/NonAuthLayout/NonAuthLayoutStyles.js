@@ -4,11 +4,11 @@ import tableBg from '../../images/Ellipse.svg';
 import { Box } from 'Box';
 
 export const RootWrapper = styled.div`
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     background-image: none;
     background-color: #fff;
   }
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: relative;
     background-color: rgba(231, 234, 242, 1);
     background-repeat: no-repeat;
@@ -46,14 +46,15 @@ export const FormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0;
  
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1279px) {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
+    margin-top: 60px;
     padding: 40px 65px 60px;
   }
 
@@ -63,15 +64,16 @@ export const FormContainer = styled.div`
     background-image: url(${formBackground});
     background-size: cover;
     background-repeat: no-repeat;
+    margin-top: 0;
   }
 `;
 
 export const ImageContainer = styled.div`
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 
-   @media screen and (max-width: 1280px) {
+   @media screen and (max-width: 1279px) {
     display: flex;
     justify-content: center;
   }
@@ -86,7 +88,7 @@ export const ImageContainer = styled.div`
 `;
 export const BulbImg = styled.div`
 display: none;
-  @media screen and (min-width: 768px) and (max-width: 1280px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: block
     position: absolute;
     left: 0;
@@ -102,7 +104,7 @@ display: none;
 
 export const PeopleImg = styled.div`
 display: none;
-    @media screen and (min-width: 768px) and (max-width: 1280px) {
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
       display: block;
     position: absolute;
     width: 250px;
@@ -121,7 +123,7 @@ display: none;
 `;
 export const TitleApp = styled.span`
 display: none;
-  @media screen and (min-width: 768px) and (max-width: 1280px){
+  @media screen and (min-width: 768px) and (max-width: 1279px){
     position: initial;
     z-index: 8;
     display: block;

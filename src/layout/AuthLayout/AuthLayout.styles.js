@@ -37,9 +37,10 @@ export const WrapperChildren = styled.div`
 `;
 export const WrapperChildrens = styled.div`
 
-  @media screen and (max-width: 1280px) {
-    display: flex;
-justify-content: center;
+  @media screen and (max-width: 1279px) {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
   }
   @media screen and (min-width: 1280px){
@@ -56,7 +57,7 @@ box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05), 1px 0px 0px rgba(255, 255, 255, 0.
 `
 
 export const BalCurSide = styled.div`
-@media screen and (min-width: 768px) and (max-width: 1280px){
+@media screen and (min-width: 768px) and (max-width: 1279px){
 display: flex;
 justify-content: space-between;
 } 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import theme from '../../theme';
 import TableRow from '@mui/material/TableContainer';
-import Box from '@mui/material/Box';
 
 export const TransactionsWrap = styled.ul`
   list-style: none;
@@ -77,23 +76,14 @@ export const PlaceholderContent = styled.span`
   flex-wrap: wrap;
 `;
 
-export const MyBox = styled(Box)`
-max-width: 704px;
-overflow: hidden;
-
-& .MuiTableContainer-root{
-  overflow: hidden;
-}
-
-`
 export const StyledContainer = styled.div`
-
+width: 100%;
   @media (min-width: 768px) {
-    width: 704px;
+    // width: 704px;
     margin-top: 20px;
   }
   @media (min-width: 1280px) {
-    width: 715px;
+    // width: 715px;
     margin-top: 0;
   }
 
