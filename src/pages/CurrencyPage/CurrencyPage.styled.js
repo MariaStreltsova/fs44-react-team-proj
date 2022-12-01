@@ -5,5 +5,4 @@ export const CurrencyWrapper = styled.div`
     display:flex;
     justify-content:center;
   }
-
 `;

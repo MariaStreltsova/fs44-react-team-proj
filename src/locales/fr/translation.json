@@ -1,0 +1,96 @@
+{
+  "button": {
+    "language": "Langue",
+    "goHome": "Au principal",
+    "login": "CONNEXION",
+    "register": "S'INSCRIRE"
+  },
+  "input": {
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmez le mot de passe",
+    "firstName": "Prénom",
+    "exit": "Sortir"
+  },
+  "title": {
+    "404": {
+      "notFound": "Pas trouvé!",
+      "notExist": "Cette page n'existe pas"
+    },
+    "navigation": {
+      "Home": "Maison",
+      "Statistics": "Statistiques"
+    },
+    "header": {
+      "Hi": "Salut"
+    }
+  },
+  "balance": { "title": "Votre solde" },
+  "homeTable": {
+    "date": "Date",
+    "type": "Taper",
+    "category": "Catégorie",
+    "comment": "Commentaire",
+    "sum": "Somme",
+    "balance": "Solde"
+  },
+  "errors": {
+    "loginError": "Données invalides, veuillez réessayer"
+  },
+  "validation": {
+    "email": "L'email est un champ obligatoire",
+    "password": "Le mot de passe est un champ obligatoire",
+    "passwordMatch": "les mots de passe ne sont pas les mêmes",
+    "confirmPassword": "Confirmer que le mot de passe est un champ obligatoire",
+    "firstName": "Le prénom est un champ obligatoire",
+    "minPasswordLength": "Longueur minimale du mot de passe 6 caractères",
+    "maxPasswordLength": "Longueur maximale du mot de passe 12 caractères"
+  },
+  "messages": {
+    "signupSuccess": "Inscription réussie, veuillez saisir votre email et votre mot de passe",
+    "signupError": "Désolé, l'enregistrement a échoué. Réessayer.",
+    "refreshError": "Désolé, votre jeton est mort ou le temps est écoulé",
+    "transactionSuccess": "Votre transaction a réussi",
+    "transactionError": "Quelque chose s'est mal passé"
+  },
+  "placeholderHomeTable": {
+    "title": "Vous n'avez pas encore de transaction"
+  },
+  "modal": {
+    "title": "Ajouter une opération",
+    "direction": {
+      "expence": "Frais",
+      "income": "Revenu"
+    },
+    "form": {
+      "categoriesTitle": "Choisissez une catégorie",
+      "amountLabel": "Montant ($)",
+      "comment": "Commentaire"
+    },
+    "button": {
+      "adding": "Ajouter",
+      "add": "Ajouter",
+      "cancel": "Annuler"
+    }
+  },
+  "modal-close": {
+    "title": {
+      "p": "Voulez-vous vraiment partir?"
+    },
+    "button": {
+      "button-no": "NON",
+      "button-yes": "OUI"
+    }
+  },
+  "currency": {
+    "currency": "Devise",
+    "purchase": "Acheter",
+    "sale": "Vente"
+  },
+  "table": {
+    "category": "Catégorie",
+    "sum": "Somme",
+    "expenses": "Dépenses",
+    "income": "Revenu"
+  }
+}

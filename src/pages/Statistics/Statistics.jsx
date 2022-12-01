@@ -5,7 +5,7 @@ export default function Statistics() {
   return (
     <>
       <StatisticsWrapper>
-        <DiagramTab />
+          <DiagramTab />
       </StatisticsWrapper>
     </>
   );

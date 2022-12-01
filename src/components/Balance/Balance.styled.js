@@ -10,6 +10,7 @@ margin-right:auto;
   background-color: ${theme.colors.lightBackgroundColor};
   border-radius: 30px;
   margin-top: 15px;
+      padding-bottom: 12px;
   @media (min-width: 768px) {
     margin-left:0;
 margin-right:0;
@@ -29,6 +30,7 @@ export const BalanceTitle = styled.p`
   line-height: 18px;
   text-transform: uppercase;
   color: #a6a6a6;
+
   @media (min-width: 1280px) {
     margin-bottom: 12px;
   }
@@ -37,8 +39,9 @@ export const BalanceTitle = styled.p`
 export const BalanceValue = styled.p`
   font-family: ${theme.fonts.title};
   font-style: normal;
+  font-weight: 900;
   font-size: 30px;
-  line-height: 45px;
+  line-height: 1.5;
   display: flex;
   align-items: baseline;
   justify-content: start;

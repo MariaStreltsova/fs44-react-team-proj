@@ -10,7 +10,7 @@ export const Section = styled.div`
   }
 
   @media (min-width: 1280px) {
-    margin-top: 70px;
+    margin-top: 20px;
     width: 395px;
   }
 `;
@@ -38,6 +38,7 @@ export const Head = styled.div`
   background: ${theme.colors.lightBackgroundColor};
   overflow: hidden;
   align-items: center;
+  margin-bottom: 5px;
 `;
 
 export const HeadText = styled.span`
@@ -51,10 +52,8 @@ export const DataRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
+  height: 25px;
+  padding: 20px 20px 0 20px;
 `;
 
 export const ColorDiv = styled.div`

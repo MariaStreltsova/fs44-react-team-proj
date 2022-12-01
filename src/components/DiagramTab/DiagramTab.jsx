@@ -1,7 +1,6 @@
 import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
-import Chart from './Chart/Chart';
-import { TitleStat, DiagramBlock, TitleChart, StatisticsBox} from './DiagramTab.styled';
+import { TitleStat, DiagramBlock, StatisticsBox, MyChart} from './DiagramTab.styled';
 import { useTranslation } from 'react-i18next';
 import { getStatisticYearMonth } from 'api/wallet';
 import theme from 'theme';
@@ -67,26 +66,27 @@ function DiagramTab() {
         <CurrencyLoader />
       ) : (
         <StatisticsBox>
-          <TitleChart>
+          <div>
             <TitleStat>{t('title.navigation.Statistics')}</TitleStat>
-            <Chart
+            <MyChart
               totalExpense={statData.totalExpense}
               expenses={chartDataCreating(statData.expenses)}
               backgroundColor={theme.chartColors}
               isLoading={isLoading}
             />
-          </TitleChart>
-          <Table
+          </div>
+              <Table
             totalIncome={statData.totalIncome}
             totalExpense={statData.totalExpense}
             expenses={statTableDataCreating(statData.expenses)}
             onMonthHandle={onMonthHandle}
             onYearHandle={onYearHandle}
-            startDate={statData.firstTransactionDate}
+              startDate={statData.firstTransactionDate}
           />
         </StatisticsBox>
       )}
-    </DiagramBlock>
+        </DiagramBlock>
+
   );
 }
 
