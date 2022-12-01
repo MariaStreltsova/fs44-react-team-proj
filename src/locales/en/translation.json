@@ -12,10 +12,6 @@
     "firstName": "First name",
     "exit": "Exit"
   },
-  "session": {},
-  "alert": {},
-  "dialog": {},
-
   "title": {
     "404": {
       "notFound": "Not found!",

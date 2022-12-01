@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './en/translation.json';
 import ua from './ua/translation.json';
+import fr from './fr/translation.json';
 
 
 // ----------------------------------------------------------------------------
@@ -17,6 +18,11 @@ export const translationsJson = {
   ua: {
     translation: ua,
     name: 'UA',
+    icon: '/static/icons/ic_flag_dc.svg',
+  },
+  fr: {
+    translation: fr,
+    name: 'FR',
     icon: '/static/icons/ic_flag_dc.svg',
   },
 };
