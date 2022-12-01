@@ -6,10 +6,10 @@ export const Form = styled.form`
   align-items: center;
   width: 410px;
   gap: 40px;
-  @media screen and (max-width: 1279px) {
+  @media screen and (max-width: 1280px) {
     width: 410px;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     max-width: 320px;
     margin-left: auto;
     margin-right: auto;

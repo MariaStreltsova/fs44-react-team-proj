@@ -38,6 +38,7 @@ export const Head = styled.div`
   background: ${theme.colors.lightBackgroundColor};
   overflow: hidden;
   align-items: center;
+  margin-bottom: 5px;
 `;
 
 export const HeadText = styled.span`
@@ -51,10 +52,11 @@ export const DataRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
+  height: 25px;
+  padding: 0;
+  // padding-left: 20px;
+  // padding-right: 20px;
+  // padding-top: 20px;
 `;
 
 export const ColorDiv = styled.div`

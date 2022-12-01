@@ -23,6 +23,7 @@ import {
   StyledContainer,
 } from './HomeTable.styled';
 import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 
 const SORT_TYPES = {
   asc: 'asc', // зростання
@@ -154,6 +155,7 @@ const HomeTable = () => {
     );
   };
   return (
+    <StyledEngineProvider>
     <StyledContainer>
       {transactions && transactions.length > 0 ? (
         <Box>
@@ -166,13 +168,13 @@ const HomeTable = () => {
                   fontFamily: 'Circe',
                   fontWeight: 400,
                   fontSize: '16px',
-                  lineHeight: '18px',
+                  lineHeight: '1.1',
                 },
                 [`& .${tableCellClasses.head}`]: {
                   height: '56px',
                   fontWeight: 700,
                   fontSize: '18px',
-                  lineHeight: '26px',
+                  lineHeight: '1.4',
                   backgroundColor: '#fff',
                   borderBottom: 'none',
                   '&:first-of-type': {
@@ -195,7 +197,8 @@ const HomeTable = () => {
                     fontFamily: 'Circe',
                     fontWeight: 400,
                     fontSize: '16px',
-                    lineHeight: '23.58px',
+                    lineHeight: '1.3',
+                    padding: 0,
                   },
                 }}
               >
@@ -220,7 +223,7 @@ const HomeTable = () => {
                           <TableCell align="center">
                             {direction === 'expense' ? '-' : '+'}
                           </TableCell>
-                          <TableCell align="left" style={{ width: '130px' }}>
+                          <TableCell align="left" style={{ width: '130px', textAlign: "left" }}>
                             {category}
                           </TableCell>
                           <TableCell align="left" style={{ width: '162px' }}>
@@ -278,7 +281,8 @@ const HomeTable = () => {
           </TitleTablePlaceholder>
         </TablePlaceholder>
       )}
-    </StyledContainer>
+      </StyledContainer>
+      </StyledEngineProvider>
   );
 };
 
