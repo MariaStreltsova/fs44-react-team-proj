@@ -14,7 +14,8 @@ export const Link = styled(NavLink)`
 
 export const Box = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  // align-items: baseline;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
@@ -35,12 +36,11 @@ export const Box = styled.header`
 `;
 //color: ${p => p.theme.colors.accent};
 export const Container = styled.div`
-  width: 1248px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   @media screen and (max-width: 1280px) {
-    width: 704px;
+    // width: 704px;
   }
 `;
 

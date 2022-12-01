@@ -29,14 +29,14 @@ export const Img = styled.img`
     height: auto;
     width: 100%;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
   display:none ;
   }
 
   `
 export const Main = styled.main`
     text-align: center;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
   margin-left: auto;
   margin-right: auto;
 

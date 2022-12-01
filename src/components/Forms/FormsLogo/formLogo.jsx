@@ -1,11 +1,12 @@
-import { Title, Logo, TitleText } from './formLogo.styles';
-import { WalletSvg } from 'images/icons/WalletSvg';
+import { Title, Logo, TitleText, MyLogo } from './formLogo.styles';
+import LogoPNG from 'images/LogoPNG.png';
 
-export const FormLogo = ({ mb = 0, w = 40, h = 40 }) => {
+export const FormLogo = () => {
   return (
-    <Title style={{ marginBottom: `${mb}px` }}>
-      <Logo>
-        <WalletSvg w={w} h={h} />
+    <Title >
+      <Logo link={"/fs44-react-team-proj/home"}>
+          {/* <WalletSvg w={w} h={h} /> */}
+          <MyLogo src={LogoPNG} />
       </Logo>
       <TitleText>Wallet</TitleText>
     </Title>
