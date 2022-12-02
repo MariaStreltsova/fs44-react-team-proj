@@ -86,11 +86,9 @@ export const PlaceholderContent = styled.span`
 export const StyledContainer = styled.div`
   width: 100%;
   @media (min-width: 768px) {
-    // width: 704px;
     margin-top: 20px;
   }
   @media (min-width: 1280px) {
-    // width: 715px;
     margin-top: 0;
   }
 

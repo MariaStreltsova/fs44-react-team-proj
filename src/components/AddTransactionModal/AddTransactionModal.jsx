@@ -13,7 +13,6 @@ import { Form, Formik, Field, useFormik } from 'formik';
 import { TextField } from 'formik-mui';
 import { object, number, string } from 'yup';
 import operations from '../../redux/wallet/wallet-operations';
-import { authOperations } from 'redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import walletSelectors from '../../redux/wallet/wallet-selectors';
 import 'react-datepicker/dist/react-datepicker.css';
