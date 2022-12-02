@@ -3,16 +3,21 @@ import styled from 'styled-components';
 import Chart from './Chart/Chart';
 
 export const StatisticsBox = styled.div`
-width: 100vw;
-heigth: 100vh;
-padding: 0 20px 48px 20px;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 20px 48px 20px;
 
-@media (min-width: 768px) {
+  @media (max-width: 767px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
     padding: 0 0 24px 0;
   }
-`
+`;
 
 export const TitleStat = styled.h2`
   padding-left: 20px;
@@ -31,13 +36,13 @@ export const TitleStat = styled.h2`
 
   @media (min-width: 1280px) {
     padding-left: 15px;
-    font-size:30px;
+    font-size: 30px;
   }
 `;
 
 export const DiagramBlock = styled.div`
   position: relative;
-  
+
   @media (min-width: 768px) {
     width: 704px;
     justify-content: space-between;
@@ -51,15 +56,20 @@ export const DiagramBlock = styled.div`
 `;
 
 export const MyChart = styled(Chart)`
-width: 280px;
-height: 280px;
-@media (min-width: 768px){
-width: 336x;
-height: 336px;
-}
+  width: 280px;
+  height: 280px;
+  @media (min-width: 768px) {
+    width: 336x;
+    height: 336px;
+  }
 
-@media (min-width: 1280px) {
+  @media (min-width: 1280px) {
     width: 288px;
     height: 288px;
   }
-`
+`;
+export const MyChartContainer = styled.div`
+  @media (min-width: 1280px) {
+    padding-top: 40px;
+  } ;
+`;
