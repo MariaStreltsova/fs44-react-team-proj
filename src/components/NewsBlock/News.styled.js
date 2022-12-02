@@ -9,13 +9,12 @@ flex-direction: column;
 justify-content: space-between;
 width: 750px;
 height: 250px;
-margin-top: 20px;
 margin-right: 100px;
 overflow: hidden;
 overflow-y: scroll;
 scrollbar-width: none;
-border: 2px solid #24CCA7;
-border-radius: 20px;
+border: 3px solid #24CCA7;
+border-radius: 13px;
 background: #ffffff;
 color: #000000;
 
@@ -54,12 +53,9 @@ display: flex;
 justify-content: space-around;
 `
 export const Fire = styled.span`
-animation: fire 2s linear infinite alternate;
--webkit-animation: fire 2s linear infinite alternate;
-#fire{
-    animation-name: fire;
-    animation-duration: 2s;
-}
+animation: fire .7s linear infinite alternate;
+-webkit-animation: fire .7s linear infinite alternate;
+
 
 @keyframes fire {
         0% {
