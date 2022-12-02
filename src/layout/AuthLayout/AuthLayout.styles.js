@@ -17,7 +17,7 @@ export const RootWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    justify-content: center;
+    align-items: center;
   }
 `;
 
