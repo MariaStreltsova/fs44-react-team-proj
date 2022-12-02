@@ -4,7 +4,7 @@ import HomeTable from '../../components/HomeTable/HomeTable';
 import HomeTableMobile from '../../components/HomeTable/HomeTableMobile';
 import useSizeScreen from 'hooks/useSizeScreen';
 import Balance from 'components/Balance';
-import { NewsContextProvider } from "../../components/NewsBlock/NewsBlock";
+// import { NewsContextProvider } from "../../components/NewsBlock/NewsBlock";
 
 export default function DashBoard() {
   const sizeScreen = useSizeScreen();
@@ -13,7 +13,7 @@ export default function DashBoard() {
       <Dashboard>
         {sizeScreen < 767 && <Balance />}
         {sizeScreen > 767 ? <HomeTable /> : <HomeTableMobile />}
-        <NewsContextProvider />
+        {/* <NewsContextProvider /> */}
         <AddTransactionBtn />
       </Dashboard>
     </>
