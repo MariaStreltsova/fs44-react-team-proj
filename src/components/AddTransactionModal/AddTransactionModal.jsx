@@ -81,8 +81,15 @@ function AddTransactionBtn() {
       date: myDate,
       comment: ' ',
       category: '',
-    },
+    }
   });
+
+  useEffect(() => {
+    
+    f.values.date = myDate;
+
+  }, [f.values, myDate]);
+
 
   const validationSchema = object().shape({
     amount: number()
@@ -98,6 +105,7 @@ function AddTransactionBtn() {
 
   const openModal = () => {
     setIsOpen(true);
+    setMyDate(new Date().getTime());
   };
 
   const closeModal = () => {
