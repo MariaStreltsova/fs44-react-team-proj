@@ -4,14 +4,15 @@ import {
   RootWrapper,
   WrapperChildren,
   WrapperChildrens,
-  BalCurSide, NavBal
+  BalCurSide,
+  NavBal,
 } from './AuthLayout.styles';
 
 import { Navigation } from '../../components/Navigation/Navigation';
 import Balance from 'components/Balance';
 import Currency from 'components/Currency/Currency';
 import useSizeScreen from 'hooks/useSizeScreen';
-import {Line} from "../AuthLayout/AuthLayout.styles"
+import { Line } from '../AuthLayout/AuthLayout.styles';
 
 const AuthLayout = ({ children }) => {
   const sizeScreen = useSizeScreen();
@@ -19,21 +20,19 @@ const AuthLayout = ({ children }) => {
     <RootWrapper>
       <Header />
       <WrapperChildren>
-        <BalCurSide >
+        <BalCurSide>
           <NavBal>
-        <Navigation />
+            <Navigation />
             {sizeScreen > 767 && <Balance />}
-            </NavBal>
-          <div >
-            {sizeScreen > 767 && <Currency />}
-            </div>
+          </NavBal>
+          <div>{sizeScreen > 767 && <Currency />}</div>
         </BalCurSide>
         <Line></Line>
         <div>
-        <WrapperChildrens>
-          <Suspense fallback={null}>{children} </Suspense>
+          <WrapperChildrens style={{ paddingTop: '40px' }}>
+            <Suspense fallback={null}>{children} </Suspense>
           </WrapperChildrens>
-          </div>
+        </div>
       </WrapperChildren>
     </RootWrapper>
   );
