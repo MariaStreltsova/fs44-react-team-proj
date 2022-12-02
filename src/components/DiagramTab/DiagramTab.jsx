@@ -1,6 +1,12 @@
 import Table from './Table/Table';
 import React, { useState, useEffect } from 'react';
-import { TitleStat, DiagramBlock, StatisticsBox, MyChart} from './DiagramTab.styled';
+import {
+  TitleStat,
+  DiagramBlock,
+  StatisticsBox,
+  MyChart,
+  MyChartContainer,
+} from './DiagramTab.styled';
 import { useTranslation } from 'react-i18next';
 import { getStatisticYearMonth } from 'api/wallet';
 import theme from 'theme';
@@ -75,18 +81,19 @@ function DiagramTab() {
               isLoading={isLoading}
             />
           </div>
-              <Table
-            totalIncome={statData.totalIncome}
-            totalExpense={statData.totalExpense}
-            expenses={statTableDataCreating(statData.expenses)}
-            onMonthHandle={onMonthHandle}
-            onYearHandle={onYearHandle}
+          <MyChartContainer>
+            <Table
+              totalIncome={statData.totalIncome}
+              totalExpense={statData.totalExpense}
+              expenses={statTableDataCreating(statData.expenses)}
+              onMonthHandle={onMonthHandle}
+              onYearHandle={onYearHandle}
               startDate={statData.firstTransactionDate}
-          />
+            />
+          </MyChartContainer>
         </StatisticsBox>
       )}
-        </DiagramBlock>
-
+    </DiagramBlock>
   );
 }
 

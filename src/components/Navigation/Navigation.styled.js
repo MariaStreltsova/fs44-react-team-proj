@@ -15,10 +15,9 @@ export const NavigationContainer = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
 
   @media screen and (max-width: 767px) {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-left: auto;
     margin-right: auto;
   }
@@ -27,10 +26,10 @@ export const NavigationContainer = styled.ul`
     display: inline-block;
     margin-left: 3px;
   }
-
+/* 
   @media screen and (min-width: 1280px) {
-    margin-top: 0;
-  }
+    padding-top: 14px;
+  } */
 `;
 
 export const NavItem = styled.li`
