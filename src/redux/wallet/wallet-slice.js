@@ -29,6 +29,7 @@ const walletSlice = createSlice({
     },
 
     [walletOperations.addTransaction.fulfilled](state, action) {
+      state.transactions = [action.payload, ...state.transactions];
       state.isLoading = false;
     },
 

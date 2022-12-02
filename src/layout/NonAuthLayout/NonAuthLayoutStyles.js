@@ -13,7 +13,6 @@ export const RootWrapper = styled.div`
     background-color: rgba(231, 234, 242, 1);
     background-repeat: no-repeat;
     padding: 60px 114px;
-    // padding-left: 114px;
     &::before {
       content: '';
       position: absolute;
@@ -26,7 +25,7 @@ export const RootWrapper = styled.div`
       right: 0;
     }
   }
-  
+
   @media screen and (min-width: 1280px) {
     max-width: 100vw;
     height: 100vh;
@@ -47,7 +46,7 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
- 
+
   @media screen and (max-width: 1279px) {
     position: relative;
     display: flex;
@@ -58,7 +57,7 @@ export const FormContainer = styled.div`
     padding: 40px 65px 60px;
   }
 
-   @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     width: 60%;
     height: 100vh;
     background-image: url(${formBackground});
@@ -73,7 +72,7 @@ export const ImageContainer = styled.div`
     display: none;
   }
 
-   @media screen and (max-width: 1279px) {
+  @media screen and (max-width: 1279px) {
     display: flex;
     justify-content: center;
   }
@@ -84,7 +83,6 @@ export const ImageContainer = styled.div`
     background-color: rgba(231, 234, 242, 1);
     position: relative;
   }
-
 `;
 export const BulbImg = styled.div`
 display: none;
@@ -103,9 +101,9 @@ display: none;
 `;
 
 export const PeopleImg = styled.div`
-display: none;
-    @media screen and (min-width: 768px) and (max-width: 1279px) {
-      display: block;
+  display: none;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
     position: absolute;
     width: 250px;
     height: 260.26px;
@@ -122,8 +120,8 @@ display: none;
   }
 `;
 export const TitleApp = styled.span`
-display: none;
-  @media screen and (min-width: 768px) and (max-width: 1279px){
+  display: none;
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     position: initial;
     z-index: 8;
     display: block;

@@ -7,7 +7,7 @@ export const NavigationLink = styled(NavLink)`
   &.active {
     font-weight: ${p => p.theme.fontWeights.bold};
     fill: ${p => p.theme.colors.accentColor};
-    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
+    filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 10));
   }
 `;
 
@@ -17,7 +17,7 @@ export const NavigationContainer = styled.ul`
   justify-content: center;
   margin-top: 40px;
 
-   @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -27,9 +27,9 @@ export const NavigationContainer = styled.ul`
     display: inline-block;
     margin-left: 3px;
   }
- 
+
   @media screen and (min-width: 1280px) {
-      margin-top: 0;
+    margin-top: 0;
   }
 `;
 
@@ -93,7 +93,7 @@ export const Svg = styled.svg`
     fill: ${p => p.theme.colors.accentColor};
     filter: drop-shadow(0px 3px 10px rgba(74, 86, 226, 0.5));
   }
-@media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     text-align: center;
   }
   @media screen and (min-width: 768px) {
@@ -101,7 +101,6 @@ export const Svg = styled.svg`
     width: 18px;
     height: 18px;
   }
-  
 `;
 export const TextNav = styled.span`
   display: none;
