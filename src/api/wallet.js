@@ -15,7 +15,7 @@ export const addTransaction = async transaction => {
       '/api/transactions',
       transaction
     );
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }

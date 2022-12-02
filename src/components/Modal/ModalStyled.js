@@ -36,7 +36,7 @@ export const ModalContent = styled.div`
 `;
 
 export const ButtonClose = styled.button`
-  display: flex;
+  display: none;
   margin-left: auto;
   margin-right: 0;
   margin-bottom: 30px;
@@ -56,6 +56,10 @@ export const ButtonClose = styled.button`
   &:hover,
   &:focus {
   fill: ${theme.colors.expenseColor};
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
   }
 `;
 
@@ -108,6 +112,7 @@ export const Svg = styled.svg`
 
 export const P = styled.p`
   display: flex;
+  margin-top: 90px;
   flex-direction: column;
   text-align: center;
   font-family: ${theme.fonts.title};
@@ -115,4 +120,9 @@ export const P = styled.p`
   font-size: ${theme.fontSizes.m};
   line-height: ${theme.lineHeights.normal};
   color: ${theme.colors.mainTxtColor};
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    margin-top: 0;
+  }
 `;
