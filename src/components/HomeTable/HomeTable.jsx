@@ -37,7 +37,7 @@ const HomeTable = () => {
       id: 'date',
       align: 'left',
       label: t('homeTable.date'),
-      sorting: true,
+      sorting: false,
     },
     {
       id: 'type',
@@ -156,133 +156,141 @@ const HomeTable = () => {
   };
   return (
     <StyledEngineProvider>
-    <StyledContainer>
-      {transactions && transactions.length > 0 ? (
-        <Box>
-          <TableContainer>
-            <Table
-              sx={{
-                [`& .${tableCellClasses.root}`]: {
-                  height: '52px',
-                  // borderBottom: '1px solid #DCDCDF',
-                  fontFamily: 'Circe',
-                  fontWeight: 400,
-                  fontSize: '16px',
-                  lineHeight: '1.1',
-                },
-                [`& .${tableCellClasses.head}`]: {
-                  height: '56px',
-                  fontWeight: 700,
-                  fontSize: '18px',
-                  lineHeight: '1.4',
-                  backgroundColor: '#fff',
-                  borderBottom: 'none',
-                  '&:first-of-type': {
-                    borderRadius: '30px 0px 0px 30px',
-                  },
-                  '&:last-of-type': {
-                    borderRadius: '0px 30px 30px 0px',
-                  },
-                },
-              }}
-            >
-              <EnhancedTableHead
-                order={order}
-                orderBy={orderBy}
-                onRequestSort={handleRequestSort}
-              />
-              <TableBody
+      <StyledContainer>
+        {transactions && transactions.length > 0 ? (
+          <Box>
+            <TableContainer>
+              <Table
                 sx={{
                   [`& .${tableCellClasses.root}`]: {
+                    height: '52px',
+                    borderBottom: '1px solid #DCDCDF',
                     fontFamily: 'Circe',
                     fontWeight: 400,
                     fontSize: '16px',
-                    lineHeight: '1.3',
-                    padding: 0,
+                    lineHeight: '1.1',
+                  },
+                  [`& .${tableCellClasses.head}`]: {
+                    height: '56px',
+                    fontWeight: 700,
+                    fontSize: '18px',
+                    lineHeight: '1.4',
+                    backgroundColor: '#fff',
+                    borderBottom: 'none',
+                    '&:first-of-type': {
+                      borderRadius: '30px 0px 0px 30px',
+                    },
+                    '&:last-of-type': {
+                      borderRadius: '0px 30px 30px 0px',
+                    },
                   },
                 }}
               >
-                {transactions &&
-                  [...transactions]
-                    .sort(getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(
-                      ({
-                        id,
-                        date,
-                        direction,
-                        category,
-                        comment,
-                        amount,
-                        balanceAfter,
-                      }) => (
-                        <TableRow key={id}>
-                          <TableCell align="left">
-                            {format(new Date(date), 'DD.MM.YY')}
-                          </TableCell>
-                          <TableCell align="center">
-                            {direction === 'expense' ? '-' : '+'}
-                          </TableCell>
-                          <TableCell align="left" style={{ width: '130px', textAlign: "left" }}>
-                            {category}
-                          </TableCell>
-                          <TableCell align="left" style={{ width: '162px' }}>
-                            {comment}
-                          </TableCell>
-                          <TableCell
-                            sx={{
-                              color:
-                                direction === 'expense' ? '#FF6596' : '#24CCA7',
-                              width: '120px',
-                            }}
-                            align="right"
-                          >
-                            {amount.toFixed(2)}
-                          </TableCell>
-                          <TableCell align="right" style={{ width: '120px' }}>
-                            {balanceAfter.toFixed(2)}
-                          </TableCell>
-                        </TableRow>
+                <EnhancedTableHead
+                  order={order}
+                  orderBy={orderBy}
+                  onRequestSort={handleRequestSort}
+                />
+                <TableBody
+                  sx={{
+                    [`& .${tableCellClasses.root}`]: {
+                      fontFamily: 'Circe',
+                      fontWeight: 400,
+                      fontSize: '16px',
+                      lineHeight: '1.3',
+                      padding: 0,
+                    },
+                  }}
+                >
+                  {transactions &&
+                    [...transactions]
+                      .sort(getComparator(order, orderBy))
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
                       )
-                    )}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: 52 * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5]}
-            component="div"
-            count={transactions ? transactions.length : 0}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            sx={{
-              [`& .${tablePaginationClasses.displayedRows}`]: {
-                fontFamily: 'Circe',
-              },
-            }}
-          />
-        </Box>
-      ) : (
-        <TablePlaceholder>
-          <InsightsOutlinedIcon
-            sx={{ fontSize: 36, marginRight: '16px', color: '#4A56E2' }}
-          />
-          <TitleTablePlaceholder>
-            {t('placeholderHomeTable.title')}
-          </TitleTablePlaceholder>
-        </TablePlaceholder>
-      )}
+                      .map(
+                        ({
+                          id,
+                          formatedDate,
+                          direction,
+                          category,
+                          comment,
+                          amount,
+                          balanceAfter,
+                        }) => (
+                          <TableRow key={id}>
+                            <TableCell align="left">
+                              {format(new Date(formatedDate), 'DD.MM.YY')}
+                            </TableCell>
+                            <TableCell align="center">
+                              {direction === 'expense' ? '-' : '+'}
+                            </TableCell>
+                            <TableCell
+                              align="left"
+                              style={{ width: '130px', textAlign: 'left' }}
+                            >
+                              {category}
+                            </TableCell>
+                            <TableCell align="left" style={{ width: '162px' }}>
+                              {comment}
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color:
+                                  direction === 'expense'
+                                    ? '#FF6596'
+                                    : '#24CCA7',
+                                width: '120px',
+                              }}
+                              align="right"
+                            >
+                              {amount.toFixed(2)}
+                            </TableCell>
+                            <TableCell align="right" style={{ width: '120px' }}>
+                              {balanceAfter.toFixed(2)}
+                            </TableCell>
+                          </TableRow>
+                        )
+                      )}
+                  {emptyRows > 0 && (
+                    <TableRow
+                      style={{
+                        height: 52 * emptyRows,
+                      }}
+                    >
+                      <TableCell colSpan={6} />
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[5]}
+              component="div"
+              count={transactions ? transactions.length : 0}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              sx={{
+                [`& .${tablePaginationClasses.displayedRows}`]: {
+                  fontFamily: 'Circe',
+                },
+              }}
+            />
+          </Box>
+        ) : (
+          <TablePlaceholder>
+            <InsightsOutlinedIcon
+              sx={{ fontSize: 36, marginRight: '16px', color: '#4A56E2' }}
+            />
+            <TitleTablePlaceholder>
+              {t('placeholderHomeTable.title')}
+            </TitleTablePlaceholder>
+          </TablePlaceholder>
+        )}
       </StyledContainer>
-      </StyledEngineProvider>
+    </StyledEngineProvider>
   );
 };
 

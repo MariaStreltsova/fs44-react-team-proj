@@ -62,6 +62,13 @@ export const TablePlaceholder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (min-width: 768px) {
+    margin-top: 40px;
+  }
+  @media (min-width: 1280px) {
+    width: 715px;
+    margin-top: 40px;
+  }
 `;
 export const TitleTablePlaceholder = styled.h3`
   text-align: center;
@@ -77,7 +84,7 @@ export const PlaceholderContent = styled.span`
 `;
 
 export const StyledContainer = styled.div`
-width: 100%;
+  width: 100%;
   @media (min-width: 768px) {
     // width: 704px;
     margin-top: 20px;
@@ -87,23 +94,20 @@ width: 100%;
     margin-top: 0;
   }
 
-  & .MuiTableCell-root{
-font-family: 'Circe';
-font-weight: 400;
-font-size: 16px;
-text-align: center;
+  & .MuiTableCell-root {
+    font-family: 'Circe';
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
   }
 
-  & .MuiTable-root{
+  & .MuiTable-root {
     padding-left: 0;
   }
 `;
 
-
 export const MyTableRow = styled(TableRow)`
-display: flex;
-height: 50px;
-padding: 0;
-
-`
-
+  display: flex;
+  height: 50px;
+  padding: 0;
+`;

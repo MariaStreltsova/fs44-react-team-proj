@@ -124,30 +124,19 @@ function AddTransactionBtn() {
   };
 
   const sendTransaction = (values, { resetForm }) => {
-    const serialized = {
+    const categoriesFilter = {
       ...values,
       category: categories.find(item => item.name === values.category)
         ?.category_id,
     };
 
-    dispatch(operations.addTransaction(serialized))
-      .then(() => dispatch(operations.fetchTransactions()))
-      .then(() => dispatch(authOperations.fetchCurrentUser()))
-      .catch(error => {
-        toast.error(t('messages.transactionError'));
-        console.log(error);
-      });
+    dispatch(operations.addTransaction(categoriesFilter)).catch(error => {
+      toast.error(t('messages.transactionError'));
+    });
 
     resetForm({ values: '' });
     toast.success(t('messages.transactionSuccess'));
     closeModal();
-    // setTimeout(() => {
-    //   dispatch(operations.addTransaction(serialized));
-    //   dispatch(operations.fetchTransactions());
-    //   dispatch(authOperations.fetchCurrentUser());
-    //   resetForm({ values: '' });
-    //   closeModal();
-    // }, 0);
   };
   return (
     <StyledEngineProvider injectFirst>
