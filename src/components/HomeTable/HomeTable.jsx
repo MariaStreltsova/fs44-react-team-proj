@@ -37,7 +37,7 @@ const HomeTable = () => {
       id: 'date',
       align: 'left',
       label: t('homeTable.date'),
-      sorting: false,
+      sorting: true,
     },
     {
       id: 'type',
