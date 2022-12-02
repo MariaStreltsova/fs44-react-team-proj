@@ -8,8 +8,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 width: 750px;
-height: 250px;
-margin-right: 100px;
+height: 220px;
 overflow: hidden;
 overflow-y: scroll;
 scrollbar-width: none;
@@ -71,7 +70,7 @@ animation: fire .7s linear infinite alternate;
 `
 export const NewsTitle = styled.p`
 margin-bottom: 5px;
-font-size: 20px;
+font-size: 18px;
 font-weight: 700;
 text-align: center;
 `
@@ -106,7 +105,7 @@ display: flex;
 flex-direction: inline-row;
 justify-content: space-between;
 margin-top: 10px;
-margin-bottom: 5px;
+margin-bottom: 15px;
     align-items: center;
     font-family: Poppins;
     font-size: 18px;
